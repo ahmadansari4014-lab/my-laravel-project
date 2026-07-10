@@ -1,8 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
+<!-- Setup Alpine Data for Homepage Modals -->
 <div x-data="{ activeHomeModal: null }" class="relative">
 
+    <!-- 1. Cinematic Hero Section -->
     <div class="relative w-full h-[90vh] min-h-[700px] flex items-center justify-center rounded-3xl overflow-hidden mb-24 shadow-2xl group">
         <div class="absolute inset-0">
             <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2000&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-[20s] group-hover:scale-110" alt="Tech Background">
@@ -31,6 +33,7 @@
         </div>
     </div>
 
+    <!-- 2. Trusted By / Social Proof Section -->
     <div class="max-w-7xl mx-auto px-6 mb-32 text-center opacity-70 hover:opacity-100 transition-opacity duration-700">
         <p class="text-sm font-bold text-slate-400 uppercase tracking-widest mb-8">Trusted by modern professionals and industry leaders</p>
         <div class="flex flex-wrap justify-center items-center gap-12 md:gap-24 grayscale">
@@ -41,6 +44,7 @@
         </div>
     </div>
 
+    <!-- 3. The Problem Section (Now featuring Photo Backgrounds) -->
     <div class="max-w-7xl mx-auto px-6 mb-32">
         <div class="text-center mb-16">
             <h2 class="text-4xl md:text-5xl font-extrabold text-slate-900 mb-6 tracking-tight">The Cost of Doing It All Yourself</h2>
@@ -50,44 +54,60 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-            <div @click="activeHomeModal = 'time'" class="bg-white rounded-3xl p-10 shadow-lg border border-slate-100 hover:border-blue-300 hover:shadow-2xl hover:shadow-blue-500/20 hover:-translate-y-2 transition-all duration-500 cursor-pointer group relative overflow-hidden">
-                <div class="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0"></div>
-                <div class="relative z-10">
-                    <div class="text-blue-600 mb-6 bg-blue-50 w-16 h-16 rounded-2xl flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-colors duration-500 shadow-sm">
+            <!-- Interactive Card 1: Time Recaptured -->
+            <div @click="activeHomeModal = 'time'" class="group relative rounded-3xl hover:shadow-[0_0_30px_rgba(37,99,235,0.4)] hover:-translate-y-2 transition-all duration-500 cursor-pointer flex flex-col h-full overflow-hidden border border-slate-700/50 shadow-lg">
+                <div class="absolute inset-0 z-0">
+                    <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Clean Desk Workflow">
+                    <div class="absolute inset-0 bg-slate-900/80 group-hover:bg-slate-900/70 transition-colors duration-500 mix-blend-multiply"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/80 to-transparent opacity-90"></div>
+                </div>
+                <div class="relative z-10 flex flex-col h-full p-10">
+                    <div class="text-blue-400 mb-6 bg-white/10 backdrop-blur-md border border-white/20 w-16 h-16 rounded-2xl flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-all duration-500 shadow-lg">
                         <svg class="w-8 h-8 transform group-hover:scale-110 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                     </div>
-                    <h3 class="text-2xl font-bold text-slate-800 mb-4 group-hover:text-blue-700 transition-colors duration-300">Time Recaptured</h3>
-                    <p class="text-slate-600 leading-relaxed mb-6">The average business owner loses 15+ hours a week to inbox management, scheduling, and CRM data entry. We turn your chaotic workflow into a streamlined machine.</p>
-                    <span class="text-blue-600 font-semibold flex items-center gap-2 text-sm opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">View Details <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></span>
+                    <h3 class="text-2xl font-bold text-white mb-4 group-hover:text-blue-300 transition-colors duration-300">Time Recaptured</h3>
+                    <p class="text-slate-300 leading-relaxed mb-6 flex-grow group-hover:text-white transition-colors">The average business owner loses 15+ hours a week to inbox management, scheduling, and CRM data entry. We turn your chaotic workflow into a streamlined machine.</p>
+                    <span class="text-blue-400 font-semibold flex items-center gap-2 text-sm mt-auto group-hover:text-blue-300 transition-colors border-t border-white/20 pt-6">View Details <svg class="w-4 h-4 transform group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></span>
                 </div>
             </div>
 
-            <div @click="activeHomeModal = 'dominance'" class="bg-white rounded-3xl p-10 shadow-lg border border-slate-100 hover:border-blue-300 hover:shadow-2xl hover:shadow-blue-500/20 hover:-translate-y-2 transition-all duration-500 cursor-pointer group relative overflow-hidden">
-                <div class="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0"></div>
-                <div class="relative z-10">
-                    <div class="text-blue-600 mb-6 bg-blue-50 w-16 h-16 rounded-2xl flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-colors duration-500 shadow-sm">
+            <!-- Interactive Card 2: Digital Dominance -->
+            <div @click="activeHomeModal = 'dominance'" class="group relative rounded-3xl hover:shadow-[0_0_30px_rgba(37,99,235,0.4)] hover:-translate-y-2 transition-all duration-500 cursor-pointer flex flex-col h-full overflow-hidden border border-slate-700/50 shadow-lg">
+                <div class="absolute inset-0 z-0">
+                    <img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Data Analytics">
+                    <div class="absolute inset-0 bg-slate-900/80 group-hover:bg-slate-900/70 transition-colors duration-500 mix-blend-multiply"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/80 to-transparent opacity-90"></div>
+                </div>
+                <div class="relative z-10 flex flex-col h-full p-10">
+                    <div class="text-blue-400 mb-6 bg-white/10 backdrop-blur-md border border-white/20 w-16 h-16 rounded-2xl flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-all duration-500 shadow-lg">
                         <svg class="w-8 h-8 transform group-hover:scale-110 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
                     </div>
-                    <h3 class="text-2xl font-bold text-slate-800 mb-4 group-hover:text-blue-700 transition-colors duration-300">Digital Dominance</h3>
-                    <p class="text-slate-600 leading-relaxed mb-6">A website that doesn't convert is just a digital business card. We build high-performance web platforms backed by aggressive SEO to keep your pipeline full.</p>
-                    <span class="text-blue-600 font-semibold flex items-center gap-2 text-sm opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">View Details <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></span>
+                    <h3 class="text-2xl font-bold text-white mb-4 group-hover:text-blue-300 transition-colors duration-300">Digital Dominance</h3>
+                    <p class="text-slate-300 leading-relaxed mb-6 flex-grow group-hover:text-white transition-colors">A website that doesn't convert is just a digital business card. We build high-performance web platforms backed by aggressive SEO to keep your pipeline full.</p>
+                    <span class="text-blue-400 font-semibold flex items-center gap-2 text-sm mt-auto group-hover:text-blue-300 transition-colors border-t border-white/20 pt-6">View Details <svg class="w-4 h-4 transform group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></span>
                 </div>
             </div>
 
-            <div @click="activeHomeModal = 'clarity'" class="bg-white rounded-3xl p-10 shadow-lg border border-slate-100 hover:border-blue-300 hover:shadow-2xl hover:shadow-blue-500/20 hover:-translate-y-2 transition-all duration-500 cursor-pointer group relative overflow-hidden">
-                <div class="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0"></div>
-                <div class="relative z-10">
-                    <div class="text-blue-600 mb-6 bg-blue-50 w-16 h-16 rounded-2xl flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-colors duration-500 shadow-sm">
+            <!-- Interactive Card 3: Financial Clarity -->
+            <div @click="activeHomeModal = 'clarity'" class="group relative rounded-3xl hover:shadow-[0_0_30px_rgba(37,99,235,0.4)] hover:-translate-y-2 transition-all duration-500 cursor-pointer flex flex-col h-full overflow-hidden border border-slate-700/50 shadow-lg">
+                <div class="absolute inset-0 z-0">
+                    <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Financial Planning">
+                    <div class="absolute inset-0 bg-slate-900/80 group-hover:bg-slate-900/70 transition-colors duration-500 mix-blend-multiply"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/80 to-transparent opacity-90"></div>
+                </div>
+                <div class="relative z-10 flex flex-col h-full p-10">
+                    <div class="text-blue-400 mb-6 bg-white/10 backdrop-blur-md border border-white/20 w-16 h-16 rounded-2xl flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-all duration-500 shadow-lg">
                         <svg class="w-8 h-8 transform group-hover:scale-110 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
                     </div>
-                    <h3 class="text-2xl font-bold text-slate-800 mb-4 group-hover:text-blue-700 transition-colors duration-300">Financial Clarity</h3>
-                    <p class="text-slate-600 leading-relaxed mb-6">Scale with confidence knowing your numbers are accurate. Our QuickBooks specialists handle the tedious reconciliation process, giving you real-time visibility.</p>
-                    <span class="text-blue-600 font-semibold flex items-center gap-2 text-sm opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">View Details <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></span>
+                    <h3 class="text-2xl font-bold text-white mb-4 group-hover:text-blue-300 transition-colors duration-300">Financial Clarity</h3>
+                    <p class="text-slate-300 leading-relaxed mb-6 flex-grow group-hover:text-white transition-colors">Scale with confidence knowing your numbers are accurate. Our QuickBooks specialists handle the tedious reconciliation process, giving you real-time visibility.</p>
+                    <span class="text-blue-400 font-semibold flex items-center gap-2 text-sm mt-auto group-hover:text-blue-300 transition-colors border-t border-white/20 pt-6">View Details <svg class="w-4 h-4 transform group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></span>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- 4. Deep Dive Feature 1 (Image Left, Text Right) -->
     <div class="max-w-7xl mx-auto px-6 mb-32">
         <div class="flex flex-col lg:flex-row items-center gap-16">
             <div class="w-full lg:w-1/2 relative group">
@@ -116,6 +136,7 @@
         </div>
     </div>
 
+    <!-- 5. Deep Dive Feature 2 (Text Left, Image Right) -->
     <div class="max-w-7xl mx-auto px-6 mb-32">
         <div class="flex flex-col-reverse lg:flex-row items-center gap-16">
             <div class="w-full lg:w-1/2">
@@ -144,6 +165,7 @@
         </div>
     </div>
 
+    <!-- 6. Interactive Tablets Section -->
     <div id="solutions" class="bg-slate-900 py-32 mb-32 relative overflow-hidden rounded-[3rem] mx-6">
         <div class="absolute top-0 left-0 w-[500px] h-[500px] bg-blue-600 rounded-full mix-blend-multiply filter blur-[150px] opacity-30"></div>
         <div class="relative z-10 max-w-7xl mx-auto px-6">
@@ -153,37 +175,78 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div @click="activeHomeModal = 'va'" class="bg-slate-800/80 backdrop-blur-sm border border-slate-700/50 p-10 rounded-3xl hover:bg-slate-800 hover:border-blue-500/50 hover:shadow-[0_0_30px_rgba(37,99,235,0.15)] transition-all duration-500 cursor-pointer group relative overflow-hidden">
-                    <div class="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 rounded-full filter blur-2xl group-hover:scale-150 transition-transform duration-700"></div>
-                    <h3 class="text-3xl font-bold text-white mb-4 group-hover:text-blue-400 transition-colors relative z-10">Virtual Assistance Desk</h3>
-                    <p class="text-slate-400 mb-6 relative z-10">Elite administrative support, CRM handling, and daily operational management.</p>
-                    <span class="text-blue-400 font-semibold flex items-center gap-2 relative z-10">View Data <svg class="w-4 h-4 transform group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></span>
+                <!-- Tablet 1: Virtual Assistance -->
+                <div @click="activeHomeModal = 'va'" class="group relative rounded-3xl hover:shadow-[0_0_30px_rgba(37,99,235,0.4)] transition-all duration-500 cursor-pointer flex flex-col h-full overflow-hidden border border-slate-700/50">
+                    <div class="absolute inset-0 z-0">
+                        <img src="https://images.unsplash.com/photo-1554415707-6e8cfc93fe23?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Virtual Assistance">
+                        <div class="absolute inset-0 bg-slate-900/80 group-hover:bg-slate-900/70 transition-colors duration-500 mix-blend-multiply"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/80 to-transparent opacity-90"></div>
+                    </div>
+                    <div class="relative z-10 flex flex-col h-full p-10">
+                        <div class="w-14 h-14 bg-white/10 backdrop-blur-md border border-white/20 text-blue-400 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-blue-600 group-hover:text-white group-hover:border-blue-500 transition-all duration-300 shadow-lg">
+                            <svg class="w-7 h-7 transform group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                        </div>
+                        <h3 class="text-3xl font-bold text-white mb-4 group-hover:text-blue-300 transition-colors">Virtual Assistance Desk</h3>
+                        <p class="text-slate-300 mb-6 flex-grow">Elite administrative support, CRM handling, and daily operational management.</p>
+                        <span class="text-blue-400 font-semibold flex items-center gap-2 mt-auto group-hover:text-blue-300 transition-colors border-t border-white/20 pt-6">View Data <svg class="w-4 h-4 transform group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></span>
+                    </div>
                 </div>
 
-                <div @click="activeHomeModal = 'marketing'" class="bg-slate-800/80 backdrop-blur-sm border border-slate-700/50 p-10 rounded-3xl hover:bg-slate-800 hover:border-blue-500/50 hover:shadow-[0_0_30px_rgba(37,99,235,0.15)] transition-all duration-500 cursor-pointer group relative overflow-hidden">
-                    <div class="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 rounded-full filter blur-2xl group-hover:scale-150 transition-transform duration-700"></div>
-                    <h3 class="text-3xl font-bold text-white mb-4 group-hover:text-blue-400 transition-colors relative z-10">Digital Growth Division</h3>
-                    <p class="text-slate-400 mb-6 relative z-10">Aggressive SEO, content strategies, and high-converting paid ad campaigns.</p>
-                    <span class="text-blue-400 font-semibold flex items-center gap-2 relative z-10">View Data <svg class="w-4 h-4 transform group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></span>
+                <!-- Tablet 2: Digital Growth -->
+                <div @click="activeHomeModal = 'marketing'" class="group relative rounded-3xl hover:shadow-[0_0_30px_rgba(37,99,235,0.4)] transition-all duration-500 cursor-pointer flex flex-col h-full overflow-hidden border border-slate-700/50">
+                    <div class="absolute inset-0 z-0">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Digital Marketing">
+                        <div class="absolute inset-0 bg-slate-900/80 group-hover:bg-slate-900/70 transition-colors duration-500 mix-blend-multiply"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/80 to-transparent opacity-90"></div>
+                    </div>
+                    <div class="relative z-10 flex flex-col h-full p-10">
+                        <div class="w-14 h-14 bg-white/10 backdrop-blur-md border border-white/20 text-blue-400 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-blue-600 group-hover:text-white group-hover:border-blue-500 transition-all duration-300 shadow-lg">
+                            <svg class="w-7 h-7 transform group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path></svg>
+                        </div>
+                        <h3 class="text-3xl font-bold text-white mb-4 group-hover:text-blue-300 transition-colors">Digital Growth Division</h3>
+                        <p class="text-slate-300 mb-6 flex-grow">Aggressive SEO, content strategies, and high-converting paid ad campaigns.</p>
+                        <span class="text-blue-400 font-semibold flex items-center gap-2 mt-auto group-hover:text-blue-300 transition-colors border-t border-white/20 pt-6">View Data <svg class="w-4 h-4 transform group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></span>
+                    </div>
                 </div>
 
-                <div @click="activeHomeModal = 'finance'" class="bg-slate-800/80 backdrop-blur-sm border border-slate-700/50 p-10 rounded-3xl hover:bg-slate-800 hover:border-blue-500/50 hover:shadow-[0_0_30px_rgba(37,99,235,0.15)] transition-all duration-500 cursor-pointer group relative overflow-hidden">
-                    <div class="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 rounded-full filter blur-2xl group-hover:scale-150 transition-transform duration-700"></div>
-                    <h3 class="text-3xl font-bold text-white mb-4 group-hover:text-blue-400 transition-colors relative z-10">Financial Bookkeeping</h3>
-                    <p class="text-slate-400 mb-6 relative z-10">Precise QuickBooks management, account reconciliation, and P&L reporting.</p>
-                    <span class="text-blue-400 font-semibold flex items-center gap-2 relative z-10">View Data <svg class="w-4 h-4 transform group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></span>
+                <!-- Tablet 3: Financial Bookkeeping -->
+                <div @click="activeHomeModal = 'finance'" class="group relative rounded-3xl hover:shadow-[0_0_30px_rgba(37,99,235,0.4)] transition-all duration-500 cursor-pointer flex flex-col h-full overflow-hidden border border-slate-700/50">
+                    <div class="absolute inset-0 z-0">
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Finance">
+                        <div class="absolute inset-0 bg-slate-900/80 group-hover:bg-slate-900/70 transition-colors duration-500 mix-blend-multiply"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/80 to-transparent opacity-90"></div>
+                    </div>
+                    <div class="relative z-10 flex flex-col h-full p-10">
+                        <div class="w-14 h-14 bg-white/10 backdrop-blur-md border border-white/20 text-blue-400 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-blue-600 group-hover:text-white group-hover:border-blue-500 transition-all duration-300 shadow-lg">
+                            <svg class="w-7 h-7 transform group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                        </div>
+                        <h3 class="text-3xl font-bold text-white mb-4 group-hover:text-blue-300 transition-colors">Financial Bookkeeping</h3>
+                        <p class="text-slate-300 mb-6 flex-grow">Precise QuickBooks management, account reconciliation, and P&L reporting.</p>
+                        <span class="text-blue-400 font-semibold flex items-center gap-2 mt-auto group-hover:text-blue-300 transition-colors border-t border-white/20 pt-6">View Data <svg class="w-4 h-4 transform group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></span>
+                    </div>
                 </div>
 
-                <div @click="activeHomeModal = 'web'" class="bg-slate-800/80 backdrop-blur-sm border border-slate-700/50 p-10 rounded-3xl hover:bg-slate-800 hover:border-blue-500/50 hover:shadow-[0_0_30px_rgba(37,99,235,0.15)] transition-all duration-500 cursor-pointer group relative overflow-hidden">
-                    <div class="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 rounded-full filter blur-2xl group-hover:scale-150 transition-transform duration-700"></div>
-                    <h3 class="text-3xl font-bold text-white mb-4 group-hover:text-blue-400 transition-colors relative z-10">Technical Web Management</h3>
-                    <p class="text-slate-400 mb-6 relative z-10">Custom framework development, daily security patching, and server maintenance.</p>
-                    <span class="text-blue-400 font-semibold flex items-center gap-2 relative z-10">View Data <svg class="w-4 h-4 transform group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></span>
+                <!-- Tablet 4: Web Architecture -->
+                <div @click="activeHomeModal = 'web'" class="group relative rounded-3xl hover:shadow-[0_0_30px_rgba(37,99,235,0.4)] transition-all duration-500 cursor-pointer flex flex-col h-full overflow-hidden border border-slate-700/50">
+                    <div class="absolute inset-0 z-0">
+                        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Web Development">
+                        <div class="absolute inset-0 bg-slate-900/80 group-hover:bg-slate-900/70 transition-colors duration-500 mix-blend-multiply"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/80 to-transparent opacity-90"></div>
+                    </div>
+                    <div class="relative z-10 flex flex-col h-full p-10">
+                        <div class="w-14 h-14 bg-white/10 backdrop-blur-md border border-white/20 text-blue-400 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-blue-600 group-hover:text-white group-hover:border-blue-500 transition-all duration-300 shadow-lg">
+                            <svg class="w-7 h-7 transform group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                        </div>
+                        <h3 class="text-3xl font-bold text-white mb-4 group-hover:text-blue-300 transition-colors">Technical Web Management</h3>
+                        <p class="text-slate-300 mb-6 flex-grow">Custom framework development, daily security patching, and server maintenance.</p>
+                        <span class="text-blue-400 font-semibold flex items-center gap-2 mt-auto group-hover:text-blue-300 transition-colors border-t border-white/20 pt-6">View Data <svg class="w-4 h-4 transform group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></span>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- 7. Data & Statistics Section -->
     <div class="bg-slate-900 py-24 mb-32 relative overflow-hidden">
         <div class="absolute top-0 right-0 w-96 h-96 bg-blue-600 rounded-full mix-blend-multiply filter blur-[100px] opacity-40"></div>
         <div class="absolute bottom-0 left-0 w-96 h-96 bg-cyan-400 rounded-full mix-blend-multiply filter blur-[100px] opacity-30"></div>
@@ -210,6 +273,7 @@
         </div>
     </div>
 
+    <!-- 8. Client Experiences / Testimonials Section -->
     <div class="max-w-7xl mx-auto px-6 mb-32">
         <div class="text-center mb-16">
             <h2 class="text-4xl md:text-5xl font-extrabold text-slate-900 mb-6 tracking-tight">Client Experiences</h2>
@@ -217,6 +281,7 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Review 1: Virtual Assistance Focus -->
             <div class="bg-white p-10 rounded-3xl shadow-lg border border-slate-100 hover:shadow-2xl hover:shadow-blue-500/10 hover:-translate-y-2 transition-all duration-500 relative group">
                 <div class="text-blue-200 mb-6 transform group-hover:scale-110 transition-transform duration-500 group-hover:text-blue-500">
                     <svg class="w-12 h-12" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" /></svg>
@@ -231,6 +296,7 @@
                 </div>
             </div>
 
+            <!-- Review 2: Digital Growth Focus -->
             <div class="bg-white p-10 rounded-3xl shadow-lg border border-slate-100 hover:shadow-2xl hover:shadow-blue-500/10 hover:-translate-y-2 transition-all duration-500 relative group">
                 <div class="text-blue-200 mb-6 transform group-hover:scale-110 transition-transform duration-500 group-hover:text-blue-500">
                     <svg class="w-12 h-12" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" /></svg>
@@ -245,6 +311,7 @@
                 </div>
             </div>
 
+            <!-- Review 3: Financial Focus -->
             <div class="bg-white p-10 rounded-3xl shadow-lg border border-slate-100 hover:shadow-2xl hover:shadow-blue-500/10 hover:-translate-y-2 transition-all duration-500 relative group">
                 <div class="text-blue-200 mb-6 transform group-hover:scale-110 transition-transform duration-500 group-hover:text-blue-500">
                     <svg class="w-12 h-12" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" /></svg>
@@ -261,6 +328,7 @@
         </div>
     </div>
 
+    <!-- 9. Final Call to Action -->
     <div class="max-w-5xl mx-auto px-6 mb-24">
         <div class="bg-gradient-to-br from-blue-600 to-blue-900 rounded-[3rem] p-12 md:p-20 text-center shadow-2xl relative overflow-hidden">
             <div class="relative z-10">
@@ -275,6 +343,9 @@
         </div>
     </div>
 
+    <!-- MODALS FOR THE 3 PROBLEM CARDS -->
+    
+    <!-- Modal: Time Recaptured -->
     <div x-show="activeHomeModal === 'time'" class="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6" x-cloak style="display: none;">
         <div x-show="activeHomeModal === 'time'" x-transition.opacity class="fixed inset-0 bg-slate-900/90 backdrop-blur-sm" @click="activeHomeModal = null"></div>
         <div x-show="activeHomeModal === 'time'" x-transition.scale class="relative bg-white rounded-3xl shadow-2xl overflow-hidden w-full max-w-4xl z-10 flex flex-col md:flex-row h-auto md:h-[500px]">
@@ -293,6 +364,7 @@
         </div>
     </div>
 
+    <!-- Modal: Digital Dominance -->
     <div x-show="activeHomeModal === 'dominance'" class="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6" x-cloak style="display: none;">
         <div x-show="activeHomeModal === 'dominance'" x-transition.opacity class="fixed inset-0 bg-slate-900/90 backdrop-blur-sm" @click="activeHomeModal = null"></div>
         <div x-show="activeHomeModal === 'dominance'" x-transition.scale class="relative bg-white rounded-3xl shadow-2xl overflow-hidden w-full max-w-4xl z-10 flex flex-col md:flex-row h-auto md:h-[500px]">
@@ -312,6 +384,7 @@
         </div>
     </div>
 
+    <!-- Modal: Financial Clarity -->
     <div x-show="activeHomeModal === 'clarity'" class="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6" x-cloak style="display: none;">
         <div x-show="activeHomeModal === 'clarity'" x-transition.opacity class="fixed inset-0 bg-slate-900/90 backdrop-blur-sm" @click="activeHomeModal = null"></div>
         <div x-show="activeHomeModal === 'clarity'" x-transition.scale class="relative bg-white rounded-3xl shadow-2xl overflow-hidden w-full max-w-4xl z-10 flex flex-col md:flex-row h-auto md:h-[500px]">
@@ -334,6 +407,9 @@
         </div>
     </div>
 
+    <!-- MODALS FOR THE 4 PHOTO TABLETS -->
+    
+    <!-- Modal 1: VA Tablet -->
     <div x-show="activeHomeModal === 'va'" class="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6" x-cloak style="display: none;">
         <div x-show="activeHomeModal === 'va'" x-transition.opacity class="fixed inset-0 bg-slate-900/90 backdrop-blur-sm" @click="activeHomeModal = null"></div>
         <div x-show="activeHomeModal === 'va'" x-transition.scale class="relative bg-white rounded-3xl shadow-2xl overflow-hidden w-full max-w-5xl z-10 flex flex-col md:flex-row h-[80vh] md:h-[600px]">
@@ -354,6 +430,7 @@
         </div>
     </div>
 
+    <!-- Modal 2: Marketing Tablet -->
     <div x-show="activeHomeModal === 'marketing'" class="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6" x-cloak style="display: none;">
         <div x-show="activeHomeModal === 'marketing'" x-transition.opacity class="fixed inset-0 bg-slate-900/90 backdrop-blur-sm" @click="activeHomeModal = null"></div>
         <div x-show="activeHomeModal === 'marketing'" x-transition.scale class="relative bg-white rounded-3xl shadow-2xl overflow-hidden w-full max-w-5xl z-10 flex flex-col md:flex-row h-[80vh] md:h-[600px]">
@@ -373,6 +450,7 @@
         </div>
     </div>
 
+    <!-- Modal 3: Finance Tablet -->
     <div x-show="activeHomeModal === 'finance'" class="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6" x-cloak style="display: none;">
         <div x-show="activeHomeModal === 'finance'" x-transition.opacity class="fixed inset-0 bg-slate-900/90 backdrop-blur-sm" @click="activeHomeModal = null"></div>
         <div x-show="activeHomeModal === 'finance'" x-transition.scale class="relative bg-white rounded-3xl shadow-2xl overflow-hidden w-full max-w-5xl z-10 flex flex-col md:flex-row h-[80vh] md:h-[600px]">
@@ -392,6 +470,7 @@
         </div>
     </div>
 
+    <!-- Modal 4: Web Architecture Tablet -->
     <div x-show="activeHomeModal === 'web'" class="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6" x-cloak style="display: none;">
         <div x-show="activeHomeModal === 'web'" x-transition.opacity class="fixed inset-0 bg-slate-900/90 backdrop-blur-sm" @click="activeHomeModal = null"></div>
         <div x-show="activeHomeModal === 'web'" x-transition.scale class="relative bg-white rounded-3xl shadow-2xl overflow-hidden w-full max-w-5xl z-10 flex flex-col md:flex-row h-[80vh] md:h-[600px]">

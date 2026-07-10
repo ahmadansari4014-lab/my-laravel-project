@@ -1,11 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
+<!-- Setup Alpine Data if needed for future interactions -->
 <div x-data="{}" class="relative pb-20">
 
+    <!-- 1. Cinematic Hero Section -->
     <div class="relative w-full py-32 md:py-48 flex items-center justify-center rounded-[3rem] overflow-hidden mb-20 shadow-2xl mx-6 group">
         <div class="absolute inset-0">
             <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2000&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-[20s] group-hover:scale-110" alt="Corporate Headquarters">
+            <!-- Sleek Dark Gradient Overlay -->
             <div class="absolute inset-0 bg-gradient-to-b from-slate-900/90 via-slate-900/80 to-slate-900"></div>
         </div>
         
@@ -22,6 +25,7 @@
         </div>
     </div>
 
+    <!-- 2. By The Numbers (Data Ribbon) -->
     <div class="max-w-7xl mx-auto px-6 mb-32 relative z-20 -mt-32">
         <div class="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-10 shadow-2xl grid grid-cols-1 md:grid-cols-4 gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-slate-700/50">
             <div class="pt-4 md:pt-0">
@@ -43,9 +47,11 @@
         </div>
     </div>
 
+    <!-- 3. Our Origins (Image & Text) -->
     <div class="max-w-7xl mx-auto px-6 mb-32">
         <div class="flex flex-col lg:flex-row items-center gap-16">
             <div class="w-full lg:w-1/2 relative group">
+                <!-- Sleek shadow offset -->
                 <div class="absolute inset-0 bg-blue-600 rounded-3xl transform translate-x-4 translate-y-4 group-hover:translate-x-6 group-hover:translate-y-6 transition-transform duration-700"></div>
                 <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1000&auto=format&fit=crop" alt="Team Collaboration" class="relative z-10 rounded-3xl shadow-2xl w-full h-[600px] object-cover transition-transform duration-700 group-hover:scale-[1.02] grayscale hover:grayscale-0">
             </div>
@@ -68,6 +74,7 @@
         </div>
     </div>
 
+    <!-- 4. The Dextra Framework (Interactive Cards) -->
     <div class="max-w-7xl mx-auto px-6 mb-32">
         <div class="bg-slate-50 rounded-[3rem] p-12 md:p-20 shadow-inner border border-slate-200">
             <div class="text-center mb-16">
@@ -76,6 +83,7 @@
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Step 1 -->
                 <div class="bg-white p-10 rounded-3xl shadow-sm hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-500 border border-slate-100 hover:border-blue-300 relative overflow-hidden group cursor-default transform hover:-translate-y-2">
                     <div class="absolute top-0 right-0 w-32 h-32 bg-blue-50/50 rounded-bl-full -z-0 group-hover:scale-150 transition-transform duration-700"></div>
                     <h1 class="text-7xl font-black text-slate-50 absolute -top-2 -right-2 z-0 group-hover:text-blue-50 transition-colors">01</h1>
@@ -86,6 +94,7 @@
                     <p class="text-slate-600 relative z-10 leading-relaxed">We begin by mapping out your current operational bottlenecks, identifying exactly where your time and money are leaking in your daily workflow.</p>
                 </div>
 
+                <!-- Step 2 -->
                 <div class="bg-white p-10 rounded-3xl shadow-sm hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-500 border border-slate-100 hover:border-blue-300 relative overflow-hidden group cursor-default transform hover:-translate-y-2">
                     <div class="absolute top-0 right-0 w-32 h-32 bg-blue-50/50 rounded-bl-full -z-0 group-hover:scale-150 transition-transform duration-700"></div>
                     <h1 class="text-7xl font-black text-slate-50 absolute -top-2 -right-2 z-0 group-hover:text-blue-50 transition-colors">02</h1>
@@ -96,6 +105,7 @@
                     <p class="text-slate-600 relative z-10 leading-relaxed">We integrate our top-tier personnel into your existing ecosystem—syncing perfectly with your custom databases, HubSpot, or SkySlope software.</p>
                 </div>
 
+                <!-- Step 3 -->
                 <div class="bg-white p-10 rounded-3xl shadow-sm hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-500 border border-slate-100 hover:border-blue-300 relative overflow-hidden group cursor-default transform hover:-translate-y-2">
                     <div class="absolute top-0 right-0 w-32 h-32 bg-blue-50/50 rounded-bl-full -z-0 group-hover:scale-150 transition-transform duration-700"></div>
                     <h1 class="text-7xl font-black text-slate-50 absolute -top-2 -right-2 z-0 group-hover:text-blue-50 transition-colors">03</h1>
@@ -109,6 +119,7 @@
         </div>
     </div>
 
+    <!-- 5. Elite Operator Structure (Now with Photo Backgrounds) -->
     <div class="max-w-7xl mx-auto px-6 mb-32">
         <div class="text-center mb-16">
             <h4 class="text-blue-600 font-bold uppercase tracking-wider mb-2">Our Personnel</h4>
@@ -117,32 +128,65 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div class="border border-slate-200 p-8 rounded-3xl hover:border-blue-400 hover:shadow-lg transition-all bg-white group">
-                <div class="h-2 w-12 bg-blue-600 rounded-full mb-6 group-hover:w-full transition-all duration-500"></div>
-                <h4 class="text-xl font-bold text-slate-800 mb-2">Technical Developers</h4>
-                <p class="text-slate-600 text-sm leading-relaxed">Full-stack engineers managing your Laravel, WordPress, and custom server architecture. Responsible for maintaining 99.9% uptime.</p>
+            <!-- Team 1: Developers -->
+            <div class="group relative rounded-3xl hover:shadow-[0_0_30px_rgba(37,99,235,0.3)] hover:-translate-y-2 transition-all duration-500 flex flex-col h-full overflow-hidden border border-slate-700/50 shadow-lg min-h-[300px]">
+                <div class="absolute inset-0 z-0">
+                    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Developers">
+                    <div class="absolute inset-0 bg-slate-900/80 group-hover:bg-slate-900/70 transition-colors duration-500 mix-blend-multiply"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/70 to-transparent opacity-90"></div>
+                </div>
+                <div class="relative z-10 flex flex-col h-full p-8">
+                    <div class="h-2 w-12 bg-blue-500 rounded-full mb-6 group-hover:w-full transition-all duration-500 shadow-[0_0_10px_rgba(59,130,246,0.5)]"></div>
+                    <h4 class="text-xl font-bold text-white mb-2 group-hover:text-blue-300 transition-colors">Technical Developers</h4>
+                    <p class="text-slate-300 text-sm leading-relaxed flex-grow group-hover:text-white transition-colors">Full-stack engineers managing your Laravel, WordPress, and custom server architecture. Responsible for maintaining 99.9% uptime.</p>
+                </div>
             </div>
             
-            <div class="border border-slate-200 p-8 rounded-3xl hover:border-blue-400 hover:shadow-lg transition-all bg-white group">
-                <div class="h-2 w-12 bg-blue-600 rounded-full mb-6 group-hover:w-full transition-all duration-500"></div>
-                <h4 class="text-xl font-bold text-slate-800 mb-2">Account Managers</h4>
-                <p class="text-slate-600 text-sm leading-relaxed">Your dedicated point of contact. They route priority emails, manage CRM pipelines, and handle daily operational logistics seamlessly.</p>
+            <!-- Team 2: Account Managers -->
+            <div class="group relative rounded-3xl hover:shadow-[0_0_30px_rgba(37,99,235,0.3)] hover:-translate-y-2 transition-all duration-500 flex flex-col h-full overflow-hidden border border-slate-700/50 shadow-lg min-h-[300px]">
+                <div class="absolute inset-0 z-0">
+                    <img src="https://images.unsplash.com/photo-1554415707-6e8cfc93fe23?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Account Managers">
+                    <div class="absolute inset-0 bg-slate-900/80 group-hover:bg-slate-900/70 transition-colors duration-500 mix-blend-multiply"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/70 to-transparent opacity-90"></div>
+                </div>
+                <div class="relative z-10 flex flex-col h-full p-8">
+                    <div class="h-2 w-12 bg-blue-500 rounded-full mb-6 group-hover:w-full transition-all duration-500 shadow-[0_0_10px_rgba(59,130,246,0.5)]"></div>
+                    <h4 class="text-xl font-bold text-white mb-2 group-hover:text-blue-300 transition-colors">Account Managers</h4>
+                    <p class="text-slate-300 text-sm leading-relaxed flex-grow group-hover:text-white transition-colors">Your dedicated point of contact. They route priority emails, manage CRM pipelines, and handle daily operational logistics seamlessly.</p>
+                </div>
             </div>
 
-            <div class="border border-slate-200 p-8 rounded-3xl hover:border-blue-400 hover:shadow-lg transition-all bg-white group">
-                <div class="h-2 w-12 bg-blue-600 rounded-full mb-6 group-hover:w-full transition-all duration-500"></div>
-                <h4 class="text-xl font-bold text-slate-800 mb-2">Marketing Analysts</h4>
-                <p class="text-slate-600 text-sm leading-relaxed">SEO and data specialists focused entirely on optimizing your Meta Ad spend and pushing your domain to the top of Google search rankings.</p>
+            <!-- Team 3: Marketing Analysts -->
+            <div class="group relative rounded-3xl hover:shadow-[0_0_30px_rgba(37,99,235,0.3)] hover:-translate-y-2 transition-all duration-500 flex flex-col h-full overflow-hidden border border-slate-700/50 shadow-lg min-h-[300px]">
+                <div class="absolute inset-0 z-0">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Marketing Analysts">
+                    <div class="absolute inset-0 bg-slate-900/80 group-hover:bg-slate-900/70 transition-colors duration-500 mix-blend-multiply"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/70 to-transparent opacity-90"></div>
+                </div>
+                <div class="relative z-10 flex flex-col h-full p-8">
+                    <div class="h-2 w-12 bg-blue-500 rounded-full mb-6 group-hover:w-full transition-all duration-500 shadow-[0_0_10px_rgba(59,130,246,0.5)]"></div>
+                    <h4 class="text-xl font-bold text-white mb-2 group-hover:text-blue-300 transition-colors">Marketing Analysts</h4>
+                    <p class="text-slate-300 text-sm leading-relaxed flex-grow group-hover:text-white transition-colors">SEO and data specialists focused entirely on optimizing your Meta Ad spend and pushing your domain to the top of Google search rankings.</p>
+                </div>
             </div>
 
-            <div class="border border-slate-200 p-8 rounded-3xl hover:border-blue-400 hover:shadow-lg transition-all bg-white group">
-                <div class="h-2 w-12 bg-blue-600 rounded-full mb-6 group-hover:w-full transition-all duration-500"></div>
-                <h4 class="text-xl font-bold text-slate-800 mb-2">Certified Bookkeepers</h4>
-                <p class="text-slate-600 text-sm leading-relaxed">Financial experts executing daily Profit & Loss updates, secure invoicing, and complex account reconciliation inside QuickBooks.</p>
+            <!-- Team 4: Certified Bookkeepers -->
+            <div class="group relative rounded-3xl hover:shadow-[0_0_30px_rgba(37,99,235,0.3)] hover:-translate-y-2 transition-all duration-500 flex flex-col h-full overflow-hidden border border-slate-700/50 shadow-lg min-h-[300px]">
+                <div class="absolute inset-0 z-0">
+                    <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Bookkeepers">
+                    <div class="absolute inset-0 bg-slate-900/80 group-hover:bg-slate-900/70 transition-colors duration-500 mix-blend-multiply"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/70 to-transparent opacity-90"></div>
+                </div>
+                <div class="relative z-10 flex flex-col h-full p-8">
+                    <div class="h-2 w-12 bg-blue-500 rounded-full mb-6 group-hover:w-full transition-all duration-500 shadow-[0_0_10px_rgba(59,130,246,0.5)]"></div>
+                    <h4 class="text-xl font-bold text-white mb-2 group-hover:text-blue-300 transition-colors">Certified Bookkeepers</h4>
+                    <p class="text-slate-300 text-sm leading-relaxed flex-grow group-hover:text-white transition-colors">Financial experts executing daily Profit & Loss updates, secure invoicing, and complex account reconciliation inside QuickBooks.</p>
+                </div>
             </div>
         </div>
     </div>
 
+    <!-- 6. Technical Arsenal (Dark Mode Stack Showcase) -->
     <div class="bg-slate-900 py-24 mb-10 rounded-[3rem] mx-6 relative overflow-hidden">
         <div class="absolute top-0 right-0 w-96 h-96 bg-blue-600 rounded-full mix-blend-multiply filter blur-[120px] opacity-20"></div>
         <div class="relative z-10 max-w-7xl mx-auto px-6 text-center">

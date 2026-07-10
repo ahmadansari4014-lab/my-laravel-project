@@ -1,57 +1,97 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="max-w-7xl mx-auto px-6 py-12">
-    <div class="bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden flex flex-col lg:flex-row">
-        
-        <div class="w-full lg:w-1/2 p-10 lg:p-16">
-            <h1 class="text-4xl font-extrabold text-slate-900 mb-4 tracking-tight">Get In Touch</h1>
-            <p class="text-lg text-slate-500 mb-10">Ready to delegate to the right people? Send us a message and we will respond shortly.</p>
+<div class="relative pb-20">
 
-            @if(session('success'))
-                <div class="mb-8 p-5 bg-green-50 border-l-4 border-green-500 text-green-700 rounded-r-lg shadow-sm font-semibold">
-                    {{ session('success') }}
-                </div>
-            @endif
-
-            <form action="{{ route('contact.submit') }}" method="POST" class="space-y-6">
-                @csrf
-                <div class="group">
-                    <label class="block text-sm font-semibold text-slate-700 mb-2 transition-colors group-focus-within:text-blue-600">Full Name</label>
-                    <input type="text" name="name" value="{{ old('name') }}" class="w-full bg-slate-50 border border-slate-200 px-5 py-4 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:bg-white transition-all duration-300 outline-none shadow-sm" placeholder="John Doe" required>
-                </div>
-                
-                <div class="group">
-                    <label class="block text-sm font-semibold text-slate-700 mb-2 transition-colors group-focus-within:text-blue-600">Email Address</label>
-                    <input type="email" name="email" value="{{ old('email') }}" class="w-full bg-slate-50 border border-slate-200 px-5 py-4 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:bg-white transition-all duration-300 outline-none shadow-sm" placeholder="john@example.com" required>
-                </div>
-                
-                <div class="group">
-                    <label class="block text-sm font-semibold text-slate-700 mb-2 transition-colors group-focus-within:text-blue-600">How can we help?</label>
-                    <textarea name="message" rows="5" class="w-full bg-slate-50 border border-slate-200 px-5 py-4 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:bg-white transition-all duration-300 outline-none shadow-sm" placeholder="Tell us about your project requirements..." required>{{ old('message') }}</textarea>
-                </div>
-                
-                <button type="submit" class="w-full bg-blue-600 text-white font-bold py-4 rounded-xl hover:bg-blue-700 transition-all duration-300 shadow-lg hover:shadow-blue-500/40 transform hover:-translate-y-1">
-                    Send Message
-                </button>
-            </form>
+    <!-- 1. Cinematic Hero Section -->
+    <div class="relative w-full py-32 md:py-48 flex items-center justify-center rounded-[3rem] overflow-hidden mb-24 shadow-2xl mx-6 group">
+        <div class="absolute inset-0">
+            <img src="https://images.unsplash.com/photo-1596524430615-b4661858a36c?q=80&w=2000&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-[20s] group-hover:scale-110 grayscale" alt="Contact Us">
+            <div class="absolute inset-0 bg-gradient-to-br from-slate-900/95 via-blue-900/80 to-slate-900/95 mix-blend-multiply"></div>
         </div>
+        
+        <div class="relative z-10 w-full max-w-5xl mx-auto px-6 text-center">
+            <h1 class="text-5xl md:text-7xl font-extrabold text-white mb-6 tracking-tight drop-shadow-lg">
+                Let's Build <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">Something Great</span>
+            </h1>
+            <p class="text-xl text-slate-300 max-w-3xl mx-auto font-light leading-relaxed">
+                Ready to delegate, optimize, and dominate? Reach out to our architecture team today.
+            </p>
+        </div>
+    </div>
 
-        <div class="w-full lg:w-1/2 relative min-h-[400px] lg:min-h-full">
-            <div class="absolute inset-0 bg-blue-900/20 mix-blend-multiply z-10"></div>
-            <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=1000&auto=format&fit=crop" alt="Customer Support" class="absolute inset-0 w-full h-full object-cover">
+    <!-- 2. Contact Container -->
+    <div class="max-w-6xl mx-auto px-6">
+        <div class="bg-white rounded-[3rem] shadow-2xl overflow-hidden border border-slate-100 flex flex-col lg:flex-row">
             
-            <div class="absolute bottom-10 left-10 z-20 bg-slate-900/80 backdrop-blur-md border border-white/20 p-8 rounded-2xl text-white max-w-sm shadow-2xl">
-                <h3 class="text-2xl font-bold mb-4 text-blue-400">Let's Talk</h3>
-                <p class="mb-4 flex items-center gap-3">
-                    ✉️ <a href="mailto:hello@clouddextrasolution.com" class="text-slate-200 hover:text-white hover:underline transition-colors">hello@clouddextrasolution.com</a>
-                </p>
-                <p class="flex items-center gap-3">
-                    🌐 <a href="https://clouddextrasolution.com" target="_blank" class="text-slate-200 hover:text-white hover:underline transition-colors">clouddextrasolution.com</a>
-                </p>
+            <!-- Form Section -->
+            <div class="w-full lg:w-3/5 p-10 md:p-16">
+                <h2 class="text-3xl font-extrabold text-slate-900 mb-2">Send a Message</h2>
+                <p class="text-slate-600 mb-10">Fill out the form below and an account manager will contact you within 24 hours.</p>
+                
+                <form action="#" method="POST" class="space-y-6">
+                    @csrf
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-2">Full Name</label>
+                            <input type="text" class="w-full px-5 py-4 rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition" placeholder="John Doe">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-2">Work Email</label>
+                            <input type="email" class="w-full px-5 py-4 rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition" placeholder="john@company.com">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-2">Service Interest</label>
+                        <select class="w-full px-5 py-4 rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition bg-white">
+                            <option>Virtual Assistance</option>
+                            <option>Digital Growth & SEO</option>
+                            <option>Financial Bookkeeping</option>
+                            <option>Web Architecture</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-2">Project Details</label>
+                        <textarea rows="4" class="w-full px-5 py-4 rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition" placeholder="How can we help you scale?"></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-slate-900 text-white font-bold py-5 rounded-xl hover:bg-blue-600 transition shadow-lg hover:shadow-blue-500/30 transform hover:-translate-y-1">
+                        Send Message
+                    </button>
+                </form>
+            </div>
+
+            <!-- Contact Info Section -->
+            <div class="w-full lg:w-2/5 bg-slate-50 p-10 md:p-16 border-l border-slate-100 flex flex-col justify-center">
+                <div class="space-y-10">
+                    <div>
+                        <h3 class="text-2xl font-bold text-slate-900 mb-6">Let's Talk</h3>
+                        <p class="text-slate-600 mb-8">Whether you have a question about our services or are ready to get started, our team is standing by.</p>
+                        
+                        <!-- Updated Clickable Email -->
+                        <a href="mailto:info@clouddextra.com" class="flex items-center gap-4 text-blue-600 hover:text-blue-800 transition-colors font-bold text-lg mb-6 group">
+                            <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-md group-hover:bg-blue-600 group-hover:text-white transition">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                            </div>
+                            info@clouddextra.com
+                        </a>
+
+                        <!-- Updated Clickable Website -->
+                        <a href="https://clouddextra.com" target="_blank" class="flex items-center gap-4 text-blue-600 hover:text-blue-800 transition-colors font-bold text-lg group">
+                            <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-md group-hover:bg-blue-600 group-hover:text-white transition">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path></svg>
+                            </div>
+                            clouddextra.com
+                        </a>
+                    </div>
+
+                    <div class="border-t border-slate-200 pt-10">
+                        <h4 class="font-bold text-slate-900 mb-4">Office Hours</h4>
+                        <p class="text-slate-600">Monday – Friday: 9:00 AM – 6:00 PM</p>
+                        <p class="text-slate-600">Weekend support available via email.</p>
+                    </div>
+                </div>
             </div>
         </div>
-
     </div>
 </div>
 @endsection
