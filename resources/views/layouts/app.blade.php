@@ -24,7 +24,7 @@
                 <!-- Circular Image Container with Glowing Shadow -->
                 <div class="relative flex items-center justify-center w-12 h-12 md:w-14 md:h-14 bg-white rounded-full shadow-lg shadow-blue-500/20 group-hover:shadow-cyan-400/50 group-hover:scale-105 transition-all duration-300 overflow-hidden border border-slate-600">
                     <!-- Ensure the image file is saved in public/images/image_289bdd.png -->
-                    <img src="{{ asset('images/image_289bdd.jpg') }}" alt="Cloud Dextra Icon" class="w-full h-full object-cover">
+ <img src="{{ asset('Images/image_289bdd.jpg') }}" alt="Cloud Dextra Icon" class="w-full h-full object-cover">
                 </div>
                 
                 <!-- Stylized Typography -->
