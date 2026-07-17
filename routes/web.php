@@ -21,5 +21,8 @@ Route::get('/about', [PageController::class, 'about'])->name('about');
 Route::get('/services', [PageController::class, 'services'])->name('services');
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 
-// Contact Form Submission Route (Handled by ContactController)
-Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
+
+Route::post('/contact-send', [App\Http\Controllers\ContactController::class, 'send'])->name('contact.send');
+
+Route::view('/privacy-policy', 'privacy')->name('privacy');
+Route::view('/terms-of-service', 'terms')->name('terms');

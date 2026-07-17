@@ -1,494 +1,324 @@
 @extends('layouts.app')
 
 @section('content')
-<!-- Setup Alpine Data for Homepage Modals -->
-<div x-data="{ activeHomeModal: null }" class="relative">
 
-    <!-- 1. Cinematic Hero Section -->
-    <div class="relative w-full h-[90vh] min-h-[700px] flex items-center justify-center rounded-3xl overflow-hidden mb-24 shadow-2xl group">
-        <div class="absolute inset-0">
-            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2000&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-[20s] group-hover:scale-110" alt="Tech Background">
-            <div class="absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-900/90 to-transparent"></div>
+<!-- 1. HOMEPAGE HERO SECTION -->
+<div class="relative w-full py-32 md:py-48 flex items-center justify-center overflow-hidden bg-slate-900 border-b border-slate-800">
+    <!-- Background Image & Gradient Overlay -->
+    <div class="absolute inset-0 z-0">
+        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2000&auto=format&fit=crop" class="w-full h-full object-cover opacity-30 mix-blend-overlay grayscale" alt="Cloud Dextra Remote Team">
+        <div class="absolute inset-0 bg-gradient-to-b from-slate-900/95 via-[#1d2431]/90 to-slate-900/95"></div>
+    </div>
+
+    <!-- Main Content Container -->
+    <div class="relative z-10 w-full max-w-5xl mx-auto px-6 text-center mt-10">
+        <!-- Trust Badge -->
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-800/50 border border-slate-700 backdrop-blur-sm mb-8">
+            <span class="flex h-2 w-2 rounded-full bg-cyan-400"></span>
+            <span class="text-xs font-bold text-slate-300 uppercase tracking-widest">Top-Rated Operations Partner</span>
         </div>
+
+        <!-- Headline -->
+        <h1 class="text-5xl md:text-7xl font-extrabold text-white mb-6 tracking-tight drop-shadow-lg leading-tight">
+            Get More Done Without Hiring a <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">Full In-House Team</span>
+        </h1>
         
-        <div class="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-8 text-left">
-            <span class="text-blue-400 font-bold tracking-widest uppercase text-sm mb-4 block flex items-center gap-2">
-                <span class="w-8 h-0.5 bg-blue-400"></span> Premium IT & Virtual Assistance
+        <!-- Subheadline -->
+        <p class="text-lg md:text-xl text-slate-300 max-w-3xl mx-auto font-light leading-relaxed mb-10">
+            Cloud Dextra Solutions provides trained virtual assistants, digital marketing support, and website management for real estate professionals and growing service businesses.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
+            <a href="{{ route('contact') }}" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 border border-transparent text-base md:text-lg font-bold rounded-full text-slate-900 bg-white hover:bg-blue-50 transition-colors shadow-[0_0_20px_rgba(34,211,238,0.2)] hover:shadow-[0_0_30px_rgba(34,211,238,0.4)] transform hover:-translate-y-1">
+                Book a Free Operations Audit
+            </a>
+            <a href="{{ route('services') }}" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 border border-slate-600 text-base md:text-lg font-bold rounded-full text-white hover:bg-slate-800 hover:border-slate-500 transition-colors transform hover:-translate-y-1">
+                Explore Our Services
+            </a>
+        </div>
+
+        <!-- Trust Statements -->
+        <div class="flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-sm font-medium text-slate-400">
+            <span class="flex items-center gap-2">
+                <svg class="w-5 h-5 text-cyan-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg> 
+                No long-term contracts
             </span>
-            <h1 class="text-5xl md:text-7xl lg:text-8xl font-extrabold text-white tracking-tight mb-6 drop-shadow-lg leading-tight">
-                Scale Faster with <br>
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">Cloud Dextra</span>
-            </h1>
-            <p class="mt-4 text-xl md:text-2xl text-slate-300 max-w-2xl font-light leading-relaxed mb-10">
-                We handle the heavy lifting of digital marketing, technical web management, and daily operations so you can focus exclusively on closing deals and growing your revenue.
-            </p>
-            <div class="flex flex-wrap gap-6">
-                <a href="#solutions" class="px-8 py-4 text-lg font-bold rounded-full text-white bg-blue-600 hover:bg-blue-500 transition-all duration-300 shadow-[0_0_20px_rgba(37,99,235,0.4)] hover:shadow-[0_0_30px_rgba(37,99,235,0.7)] transform hover:-translate-y-1">
-                    Explore Our Solutions
-                </a>
-                <a href="{{ route('contact') }}" class="px-8 py-4 text-lg font-bold rounded-full text-white border border-white/30 backdrop-blur-sm hover:bg-white hover:text-slate-900 transition-all duration-300 transform hover:-translate-y-1">
-                    Schedule a Consultation
-                </a>
-            </div>
+            <span class="hidden sm:inline text-slate-700">|</span>
+            <span class="flex items-center gap-2">
+                <svg class="w-5 h-5 text-cyan-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg> 
+                Dedicated account manager
+            </span>
+            <span class="hidden sm:inline text-slate-700">|</span>
+            <span class="flex items-center gap-2">
+                <svg class="w-5 h-5 text-cyan-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg> 
+                Customized around your tools
+            </span>
         </div>
     </div>
+</div>
 
-    <!-- 2. Trusted By / Social Proof Section -->
-    <div class="max-w-7xl mx-auto px-6 mb-32 text-center opacity-70 hover:opacity-100 transition-opacity duration-700">
-        <p class="text-sm font-bold text-slate-400 uppercase tracking-widest mb-8">Trusted by modern professionals and industry leaders</p>
-        <div class="flex flex-wrap justify-center items-center gap-12 md:gap-24 grayscale">
-            <h3 class="text-2xl font-black text-slate-800">Horizon<span class="font-light">Estates</span></h3>
-            <h3 class="text-2xl font-black text-slate-800">Apex<span class="text-blue-600">Consulting</span></h3>
-            <h3 class="text-2xl font-black text-slate-800">Vanguard<span class="font-light">Tech</span></h3>
-            <h3 class="text-2xl font-black text-slate-800">Elevate<span class="text-blue-600">Partners</span></h3>
+<!-- 2. TRUST BAR: Software & Tools -->
+<div class="bg-white py-12 border-b border-slate-100">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+        <p class="text-sm font-bold text-slate-400 uppercase tracking-widest mb-8">Experienced with the tools your business already uses</p>
+        <div class="flex flex-wrap justify-center items-center gap-10 md:gap-16 opacity-70 grayscale">
+            <span class="text-xl font-bold text-slate-800">WordPress</span>
+            <span class="text-xl font-bold text-slate-800">QuickBooks</span>
+            <span class="text-xl font-bold text-slate-800">HubSpot</span>
+            <span class="text-xl font-bold text-slate-800">BoldTrail</span>
+            <span class="text-xl font-bold text-slate-800">SkySlope</span>
+            <span class="text-xl font-bold text-slate-800">Google Workspace</span>
         </div>
     </div>
+</div>
 
-    <!-- 3. The Problem Section (Now featuring Photo Backgrounds) -->
-    <div class="max-w-7xl mx-auto px-6 mb-32">
-        <div class="text-center mb-16">
-            <h2 class="text-4xl md:text-5xl font-extrabold text-slate-900 mb-6 tracking-tight">The Cost of Doing It All Yourself</h2>
-            <p class="text-xl text-slate-600 max-w-3xl mx-auto">
-                Modern businesses fail not from a lack of vision, but from operational burnout. Cloud Dextra provides the architecture to automate, delegate, and dominate your industry.
-            </p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-            <!-- Interactive Card 1: Time Recaptured -->
-            <div @click="activeHomeModal = 'time'" class="group relative rounded-3xl hover:shadow-[0_0_30px_rgba(37,99,235,0.4)] hover:-translate-y-2 transition-all duration-500 cursor-pointer flex flex-col h-full overflow-hidden border border-slate-700/50 shadow-lg">
-                <div class="absolute inset-0 z-0">
-                    <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Clean Desk Workflow">
-                    <div class="absolute inset-0 bg-slate-900/80 group-hover:bg-slate-900/70 transition-colors duration-500 mix-blend-multiply"></div>
-                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/80 to-transparent opacity-90"></div>
-                </div>
-                <div class="relative z-10 flex flex-col h-full p-10">
-                    <div class="text-blue-400 mb-6 bg-white/10 backdrop-blur-md border border-white/20 w-16 h-16 rounded-2xl flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-all duration-500 shadow-lg">
-                        <svg class="w-8 h-8 transform group-hover:scale-110 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                    </div>
-                    <h3 class="text-2xl font-bold text-white mb-4 group-hover:text-blue-300 transition-colors duration-300">Time Recaptured</h3>
-                    <p class="text-slate-300 leading-relaxed mb-6 flex-grow group-hover:text-white transition-colors">The average business owner loses 15+ hours a week to inbox management, scheduling, and CRM data entry. We turn your chaotic workflow into a streamlined machine.</p>
-                    <span class="text-blue-400 font-semibold flex items-center gap-2 text-sm mt-auto group-hover:text-blue-300 transition-colors border-t border-white/20 pt-6">View Details <svg class="w-4 h-4 transform group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></span>
-                </div>
-            </div>
-
-            <!-- Interactive Card 2: Digital Dominance -->
-            <div @click="activeHomeModal = 'dominance'" class="group relative rounded-3xl hover:shadow-[0_0_30px_rgba(37,99,235,0.4)] hover:-translate-y-2 transition-all duration-500 cursor-pointer flex flex-col h-full overflow-hidden border border-slate-700/50 shadow-lg">
-                <div class="absolute inset-0 z-0">
-                    <img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Data Analytics">
-                    <div class="absolute inset-0 bg-slate-900/80 group-hover:bg-slate-900/70 transition-colors duration-500 mix-blend-multiply"></div>
-                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/80 to-transparent opacity-90"></div>
-                </div>
-                <div class="relative z-10 flex flex-col h-full p-10">
-                    <div class="text-blue-400 mb-6 bg-white/10 backdrop-blur-md border border-white/20 w-16 h-16 rounded-2xl flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-all duration-500 shadow-lg">
-                        <svg class="w-8 h-8 transform group-hover:scale-110 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
-                    </div>
-                    <h3 class="text-2xl font-bold text-white mb-4 group-hover:text-blue-300 transition-colors duration-300">Digital Dominance</h3>
-                    <p class="text-slate-300 leading-relaxed mb-6 flex-grow group-hover:text-white transition-colors">A website that doesn't convert is just a digital business card. We build high-performance web platforms backed by aggressive SEO to keep your pipeline full.</p>
-                    <span class="text-blue-400 font-semibold flex items-center gap-2 text-sm mt-auto group-hover:text-blue-300 transition-colors border-t border-white/20 pt-6">View Details <svg class="w-4 h-4 transform group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></span>
-                </div>
-            </div>
-
-            <!-- Interactive Card 3: Financial Clarity -->
-            <div @click="activeHomeModal = 'clarity'" class="group relative rounded-3xl hover:shadow-[0_0_30px_rgba(37,99,235,0.4)] hover:-translate-y-2 transition-all duration-500 cursor-pointer flex flex-col h-full overflow-hidden border border-slate-700/50 shadow-lg">
-                <div class="absolute inset-0 z-0">
-                    <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Financial Planning">
-                    <div class="absolute inset-0 bg-slate-900/80 group-hover:bg-slate-900/70 transition-colors duration-500 mix-blend-multiply"></div>
-                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/80 to-transparent opacity-90"></div>
-                </div>
-                <div class="relative z-10 flex flex-col h-full p-10">
-                    <div class="text-blue-400 mb-6 bg-white/10 backdrop-blur-md border border-white/20 w-16 h-16 rounded-2xl flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-all duration-500 shadow-lg">
-                        <svg class="w-8 h-8 transform group-hover:scale-110 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
-                    </div>
-                    <h3 class="text-2xl font-bold text-white mb-4 group-hover:text-blue-300 transition-colors duration-300">Financial Clarity</h3>
-                    <p class="text-slate-300 leading-relaxed mb-6 flex-grow group-hover:text-white transition-colors">Scale with confidence knowing your numbers are accurate. Our QuickBooks specialists handle the tedious reconciliation process, giving you real-time visibility.</p>
-                    <span class="text-blue-400 font-semibold flex items-center gap-2 text-sm mt-auto group-hover:text-blue-300 transition-colors border-t border-white/20 pt-6">View Details <svg class="w-4 h-4 transform group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 4. Deep Dive Feature 1 (Image Left, Text Right) -->
-    <div class="max-w-7xl mx-auto px-6 mb-32">
-        <div class="flex flex-col lg:flex-row items-center gap-16">
-            <div class="w-full lg:w-1/2 relative group">
-                <div class="absolute inset-0 bg-blue-600 rounded-3xl transform translate-x-4 translate-y-4 transition-transform duration-700 group-hover:translate-x-6 group-hover:translate-y-6"></div>
-                <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1200&auto=format&fit=crop" class="relative z-10 rounded-3xl shadow-2xl w-full h-[500px] object-cover" alt="Corporate Office">
-            </div>
-            <div class="w-full lg:w-1/2">
-                <h4 class="text-blue-600 font-bold uppercase tracking-wider mb-2">Virtual Assistance</h4>
-                <h2 class="text-4xl font-extrabold text-slate-900 mb-6">Elite Operational Support for High-Performers</h2>
-                <p class="text-lg text-slate-600 mb-6 leading-relaxed">
-                    Whether you are managing a massive real estate portfolio on SkySlope or consulting for Fortune 500s, administrative drag slows down your revenue generation. 
-                </p>
-                <ul class="space-y-4 mb-8">
-                    <li class="flex items-center text-slate-700 font-medium hover:text-blue-600 transition-colors">
-                        <span class="w-6 h-6 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center mr-4">✓</span> BoldTrail & CRM Management
-                    </li>
-                    <li class="flex items-center text-slate-700 font-medium hover:text-blue-600 transition-colors">
-                        <span class="w-6 h-6 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center mr-4">✓</span> Calendar & Priority Inbox Routing
-                    </li>
-                    <li class="flex items-center text-slate-700 font-medium hover:text-blue-600 transition-colors">
-                        <span class="w-6 h-6 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center mr-4">✓</span> Contract & Document Preparation
-                    </li>
-                </ul>
-                <a href="#solutions" class="text-blue-600 font-bold hover:text-blue-800 flex items-center gap-2 transition-colors group">Discover Core Solutions <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg></a>
-            </div>
-        </div>
-    </div>
-
-    <!-- 5. Deep Dive Feature 2 (Text Left, Image Right) -->
-    <div class="max-w-7xl mx-auto px-6 mb-32">
-        <div class="flex flex-col-reverse lg:flex-row items-center gap-16">
-            <div class="w-full lg:w-1/2">
-                <h4 class="text-blue-600 font-bold uppercase tracking-wider mb-2">Digital Growth</h4>
-                <h2 class="text-4xl font-extrabold text-slate-900 mb-6">Architecting Your Digital Footprint</h2>
-                <p class="text-lg text-slate-600 mb-6 leading-relaxed">
-                    We do not just build websites; we build digital ecosystems. By combining enterprise-grade web development with surgical SEO and Meta Ad strategies, we turn your online presence into a 24/7 lead generation engine.
-                </p>
-                <ul class="space-y-4 mb-8">
-                    <li class="flex items-center text-slate-700 font-medium hover:text-blue-600 transition-colors">
-                        <span class="w-6 h-6 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center mr-4">✓</span> WordPress & Custom Laravel Frameworks
-                    </li>
-                    <li class="flex items-center text-slate-700 font-medium hover:text-blue-600 transition-colors">
-                        <span class="w-6 h-6 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center mr-4">✓</span> Meta Business Suite Ad Campaigns
-                    </li>
-                    <li class="flex items-center text-slate-700 font-medium hover:text-blue-600 transition-colors">
-                        <span class="w-6 h-6 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center mr-4">✓</span> Technical SEO Auditing & Execution
-                    </li>
-                </ul>
-                <a href="#solutions" class="text-blue-600 font-bold hover:text-blue-800 flex items-center gap-2 transition-colors group">See Detailed Data <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg></a>
-            </div>
-            <div class="w-full lg:w-1/2 relative group">
-                <div class="absolute inset-0 bg-slate-900 rounded-3xl transform -translate-x-4 translate-y-4 transition-transform duration-700 group-hover:-translate-x-6 group-hover:translate-y-6"></div>
-                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200&auto=format&fit=crop" class="relative z-10 rounded-3xl shadow-2xl w-full h-[500px] object-cover" alt="Data Analytics">
-            </div>
-        </div>
-    </div>
-
-    <!-- 6. Interactive Tablets Section -->
-    <div id="solutions" class="bg-slate-900 py-32 mb-32 relative overflow-hidden rounded-[3rem] mx-6">
-        <div class="absolute top-0 left-0 w-[500px] h-[500px] bg-blue-600 rounded-full mix-blend-multiply filter blur-[150px] opacity-30"></div>
-        <div class="relative z-10 max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-6">Our Core Solutions</h2>
-                <p class="text-xl text-blue-100 max-w-2xl mx-auto">Click any tablet below to view detailed deliverables and operational data.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Tablet 1: Virtual Assistance -->
-                <div @click="activeHomeModal = 'va'" class="group relative rounded-3xl hover:shadow-[0_0_30px_rgba(37,99,235,0.4)] transition-all duration-500 cursor-pointer flex flex-col h-full overflow-hidden border border-slate-700/50">
-                    <div class="absolute inset-0 z-0">
-                        <img src="https://images.unsplash.com/photo-1554415707-6e8cfc93fe23?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Virtual Assistance">
-                        <div class="absolute inset-0 bg-slate-900/80 group-hover:bg-slate-900/70 transition-colors duration-500 mix-blend-multiply"></div>
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/80 to-transparent opacity-90"></div>
-                    </div>
-                    <div class="relative z-10 flex flex-col h-full p-10">
-                        <div class="w-14 h-14 bg-white/10 backdrop-blur-md border border-white/20 text-blue-400 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-blue-600 group-hover:text-white group-hover:border-blue-500 transition-all duration-300 shadow-lg">
-                            <svg class="w-7 h-7 transform group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
-                        </div>
-                        <h3 class="text-3xl font-bold text-white mb-4 group-hover:text-blue-300 transition-colors">Virtual Assistance Desk</h3>
-                        <p class="text-slate-300 mb-6 flex-grow">Elite administrative support, CRM handling, and daily operational management.</p>
-                        <span class="text-blue-400 font-semibold flex items-center gap-2 mt-auto group-hover:text-blue-300 transition-colors border-t border-white/20 pt-6">View Data <svg class="w-4 h-4 transform group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></span>
-                    </div>
-                </div>
-
-                <!-- Tablet 2: Digital Growth -->
-                <div @click="activeHomeModal = 'marketing'" class="group relative rounded-3xl hover:shadow-[0_0_30px_rgba(37,99,235,0.4)] transition-all duration-500 cursor-pointer flex flex-col h-full overflow-hidden border border-slate-700/50">
-                    <div class="absolute inset-0 z-0">
-                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Digital Marketing">
-                        <div class="absolute inset-0 bg-slate-900/80 group-hover:bg-slate-900/70 transition-colors duration-500 mix-blend-multiply"></div>
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/80 to-transparent opacity-90"></div>
-                    </div>
-                    <div class="relative z-10 flex flex-col h-full p-10">
-                        <div class="w-14 h-14 bg-white/10 backdrop-blur-md border border-white/20 text-blue-400 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-blue-600 group-hover:text-white group-hover:border-blue-500 transition-all duration-300 shadow-lg">
-                            <svg class="w-7 h-7 transform group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path></svg>
-                        </div>
-                        <h3 class="text-3xl font-bold text-white mb-4 group-hover:text-blue-300 transition-colors">Digital Growth Division</h3>
-                        <p class="text-slate-300 mb-6 flex-grow">Aggressive SEO, content strategies, and high-converting paid ad campaigns.</p>
-                        <span class="text-blue-400 font-semibold flex items-center gap-2 mt-auto group-hover:text-blue-300 transition-colors border-t border-white/20 pt-6">View Data <svg class="w-4 h-4 transform group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></span>
-                    </div>
-                </div>
-
-                <!-- Tablet 3: Financial Bookkeeping -->
-                <div @click="activeHomeModal = 'finance'" class="group relative rounded-3xl hover:shadow-[0_0_30px_rgba(37,99,235,0.4)] transition-all duration-500 cursor-pointer flex flex-col h-full overflow-hidden border border-slate-700/50">
-                    <div class="absolute inset-0 z-0">
-                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Finance">
-                        <div class="absolute inset-0 bg-slate-900/80 group-hover:bg-slate-900/70 transition-colors duration-500 mix-blend-multiply"></div>
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/80 to-transparent opacity-90"></div>
-                    </div>
-                    <div class="relative z-10 flex flex-col h-full p-10">
-                        <div class="w-14 h-14 bg-white/10 backdrop-blur-md border border-white/20 text-blue-400 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-blue-600 group-hover:text-white group-hover:border-blue-500 transition-all duration-300 shadow-lg">
-                            <svg class="w-7 h-7 transform group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
-                        </div>
-                        <h3 class="text-3xl font-bold text-white mb-4 group-hover:text-blue-300 transition-colors">Financial Bookkeeping</h3>
-                        <p class="text-slate-300 mb-6 flex-grow">Precise QuickBooks management, account reconciliation, and P&L reporting.</p>
-                        <span class="text-blue-400 font-semibold flex items-center gap-2 mt-auto group-hover:text-blue-300 transition-colors border-t border-white/20 pt-6">View Data <svg class="w-4 h-4 transform group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></span>
-                    </div>
-                </div>
-
-                <!-- Tablet 4: Web Architecture -->
-                <div @click="activeHomeModal = 'web'" class="group relative rounded-3xl hover:shadow-[0_0_30px_rgba(37,99,235,0.4)] transition-all duration-500 cursor-pointer flex flex-col h-full overflow-hidden border border-slate-700/50">
-                    <div class="absolute inset-0 z-0">
-                        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Web Development">
-                        <div class="absolute inset-0 bg-slate-900/80 group-hover:bg-slate-900/70 transition-colors duration-500 mix-blend-multiply"></div>
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/80 to-transparent opacity-90"></div>
-                    </div>
-                    <div class="relative z-10 flex flex-col h-full p-10">
-                        <div class="w-14 h-14 bg-white/10 backdrop-blur-md border border-white/20 text-blue-400 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-blue-600 group-hover:text-white group-hover:border-blue-500 transition-all duration-300 shadow-lg">
-                            <svg class="w-7 h-7 transform group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
-                        </div>
-                        <h3 class="text-3xl font-bold text-white mb-4 group-hover:text-blue-300 transition-colors">Technical Web Management</h3>
-                        <p class="text-slate-300 mb-6 flex-grow">Custom framework development, daily security patching, and server maintenance.</p>
-                        <span class="text-blue-400 font-semibold flex items-center gap-2 mt-auto group-hover:text-blue-300 transition-colors border-t border-white/20 pt-6">View Data <svg class="w-4 h-4 transform group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 7. Data & Statistics Section -->
-    <div class="bg-slate-900 py-24 mb-32 relative overflow-hidden">
-        <div class="absolute top-0 right-0 w-96 h-96 bg-blue-600 rounded-full mix-blend-multiply filter blur-[100px] opacity-40"></div>
-        <div class="absolute bottom-0 left-0 w-96 h-96 bg-cyan-400 rounded-full mix-blend-multiply filter blur-[100px] opacity-30"></div>
-        
-        <div class="relative z-10 max-w-7xl mx-auto px-6">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 text-center">
-                <div>
-                    <h3 class="text-5xl font-extrabold text-white mb-2">98%</h3>
-                    <p class="text-blue-300 font-medium uppercase tracking-wide">Client Retention</p>
-                </div>
-                <div>
-                    <h3 class="text-5xl font-extrabold text-white mb-2">50k+</h3>
-                    <p class="text-blue-300 font-medium uppercase tracking-wide">Hours Saved</p>
-                </div>
-                <div>
-                    <h3 class="text-5xl font-extrabold text-white mb-2">300+</h3>
-                    <p class="text-blue-300 font-medium uppercase tracking-wide">Projects Launched</p>
-                </div>
-                <div>
-                    <h3 class="text-5xl font-extrabold text-white mb-2">24/7</h3>
-                    <p class="text-blue-300 font-medium uppercase tracking-wide">Operational Support</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 8. Client Experiences / Testimonials Section -->
-    <div class="max-w-7xl mx-auto px-6 mb-32">
-        <div class="text-center mb-16">
-            <h2 class="text-4xl md:text-5xl font-extrabold text-slate-900 mb-6 tracking-tight">Client Experiences</h2>
-            <p class="text-xl text-slate-600 max-w-3xl mx-auto">Don't just take our word for it. Hear from the founders and operators who have scaled with us.</p>
+<!-- 3. CORE SERVICES PILLARS -->
+<div class="bg-slate-50 py-24">
+    <div class="max-w-6xl mx-auto px-6">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <h2 class="text-4xl font-extrabold text-slate-900 mb-6">Your Best Hours Should Not Be Spent on Repetitive Tasks</h2>
+            <p class="text-lg text-slate-600">Cloud Dextra Solutions builds a support system around your business so essential work gets completed consistently, allowing you to focus on growth.</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <!-- Review 1: Virtual Assistance Focus -->
-            <div class="bg-white p-10 rounded-3xl shadow-lg border border-slate-100 hover:shadow-2xl hover:shadow-blue-500/10 hover:-translate-y-2 transition-all duration-500 relative group">
-                <div class="text-blue-200 mb-6 transform group-hover:scale-110 transition-transform duration-500 group-hover:text-blue-500">
-                    <svg class="w-12 h-12" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" /></svg>
+            
+            <!-- Pillar 1: Virtual Operations -->
+            <div class="relative rounded-3xl p-10 shadow-xl overflow-hidden hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 group border border-slate-200">
+                <!-- Background Image & Overlay -->
+                <div class="absolute inset-0 z-0">
+                    <img src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale" alt="Virtual Operations Desk">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/90 to-slate-800/70 mix-blend-multiply"></div>
                 </div>
-                <p class="text-slate-600 leading-relaxed mb-8 italic">"Cloud Dextra completely transformed how our real estate team operates. By taking over our BoldTrail CRM and inbox management, I personally got 20 hours back every single week to focus exclusively on closing deals."</p>
-                <div class="flex items-center gap-4 border-t border-slate-100 pt-6">
-                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=200&auto=format&fit=crop" class="w-14 h-14 rounded-full object-cover shadow-sm ring-2 ring-slate-100 group-hover:ring-blue-400 transition-all" alt="Client 1">
-                    <div>
-                        <h4 class="font-bold text-slate-900 group-hover:text-blue-700 transition-colors">Marcus T.</h4>
-                        <p class="text-sm text-slate-500">Managing Broker, Horizon Estates</p>
+
+                <!-- Content -->
+                <div class="relative z-10">
+                    <div class="w-14 h-14 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl flex items-center justify-center mb-6 text-blue-400">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
                     </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Virtual Operations</h3>
+                    <p class="text-slate-300 mb-6 leading-relaxed">Delegate your CRM management, inbox organization, daily scheduling, transaction coordination, and routine administrative workflows.</p>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center text-sm font-medium text-slate-300"><svg class="w-5 h-5 text-cyan-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> CRM Database Cleanup</li>
+                        <li class="flex items-center text-sm font-medium text-slate-300"><svg class="w-5 h-5 text-cyan-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Lead Routing & Follow-up</li>
+                        <li class="flex items-center text-sm font-medium text-slate-300"><svg class="w-5 h-5 text-cyan-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Inbox & Calendar Management</li>
+                    </ul>
                 </div>
             </div>
 
-            <!-- Review 2: Digital Growth Focus -->
-            <div class="bg-white p-10 rounded-3xl shadow-lg border border-slate-100 hover:shadow-2xl hover:shadow-blue-500/10 hover:-translate-y-2 transition-all duration-500 relative group">
-                <div class="text-blue-200 mb-6 transform group-hover:scale-110 transition-transform duration-500 group-hover:text-blue-500">
-                    <svg class="w-12 h-12" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" /></svg>
+            <!-- Pillar 2: Digital Growth -->
+            <div class="relative rounded-3xl p-10 shadow-xl overflow-hidden hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 group border border-slate-200">
+                <!-- Background Image & Overlay -->
+                <div class="absolute inset-0 z-0">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale" alt="Digital Growth Charts">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/90 to-slate-800/70 mix-blend-multiply"></div>
                 </div>
-                <p class="text-slate-600 leading-relaxed mb-8 italic">"Our organic traffic tripled within 6 months of them taking over. Their web architecture team didn't just build us a fast website; they built a lead-generation machine that integrates perfectly with our sales team."</p>
-                <div class="flex items-center gap-4 border-t border-slate-100 pt-6">
-                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=200&auto=format&fit=crop" class="w-14 h-14 rounded-full object-cover shadow-sm ring-2 ring-slate-100 group-hover:ring-blue-400 transition-all" alt="Client 2">
-                    <div>
-                        <h4 class="font-bold text-slate-900 group-hover:text-blue-700 transition-colors">Sarah J.</h4>
-                        <p class="text-sm text-slate-500">Founder, Apex Consulting</p>
+
+                <!-- Content -->
+                <div class="relative z-10">
+                    <div class="w-14 h-14 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl flex items-center justify-center mb-6 text-cyan-400">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path></svg>
                     </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Digital Growth</h3>
+                    <p class="text-slate-300 mb-6 leading-relaxed">Strengthen your online presence and attract qualified leads through managed web design, local SEO, and content support.</p>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center text-sm font-medium text-slate-300"><svg class="w-5 h-5 text-cyan-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Custom Web Architecture</li>
+                        <li class="flex items-center text-sm font-medium text-slate-300"><svg class="w-5 h-5 text-cyan-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Local SEO Optimization</li>
+                        <li class="flex items-center text-sm font-medium text-slate-300"><svg class="w-5 h-5 text-cyan-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Content & Social Media</li>
+                    </ul>
                 </div>
             </div>
 
-            <!-- Review 3: Financial Focus -->
-            <div class="bg-white p-10 rounded-3xl shadow-lg border border-slate-100 hover:shadow-2xl hover:shadow-blue-500/10 hover:-translate-y-2 transition-all duration-500 relative group">
-                <div class="text-blue-200 mb-6 transform group-hover:scale-110 transition-transform duration-500 group-hover:text-blue-500">
-                    <svg class="w-12 h-12" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" /></svg>
+            <!-- Pillar 3: Business Administration -->
+            <div class="relative rounded-3xl p-10 shadow-xl overflow-hidden hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 group border border-slate-200">
+                <!-- Background Image & Overlay -->
+                <div class="absolute inset-0 z-0">
+                    <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale" alt="Business Admin Accounting">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/90 to-slate-800/70 mix-blend-multiply"></div>
                 </div>
-                <p class="text-slate-600 leading-relaxed mb-8 italic">"Having a dedicated QuickBooks specialist means our P&L is always accurate and tax season is completely stress-free. The financial clarity they provide is worth ten times what we pay them."</p>
-                <div class="flex items-center gap-4 border-t border-slate-100 pt-6">
-                    <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=200&auto=format&fit=crop" class="w-14 h-14 rounded-full object-cover shadow-sm ring-2 ring-slate-100 group-hover:ring-blue-400 transition-all" alt="Client 3">
-                    <div>
-                        <h4 class="font-bold text-slate-900 group-hover:text-blue-700 transition-colors">David L.</h4>
-                        <p class="text-sm text-slate-500">CEO, Vanguard Tech</p>
+
+                <!-- Content -->
+                <div class="relative z-10">
+                    <div class="w-14 h-14 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl flex items-center justify-center mb-6 text-indigo-400">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
                     </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Business Admin</h3>
+                    <p class="text-slate-300 mb-6 leading-relaxed">Keep your financials organized and your operations compliant with dedicated, experienced QuickBooks and bookkeeping support.</p>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center text-sm font-medium text-slate-300"><svg class="w-5 h-5 text-cyan-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> QuickBooks Data Entry</li>
+                        <li class="flex items-center text-sm font-medium text-slate-300"><svg class="w-5 h-5 text-cyan-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Monthly Reconciliation</li>
+                        <li class="flex items-center text-sm font-medium text-slate-300"><svg class="w-5 h-5 text-cyan-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Invoicing & Reporting</li>
+                    </ul>
                 </div>
             </div>
         </div>
+        
+        <div class="text-center mt-12 relative z-10">
+            <a href="{{ route('services') }}" class="text-blue-600 font-bold hover:text-blue-800 transition-colors inline-flex items-center gap-2">
+                View full service details <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+            </a>
+        </div>
     </div>
+</div>
 
-    <!-- 9. Final Call to Action -->
-    <div class="max-w-5xl mx-auto px-6 mb-24">
-        <div class="bg-gradient-to-br from-blue-600 to-blue-900 rounded-[3rem] p-12 md:p-20 text-center shadow-2xl relative overflow-hidden">
-            <div class="relative z-10">
-                <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-6 tracking-tight">Ready to Delegate and Dominate?</h2>
-                <p class="text-xl text-blue-100 mb-10 max-w-2xl mx-auto font-light">
-                    Stop working *in* your business and start working *on* it. Let our experts handle the operations while you scale the revenue.
+<!-- 4. HOW IT WORKS -->
+<div class="bg-white py-24 border-t border-slate-100">
+    <div class="max-w-6xl mx-auto px-6">
+        <h2 class="text-3xl font-extrabold text-slate-900 mb-16 text-center">A Simple Process to Reclaim Your Time</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
+            <div class="hidden md:block absolute top-8 left-[10%] right-[10%] h-0.5 bg-slate-100 z-0"></div>
+            
+            <div class="relative z-10 text-center">
+                <div class="w-16 h-16 bg-slate-900 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-6 shadow-xl shadow-slate-200">1</div>
+                <h4 class="text-xl font-bold text-slate-900 mb-2">Audit</h4>
+                <p class="text-slate-600 text-sm">We review your current workflow to identify repetitive tasks costing you time.</p>
+            </div>
+            
+            <div class="relative z-10 text-center">
+                <div class="w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-6 shadow-xl shadow-blue-200">2</div>
+                <h4 class="text-xl font-bold text-slate-900 mb-2">Build Plan</h4>
+                <p class="text-slate-600 text-sm">We create a customized operating plan detailing exactly what we will manage.</p>
+            </div>
+            
+            <div class="relative z-10 text-center">
+                <div class="w-16 h-16 bg-cyan-500 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-6 shadow-xl shadow-cyan-200">3</div>
+                <h4 class="text-xl font-bold text-slate-900 mb-2">Assign Team</h4>
+                <p class="text-slate-600 text-sm">You are assigned a dedicated specialist and account manager to execute the plan.</p>
+            </div>
+
+            <div class="relative z-10 text-center">
+                <div class="w-16 h-16 bg-indigo-600 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-6 shadow-xl shadow-indigo-200">4</div>
+                <h4 class="text-xl font-bold text-slate-900 mb-2">Measure</h4>
+                <p class="text-slate-600 text-sm">We provide weekly reports showing exactly how much time and money you saved.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 4.5. FREQUENTLY ASKED QUESTIONS -->
+<div class="bg-slate-50 py-24 border-t border-slate-100">
+    <div class="max-w-4xl mx-auto px-6">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl font-extrabold text-slate-900 mb-4">Frequently Asked Questions</h2>
+            <p class="text-lg text-slate-600">Everything you need to know about how we work, security, and getting started.</p>
+        </div>
+
+        <!-- Alpine.js Accordion Logic -->
+        <div x-data="{ active: null }" class="space-y-4">
+            
+            <!-- FAQ Item 1 -->
+            <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden transition-all duration-300 hover:border-cyan-300 hover:shadow-md">
+                <button @click="active = (active === 1 ? null : 1)" class="w-full flex items-center justify-between p-6 text-left focus:outline-none">
+                    <span class="text-lg font-bold text-slate-900">Where is your team located and what time zones do you cover?</span>
+                    <svg class="w-6 h-6 text-cyan-500 transform transition-transform duration-300" :class="{ 'rotate-180': active === 1 }" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+                <div x-show="active === 1" x-collapse x-cloak>
+                    <div class="p-6 pt-0 text-slate-600 leading-relaxed border-t border-slate-50 mt-2">
+                        Our core operational headquarters is located in Islamabad, Pakistan. By centralizing our team, we maintain strict quality control and data security. We align our working hours to seamlessly cover US, Canadian, and UK time zones, ensuring your dedicated specialist is online when your business needs them.
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Item 2 -->
+            <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden transition-all duration-300 hover:border-cyan-300 hover:shadow-md">
+                <button @click="active = (active === 2 ? null : 2)" class="w-full flex items-center justify-between p-6 text-left focus:outline-none">
+                    <span class="text-lg font-bold text-slate-900">How do you protect my passwords and sensitive business data?</span>
+                    <svg class="w-6 h-6 text-cyan-500 transform transition-transform duration-300" :class="{ 'rotate-180': active === 2 }" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+                <div x-show="active === 2" x-collapse x-cloak>
+                    <div class="p-6 pt-0 text-slate-600 leading-relaxed border-t border-slate-50 mt-2">
+                        Data security is our top priority. We use enterprise-grade password managers (like LastPass or 1Password) so you never have to share raw passwords with us. Access is strictly granted on a least-privilege basis, and our entire team operates under strict NDAs and controlled network environments.
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Item 3 -->
+            <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden transition-all duration-300 hover:border-cyan-300 hover:shadow-md">
+                <button @click="active = (active === 3 ? null : 3)" class="w-full flex items-center justify-between p-6 text-left focus:outline-none">
+                    <span class="text-lg font-bold text-slate-900">Will I have a dedicated assistant, or a pool of random people?</span>
+                    <svg class="w-6 h-6 text-cyan-500 transform transition-transform duration-300" :class="{ 'rotate-180': active === 3 }" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+                <div x-show="active === 3" x-collapse x-cloak>
+                    <div class="p-6 pt-0 text-slate-600 leading-relaxed border-t border-slate-50 mt-2">
+                        You will always have a <strong>dedicated specialist</strong> assigned specifically to your business, allowing them to learn your unique workflows and brand voice. Additionally, an Account Manager oversees your project to ensure quality and provide a backup layer of support if your primary specialist is ever unavailable.
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Item 4 -->
+            <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden transition-all duration-300 hover:border-cyan-300 hover:shadow-md">
+                <button @click="active = (active === 4 ? null : 4)" class="w-full flex items-center justify-between p-6 text-left focus:outline-none">
+                    <span class="text-lg font-bold text-slate-900">Am I locked into a long-term contract?</span>
+                    <svg class="w-6 h-6 text-cyan-500 transform transition-transform duration-300" :class="{ 'rotate-180': active === 4 }" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+                <div x-show="active === 4" x-collapse x-cloak>
+                    <div class="p-6 pt-0 text-slate-600 leading-relaxed border-t border-slate-50 mt-2">
+                        No. We believe in earning your business every single month through measurable results. Our agreements are strictly month-to-month, and you can cancel or scale your services up or down with just a standard 14-day notice.
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Item 5 -->
+            <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden transition-all duration-300 hover:border-cyan-300 hover:shadow-md">
+                <button @click="active = (active === 5 ? null : 5)" class="w-full flex items-center justify-between p-6 text-left focus:outline-none">
+                    <span class="text-lg font-bold text-slate-900">How quickly can we start delegating tasks?</span>
+                    <svg class="w-6 h-6 text-cyan-500 transform transition-transform duration-300" :class="{ 'rotate-180': active === 5 }" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+                <div x-show="active === 5" x-collapse x-cloak>
+                    <div class="p-6 pt-0 text-slate-600 leading-relaxed border-t border-slate-50 mt-2">
+                        After your initial Free Operations Audit, we will present a customized operating plan within 48 hours. Once approved, we typically complete onboarding, system access, and begin actively managing tasks within 3 to 5 business days.
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        
+        <!-- FAQ Bottom CTA -->
+        <div class="mt-12 text-center">
+            <p class="text-slate-600 mb-4">Still have questions?</p>
+            <a href="{{ route('contact') }}" class="text-blue-600 font-bold hover:text-blue-800 transition-colors inline-flex items-center gap-2">
+                Ask our team <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- 5. CASE STUDY -->
+<div class="bg-slate-900 py-24 relative overflow-hidden">
+    <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2000&auto=format&fit=crop')] opacity-10 bg-cover bg-center"></div>
+    <div class="max-w-6xl mx-auto px-6 relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div>
+                <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-6">Real Results. <br><span class="text-cyan-400">Measured in Time Saved.</span></h2>
+                <p class="text-slate-300 mb-8 leading-relaxed">
+                    We don't just complete tasks; we fix broken systems. Here is an example of what happens when a growing business delegates their CRM and lead routing to our team.
                 </p>
-                <a href="{{ route('contact') }}" class="inline-block px-10 py-5 text-xl font-bold rounded-full text-blue-900 bg-white hover:bg-slate-100 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-                    Start Your Project Today
+                <a href="{{ route('contact') }}" class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-bold rounded-full text-slate-900 bg-cyan-400 hover:bg-cyan-300 transition-colors shadow-lg shadow-cyan-500/30">
+                    Discuss Your Project
                 </a>
             </div>
-        </div>
-    </div>
-
-    <!-- MODALS FOR THE 3 PROBLEM CARDS -->
-    
-    <!-- Modal: Time Recaptured -->
-    <div x-show="activeHomeModal === 'time'" class="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6" x-cloak style="display: none;">
-        <div x-show="activeHomeModal === 'time'" x-transition.opacity class="fixed inset-0 bg-slate-900/90 backdrop-blur-sm" @click="activeHomeModal = null"></div>
-        <div x-show="activeHomeModal === 'time'" x-transition.scale class="relative bg-white rounded-3xl shadow-2xl overflow-hidden w-full max-w-4xl z-10 flex flex-col md:flex-row h-auto md:h-[500px]">
-            <div class="w-full md:w-1/2 relative h-48 md:h-full">
-                <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?q=80&w=800&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover" alt="Clean Desk Workflow">
-            </div>
-            <div class="w-full md:w-1/2 p-10 overflow-y-auto relative">
-                <button @click="activeHomeModal = null" class="absolute top-6 right-6 text-slate-400 hover:text-slate-900 bg-slate-100 p-2 rounded-full"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
-                <h2 class="text-3xl font-extrabold text-slate-900 mb-6">Reclaiming Your Schedule</h2>
-                <p class="text-slate-600 mb-4 leading-relaxed">Every minute spent on repetitive administrative work is a minute stolen from scaling your business. By integrating our specialists, you immediately reclaim 15 to 20 hours per week.</p>
-                <div class="bg-blue-50 border border-blue-100 p-5 rounded-2xl mb-4">
-                    <h4 class="font-bold text-blue-800 mb-2">The "Inbox Zero" Guarantee</h4>
-                    <p class="text-sm text-blue-600">Our routing systems ensure you only see emails that require your explicit executive decision.</p>
+            
+            <div class="bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20">
+                <div class="mb-6">
+                    <span class="text-xs font-bold text-cyan-400 uppercase tracking-widest">Case Study Example</span>
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal: Digital Dominance -->
-    <div x-show="activeHomeModal === 'dominance'" class="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6" x-cloak style="display: none;">
-        <div x-show="activeHomeModal === 'dominance'" x-transition.opacity class="fixed inset-0 bg-slate-900/90 backdrop-blur-sm" @click="activeHomeModal = null"></div>
-        <div x-show="activeHomeModal === 'dominance'" x-transition.scale class="relative bg-white rounded-3xl shadow-2xl overflow-hidden w-full max-w-4xl z-10 flex flex-col md:flex-row h-auto md:h-[500px]">
-            <div class="w-full md:w-1/2 p-10 overflow-y-auto relative">
-                <button @click="activeHomeModal = null" class="absolute top-6 right-6 md:right-auto md:left-6 text-slate-400 hover:text-slate-900 bg-slate-100 p-2 rounded-full z-20"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
-                <h2 class="text-3xl font-extrabold text-slate-900 mb-6 mt-8 md:mt-0">Command Your Market</h2>
-                <p class="text-slate-600 mb-6 leading-relaxed">It is not enough to just exist online. Your infrastructure must proactively capture leads and funnel them directly into your CRM.</p>
-                <ul class="space-y-3 mb-6 text-slate-700 font-medium text-sm">
-                    <li class="flex items-center gap-3"><span class="w-5 h-5 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-xs">✓</span> Aggressive Keyword Targeting</li>
-                    <li class="flex items-center gap-3"><span class="w-5 h-5 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-xs">✓</span> Competitor Backlink Audits</li>
-                    <li class="flex items-center gap-3"><span class="w-5 h-5 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-xs">✓</span> A/B Split Testing for High Conversions</li>
-                </ul>
-            </div>
-            <div class="w-full md:w-1/2 relative h-48 md:h-full">
-                <img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?q=80&w=800&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover" alt="Data Analytics">
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal: Financial Clarity -->
-    <div x-show="activeHomeModal === 'clarity'" class="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6" x-cloak style="display: none;">
-        <div x-show="activeHomeModal === 'clarity'" x-transition.opacity class="fixed inset-0 bg-slate-900/90 backdrop-blur-sm" @click="activeHomeModal = null"></div>
-        <div x-show="activeHomeModal === 'clarity'" x-transition.scale class="relative bg-white rounded-3xl shadow-2xl overflow-hidden w-full max-w-4xl z-10 flex flex-col md:flex-row h-auto md:h-[500px]">
-            <div class="w-full md:w-1/2 relative h-48 md:h-full">
-                <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=800&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover" alt="Financial Planning">
-            </div>
-            <div class="w-full md:w-1/2 p-10 overflow-y-auto relative">
-                <button @click="activeHomeModal = null" class="absolute top-6 right-6 text-slate-400 hover:text-slate-900 bg-slate-100 p-2 rounded-full"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
-                <h2 class="text-3xl font-extrabold text-slate-900 mb-6">Crystal Clear Margins</h2>
-                <p class="text-slate-600 mb-6 leading-relaxed">Stop guessing at the end of the month. We implement enterprise-level bookkeeping standards so your profit and loss statements are updated in real-time.</p>
-                <div class="bg-slate-50 border border-slate-200 p-5 rounded-2xl">
-                    <p class="text-slate-700 font-semibold mb-2">Our Financial Stack:</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-white border border-slate-200 rounded-full text-xs font-bold text-slate-600">QuickBooks Online</span>
-                        <span class="px-3 py-1 bg-white border border-slate-200 rounded-full text-xs font-bold text-slate-600">Xero</span>
-                        <span class="px-3 py-1 bg-white border border-slate-200 rounded-full text-xs font-bold text-slate-600">Stripe Integration</span>
+                <p class="text-white italic text-lg mb-8">
+                    "A local real estate team had 6,500 unorganized CRM contacts and an average lead-response time of five hours. Cloud Dextra Solutions cleaned the database, created routing rules, and implemented daily follow-up workflows."
+                </p>
+                <div class="grid grid-cols-2 gap-6 border-t border-white/20 pt-6">
+                    <div>
+                        <div class="text-3xl font-extrabold text-white mb-1">5 Hrs <span class="text-cyan-400">→</span> 18 Min</div>
+                        <div class="text-sm text-slate-400 font-medium">Lead Response Time</div>
+                    </div>
+                    <div>
+                        <div class="text-3xl font-extrabold text-white mb-1">42</div>
+                        <div class="text-sm text-slate-400 font-medium">Dormant Leads Reactivated</div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <!-- MODALS FOR THE 4 PHOTO TABLETS -->
-    
-    <!-- Modal 1: VA Tablet -->
-    <div x-show="activeHomeModal === 'va'" class="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6" x-cloak style="display: none;">
-        <div x-show="activeHomeModal === 'va'" x-transition.opacity class="fixed inset-0 bg-slate-900/90 backdrop-blur-sm" @click="activeHomeModal = null"></div>
-        <div x-show="activeHomeModal === 'va'" x-transition.scale class="relative bg-white rounded-3xl shadow-2xl overflow-hidden w-full max-w-5xl z-10 flex flex-col md:flex-row h-[80vh] md:h-[600px]">
-            <div class="w-full md:w-1/2 relative h-64 md:h-full">
-                <img src="https://images.unsplash.com/photo-1554415707-6e8cfc93fe23?q=80&w=800&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover" alt="Virtual Assistant Team">
-            </div>
-            <div class="w-full md:w-1/2 p-10 md:p-14 overflow-y-auto relative">
-                <button @click="activeHomeModal = null" class="absolute top-6 right-6 text-slate-400 hover:text-slate-900 bg-slate-100 p-2 rounded-full"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
-                <h2 class="text-4xl font-extrabold text-slate-900 mb-6">Virtual Assistance</h2>
-                <p class="text-slate-600 mb-6">Regain your time by offloading your most tedious administrative tasks to our highly trained specialists.</p>
-                <h4 class="text-xl font-bold text-slate-800 mb-4">Key Responsibilities Handled:</h4>
-                <ul class="space-y-3 mb-8 text-slate-600 font-medium">
-                    <li class="flex items-center gap-3"><span class="text-blue-500">✓</span> BoldTrail & SkySlope CRM Data Entry</li>
-                    <li class="flex items-center gap-3"><span class="text-blue-500">✓</span> Executive Calendar Management</li>
-                    <li class="flex items-center gap-3"><span class="text-blue-500">✓</span> Priority Inbox Routing & Replying</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal 2: Marketing Tablet -->
-    <div x-show="activeHomeModal === 'marketing'" class="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6" x-cloak style="display: none;">
-        <div x-show="activeHomeModal === 'marketing'" x-transition.opacity class="fixed inset-0 bg-slate-900/90 backdrop-blur-sm" @click="activeHomeModal = null"></div>
-        <div x-show="activeHomeModal === 'marketing'" x-transition.scale class="relative bg-white rounded-3xl shadow-2xl overflow-hidden w-full max-w-5xl z-10 flex flex-col md:flex-row h-[80vh] md:h-[600px]">
-            <div class="w-full md:w-1/2 p-10 md:p-14 overflow-y-auto relative">
-                <button @click="activeHomeModal = null" class="absolute top-6 right-6 md:right-auto md:left-6 text-slate-400 hover:text-slate-900 bg-slate-100 p-2 rounded-full z-20"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
-                <h2 class="text-4xl font-extrabold text-slate-900 mb-6 mt-8 md:mt-0">Digital Growth</h2>
-                <p class="text-slate-600 leading-relaxed mb-6">Our data-driven marketing team ensures your business is visible to high-intent buyers searching for your exact services.</p>
-                <div class="bg-slate-50 p-6 rounded-2xl mb-8 border border-slate-100">
-                    <h4 class="font-bold text-slate-800 mb-2">Our Metrics Drive Results:</h4>
-                    <p class="text-slate-600 text-sm mb-2">• Average 300% increase in Organic Search Traffic.</p>
-                    <p class="text-slate-600 text-sm">• Specialized in Google Ads & Meta Business Suite optimization.</p>
-                </div>
-            </div>
-            <div class="w-full md:w-1/2 relative h-64 md:h-full">
-                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover" alt="Marketing Analytics">
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal 3: Finance Tablet -->
-    <div x-show="activeHomeModal === 'finance'" class="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6" x-cloak style="display: none;">
-        <div x-show="activeHomeModal === 'finance'" x-transition.opacity class="fixed inset-0 bg-slate-900/90 backdrop-blur-sm" @click="activeHomeModal = null"></div>
-        <div x-show="activeHomeModal === 'finance'" x-transition.scale class="relative bg-white rounded-3xl shadow-2xl overflow-hidden w-full max-w-5xl z-10 flex flex-col md:flex-row h-[80vh] md:h-[600px]">
-            <div class="w-full md:w-1/2 relative h-64 md:h-full">
-                <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=800&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover" alt="Financial Bookkeeping">
-            </div>
-            <div class="w-full md:w-1/2 p-10 md:p-14 overflow-y-auto relative">
-                <button @click="activeHomeModal = null" class="absolute top-6 right-6 text-slate-400 hover:text-slate-900 bg-slate-100 p-2 rounded-full"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
-                <h2 class="text-4xl font-extrabold text-slate-900 mb-6">Financial Bookkeeping</h2>
-                <p class="text-slate-600 mb-6">Scale with confidence knowing your numbers are accurate. We ensure your books are perfectly balanced and tax-ready all year round.</p>
-                <ul class="space-y-3 mb-8 text-slate-600 font-medium">
-                    <li class="flex items-center gap-3"><span class="text-green-500">✓</span> Certified QuickBooks Specialists</li>
-                    <li class="flex items-center gap-3"><span class="text-green-500">✓</span> Monthly Profit & Loss (P&L) Generation</li>
-                    <li class="flex items-center gap-3"><span class="text-green-500">✓</span> Invoicing & Accounts Receivable</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal 4: Web Architecture Tablet -->
-    <div x-show="activeHomeModal === 'web'" class="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6" x-cloak style="display: none;">
-        <div x-show="activeHomeModal === 'web'" x-transition.opacity class="fixed inset-0 bg-slate-900/90 backdrop-blur-sm" @click="activeHomeModal = null"></div>
-        <div x-show="activeHomeModal === 'web'" x-transition.scale class="relative bg-white rounded-3xl shadow-2xl overflow-hidden w-full max-w-5xl z-10 flex flex-col md:flex-row h-[80vh] md:h-[600px]">
-            <div class="w-full md:w-1/2 p-10 md:p-14 overflow-y-auto relative">
-                <button @click="activeHomeModal = null" class="absolute top-6 right-6 md:right-auto md:left-6 text-slate-400 hover:text-slate-900 bg-slate-100 p-2 rounded-full z-20"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
-                <h2 class="text-4xl font-extrabold text-slate-900 mb-6 mt-8 md:mt-0">Web Architecture</h2>
-                <p class="text-slate-600 leading-relaxed mb-6">A website that is slow or insecure damages your brand. We build custom frameworks and maintain them daily to ensure 99.9% uptime.</p>
-                <ul class="space-y-3 mb-8 text-slate-600 font-medium">
-                    <li class="flex items-center gap-3"><span class="text-blue-500">✓</span> Full-Stack Custom Application Development</li>
-                    <li class="flex items-center gap-3"><span class="text-blue-500">✓</span> Modern UI/UX Interactive Frontends</li>
-                    <li class="flex items-center gap-3"><span class="text-blue-500">✓</span> Continuous Server Maintenance & Security Patching</li>
-                </ul>
-            </div>
-            <div class="w-full md:w-1/2 relative h-64 md:h-full">
-                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=800&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover" alt="Web Development Architecture">
-            </div>
-        </div>
-    </div>
-
 </div>
+
 @endsection
