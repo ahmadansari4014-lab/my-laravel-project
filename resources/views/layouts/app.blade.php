@@ -4,11 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cloud Dextra Solution</title>
-    
-    <link rel="icon" type="image/jpeg" href="{{ asset('Images/image_289bdd.jpg') }}?v=10">
-<link rel="shortcut icon" type="image/jpeg" href="{{ asset('Images/image_289bdd.jpg') }}?v=10">
-<link rel="apple-touch-icon" href="{{ asset('Images/image_289bdd.jpg') }}?v=10">
-    
+
+    <link rel="icon" type="image/jpeg" href="/favicon.jpg?v=20">
+    <link rel="shortcut icon" type="image/jpeg" href="/favicon.jpg?v=20">
+    <link rel="apple-touch-icon" href="/favicon.jpg?v=20">
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Alpine.js -->
