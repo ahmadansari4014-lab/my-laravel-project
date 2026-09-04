@@ -5,7 +5,7 @@
 <div x-data="{}" class="relative pb-20">
 
     <!-- 1. Cinematic Hero Section -->
-    <div class="relative w-full py-32 md:py-48 flex items-center justify-center rounded-[3rem] overflow-hidden mb-20 shadow-2xl mx-6 group">
+    <div class="relative w-full py-20 sm:py-32 md:py-48 flex items-center justify-center rounded-3xl sm:rounded-[3rem] overflow-hidden mb-20 shadow-2xl mx-0 sm:mx-6 group">
         <div class="absolute inset-0">
             <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2000&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-[20s] group-hover:scale-110" alt="Corporate Headquarters">
             <!-- Sleek Dark Gradient Overlay -->
@@ -16,10 +16,10 @@
             <span class="text-blue-400 font-bold tracking-widest uppercase text-sm mb-6 inline-block border border-blue-400/30 bg-blue-400/10 px-4 py-2 rounded-full backdrop-blur-sm">
                 About Cloud Dextra
             </span>
-            <h1 class="text-5xl md:text-7xl font-extrabold text-white mb-6 tracking-tight drop-shadow-lg">
+            <h1 class="text-4xl sm:text-5xl md:text-7xl font-extrabold text-white mb-6 tracking-tight drop-shadow-lg">
                 The Engine Behind <br> Your <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">Growth</span>
             </h1>
-            <p class="text-xl text-slate-300 max-w-3xl mx-auto font-light leading-relaxed">
+            <p class="text-base sm:text-xl text-slate-300 max-w-3xl mx-auto font-light leading-relaxed">
                 We don't just complete tasks; we architect scalable workflows, build high-performance web platforms, and manage the daily operations that give industry leaders their time back.
             </p>
         </div>
@@ -76,7 +76,7 @@
 
     <!-- 4. The Dextra Framework (Interactive Cards) -->
     <div class="max-w-7xl mx-auto px-6 mb-32">
-        <div class="bg-slate-50 rounded-[3rem] p-12 md:p-20 shadow-inner border border-slate-200">
+        <div class="bg-slate-50 rounded-3xl sm:rounded-[3rem] p-6 sm:p-12 md:p-20 shadow-inner border border-slate-200">
             <div class="text-center mb-16">
                 <h2 class="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight mb-4">The Dextra Framework</h2>
                 <p class="text-slate-500 text-lg max-w-2xl mx-auto">A proven, three-step methodology to eliminate operational drag and scale your infrastructure.</p>

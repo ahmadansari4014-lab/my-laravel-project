@@ -2,88 +2,98 @@
 
 @section('content')
 
-<!-- 1. HOMEPAGE HERO SECTION -->
-<div class="relative w-full py-32 md:py-48 flex items-center justify-center overflow-hidden bg-slate-900 border-b border-slate-800">
-    <!-- Background Image & Gradient Overlay -->
-    <div class="absolute inset-0 z-0">
-        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2000&auto=format&fit=crop" class="w-full h-full object-cover opacity-30 mix-blend-overlay grayscale" alt="Cloud Dextra Remote Team">
-        <div class="absolute inset-0 bg-gradient-to-b from-slate-900/95 via-[#1d2431]/90 to-slate-900/95"></div>
-    </div>
+<!-- Global Alpine State Wrap for Entire Homepage -->
+<div x-data="{
+    // Modal State
+    isModalOpen: false,
+    currentStep: 1,
+    formData: {
+        industry: 'Real Estate',
+        bottleneck: 'CRM & Lead Follow-ups',
+        teamSize: 'Solo / Independent',
+        name: '',
+        email: '',
+        phone: ''
+    },
+    selectStepOption(field, value) {
+        this.formData[field] = value;
+        if(this.currentStep < 4) this.currentStep++;
+    },
+    resetModal() {
+        this.currentStep = 1;
+        this.formData.name = '';
+        this.formData.email = '';
+        this.formData.phone = '';
+    },
 
-    <!-- Main Content Container -->
-    <div class="relative z-10 w-full max-w-5xl mx-auto px-6 text-center mt-10">
-        <!-- Trust Badge -->
-        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-800/50 border border-slate-700 backdrop-blur-sm mb-8">
-            <span class="flex h-2 w-2 rounded-full bg-cyan-400"></span>
-            <span class="text-xs font-bold text-slate-300 uppercase tracking-widest">Top-Rated Operations Partner</span>
+}">
+
+    <!-- 1. HOMEPAGE HERO SECTION -->
+    <div class="relative w-full py-28 md:py-44 flex items-center justify-center overflow-hidden bg-slate-900 border-b border-slate-800">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2000&auto=format&fit=crop" class="w-full h-full object-cover opacity-25 mix-blend-overlay grayscale" alt="Cloud Dextra Remote Team">
+            <div class="absolute inset-0 bg-gradient-to-b from-slate-900/95 via-slate-900/90 to-slate-900"></div>
         </div>
 
-        <!-- Headline -->
-        <h1 class="text-5xl md:text-7xl font-extrabold text-white mb-6 tracking-tight drop-shadow-lg leading-tight">
-            Get More Done Without Hiring a <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">Full In-House Team</span>
-        </h1>
-        
-        <!-- Subheadline -->
-        <p class="text-lg md:text-xl text-slate-300 max-w-3xl mx-auto font-light leading-relaxed mb-10">
-            Cloud Dextra Solutions provides trained virtual assistants, digital marketing support, and website management for real estate professionals and growing service businesses.
-        </p>
+        <div class="relative z-10 w-full max-w-5xl mx-auto px-6 text-center mt-4">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-800/80 border border-slate-700/80 backdrop-blur-md mb-8">
+                <span class="flex h-2 w-2 rounded-full bg-cyan-400 animate-pulse"></span>
+                <span class="text-xs font-semibold text-slate-300 tracking-wider uppercase">Top-Rated Operations Partner</span>
+            </div>
 
-        <!-- CTA Buttons -->
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
-            <a href="{{ route('contact') }}" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 border border-transparent text-base md:text-lg font-bold rounded-full text-slate-900 bg-white hover:bg-blue-50 transition-colors shadow-[0_0_20px_rgba(34,211,238,0.2)] hover:shadow-[0_0_30px_rgba(34,211,238,0.4)] transform hover:-translate-y-1">
-                Book a Free Operations Audit
-            </a>
-            <a href="{{ route('services') }}" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 border border-slate-600 text-base md:text-lg font-bold rounded-full text-white hover:bg-slate-800 hover:border-slate-500 transition-colors transform hover:-translate-y-1">
-                Explore Our Services
-            </a>
-        </div>
-
-        <!-- Trust Statements -->
-        <div class="flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-sm font-medium text-slate-400">
-            <span class="flex items-center gap-2">
-                <svg class="w-5 h-5 text-cyan-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg> 
-                No long-term contracts
-            </span>
-            <span class="hidden sm:inline text-slate-700">|</span>
-            <span class="flex items-center gap-2">
-                <svg class="w-5 h-5 text-cyan-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg> 
-                Dedicated account manager
-            </span>
-            <span class="hidden sm:inline text-slate-700">|</span>
-            <span class="flex items-center gap-2">
-                <svg class="w-5 h-5 text-cyan-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg> 
-                Customized around your tools
-            </span>
-        </div>
-    </div>
-</div>
-
-<!-- 2. TRUST BAR: Software & Tools -->
-<div class="bg-white py-12 border-b border-slate-100">
-    <div class="max-w-6xl mx-auto px-6 text-center">
-        <p class="text-sm font-bold text-slate-400 uppercase tracking-widest mb-8">Experienced with the tools your business already uses</p>
-        <div class="flex flex-wrap justify-center items-center gap-10 md:gap-16 opacity-70 grayscale">
-            <span class="text-xl font-bold text-slate-800">WordPress</span>
-            <span class="text-xl font-bold text-slate-800">QuickBooks</span>
-            <span class="text-xl font-bold text-slate-800">HubSpot</span>
-            <span class="text-xl font-bold text-slate-800">BoldTrail</span>
-            <span class="text-xl font-bold text-slate-800">SkySlope</span>
-            <span class="text-xl font-bold text-slate-800">Google Workspace</span>
-        </div>
-    </div>
-</div>
-
-<!-- 3. CORE SERVICES PILLARS -->
-<div class="bg-slate-50 py-24">
-    <div class="max-w-6xl mx-auto px-6">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-            <h2 class="text-4xl font-extrabold text-slate-900 mb-6">Your Best Hours Should Not Be Spent on Repetitive Tasks</h2>
-            <p class="text-lg text-slate-600">Cloud Dextra Solutions builds a support system around your business so essential work gets completed consistently, allowing you to focus on growth.</p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold text-white mb-6 tracking-tight leading-[1.15]">
+                Get More Done Without Hiring a <br class="hidden sm:inline" />
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-300 to-teal-200">Full In-House Team</span>
+            </h1>
             
-            <!-- Pillar 1: Virtual Operations -->
+            <p class="text-base sm:text-lg md:text-xl text-slate-300 max-w-3xl mx-auto font-normal leading-relaxed mb-10">
+                Cloud Dextra Solutions provides trained virtual assistants, digital marketing support, and website management for real estate professionals and growing service businesses.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-14">
+                <button @click="isModalOpen = true; resetModal();" class="w-full sm:w-auto inline-flex items-center justify-center px-7 py-3.5 border border-transparent text-base font-bold rounded-full text-slate-950 bg-white hover:bg-slate-100 active:bg-slate-200 focus:outline-none transition-all duration-200 shadow-lg shadow-cyan-500/10 hover:shadow-cyan-500/20 transform hover:-translate-y-0.5">
+                    Book a Free Operations Audit
+                </button>
+               
+            </div>
+
+            <div class="flex flex-wrap items-center justify-center gap-y-3 gap-x-6 sm:gap-x-8 text-xs sm:text-sm font-medium text-slate-400">
+                <span class="flex items-center gap-2"><svg class="w-4 h-4 text-cyan-400 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg> No long-term contracts</span>
+                <span class="hidden sm:inline text-slate-800">|</span>
+                <span class="flex items-center gap-2"><svg class="w-4 h-4 text-cyan-400 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg> Dedicated account manager</span>
+                <span class="hidden sm:inline text-slate-800">|</span>
+                <span class="flex items-center gap-2"><svg class="w-4 h-4 text-cyan-400 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg> Customized around your tools</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. TRUST BAR: Software Logos -->
+    <div class="bg-white py-12 border-b border-slate-100">
+        <div class="max-w-6xl mx-auto px-6 text-center">
+            <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-8">Experienced with the tools your business already uses</p>
+            <div class="flex flex-wrap justify-center items-center gap-8 md:gap-14 opacity-75">
+                <span class="text-lg font-bold text-slate-700">WordPress</span>
+                <span class="text-lg font-bold text-slate-700">QuickBooks</span>
+                <span class="text-lg font-bold text-slate-700">HubSpot</span>
+                <span class="text-lg font-bold text-slate-700">BoldTrail</span>
+                <span class="text-lg font-bold text-slate-700">SkySlope</span>
+                <span class="text-lg font-bold text-slate-700">Google Workspace</span>
+            </div>
+        </div>
+    </div>
+
+    
+
+    <!-- 3. CORE SERVICES PILLARS -->
+    <div class="bg-slate-50 py-24">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4 tracking-tight">Your Best Hours Should Not Be Spent on Repetitive Tasks</h2>
+                <p class="text-base md:text-lg text-slate-600 font-normal">Cloud Dextra Solutions builds a support system around your business so essential work gets completed consistently, allowing you to focus on growth.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Pillar 1: Virtual Operations -->
             <div class="relative rounded-3xl p-10 shadow-xl overflow-hidden hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 group border border-slate-200">
                 <!-- Background Image & Overlay -->
                 <div class="absolute inset-0 z-0">
@@ -105,8 +115,8 @@
                     </ul>
                 </div>
             </div>
-
-            <!-- Pillar 2: Digital Growth -->
+                <!-- Pillar 2 -->
+                <!-- Pillar 2: Digital Growth -->
             <div class="relative rounded-3xl p-10 shadow-xl overflow-hidden hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 group border border-slate-200">
                 <!-- Background Image & Overlay -->
                 <div class="absolute inset-0 z-0">
@@ -128,8 +138,7 @@
                     </ul>
                 </div>
             </div>
-
-            <!-- Pillar 3: Business Administration -->
+                <!-- Pillar 3: Business Administration -->
             <div class="relative rounded-3xl p-10 shadow-xl overflow-hidden hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 group border border-slate-200">
                 <!-- Background Image & Overlay -->
                 <div class="absolute inset-0 z-0">
@@ -161,7 +170,410 @@
     </div>
 </div>
 
-<!-- 4. HOW IT WORKS -->
+            <div class="text-center mt-12 relative z-10">
+                <a href="{{ route('services') }}" class="text-blue-600 font-bold hover:text-blue-800 transition-colors inline-flex items-center gap-2 group text-base">
+                    View full service details <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3.5. TESTIMONIALS SECTION (TRUE INFINITE SCROLL + NATIVE DRAG/SWIPE ENABLED) -->
+    <div class="bg-white py-24 border-t border-slate-100 overflow-hidden relative">
+        
+        <div class="max-w-6xl mx-auto px-6 mb-16 text-center select-none">
+            <span class="text-xs font-bold text-cyan-600 uppercase tracking-widest bg-cyan-50 px-3.5 py-1.5 rounded-full border border-cyan-100/80">Client Success Stories</span>
+            <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mt-4 mb-3 tracking-tight">Real Results for Real Businesses</h2>
+            <p class="text-slate-600 text-base md:text-lg">Here is what happened when business owners handed over their back-office operations to us.</p>
+        </div>
+
+        <!-- Carousel Container with Fade Mask -->
+        <div class="relative w-full py-4 overflow-hidden" 
+             x-data="{
+                speed: 0.8, // Adjust constant scrolling speed
+                init() {
+                    const el = this.$refs.scrollBox;
+                    
+                    // Set initial position to the middle clone set
+                    const setWidth = el.scrollWidth / 3;
+                    el.scrollLeft = setWidth;
+
+                    const step = () => {
+                        // Constant linear auto-scroll increment
+                        el.scrollLeft += this.speed;
+
+                        // Seamless loop boundary check without visual snap
+                        if (el.scrollLeft >= setWidth * 2) {
+                            el.scrollLeft -= setWidth;
+                        } else if (el.scrollLeft <= 0) {
+                            el.scrollLeft += setWidth;
+                        }
+
+                        requestAnimationFrame(step);
+                    };
+
+                    requestAnimationFrame(step);
+                }
+             }">
+
+            <!-- Side Gradient Shadows for Soft Blend -->
+            <div class="absolute left-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
+            <div class="absolute right-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
+
+            <!-- Scrollable Track -->
+            <div x-ref="scrollBox" 
+                 class="flex gap-8 overflow-x-auto scrollbar-none py-2 px-6 active:cursor-grabbing cursor-grab will-change-transform"
+                 style="scrollbar-width: none; -ms-overflow-style: none;">
+                
+                <!-- ================= SET 1 ================= -->
+                <!-- CARD 1 (David Miller) -->
+                <div class="w-[320px] sm:w-[450px] md:w-[500px] bg-slate-50/80 border border-slate-200/80 rounded-3xl p-8 shadow-sm hover:shadow-xl hover:border-cyan-300 transition-all duration-300 flex flex-col justify-between relative overflow-hidden group shrink-0 select-none">
+                    <div class="absolute top-0 right-0 w-28 h-28 bg-cyan-500/5 rounded-bl-full pointer-events-none group-hover:scale-110 transition-transform duration-300"></div>
+                    <div>
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="flex text-amber-400 gap-1">
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            </div>
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200/80">
+                                <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                                Verified Client
+                            </span>
+                        </div>
+                        <p class="text-slate-700 text-base md:text-lg leading-relaxed mb-8 italic font-normal">
+                            "Bookkeeping backlog was my biggest headache every month. Cloud Dextra took over our QuickBooks categorization and weekly invoice reconciliation. Taxes are stress-free now, and I save at least 20 hours of manual work every single month."
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-4 pt-6 border-t border-slate-200/60">
+                        <div>
+                            <h4 class="font-bold text-slate-900 text-base leading-tight">David Miller</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 2 -->
+                <div class="w-[320px] sm:w-[450px] md:w-[500px] bg-slate-50/80 border border-slate-200/80 rounded-3xl p-8 shadow-sm hover:shadow-xl hover:border-cyan-300 transition-all duration-300 flex flex-col justify-between relative overflow-hidden group shrink-0 select-none">
+                    <div class="absolute top-0 right-0 w-28 h-28 bg-cyan-500/5 rounded-bl-full pointer-events-none group-hover:scale-110 transition-transform duration-300"></div>
+                    <div>
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="flex text-amber-400 gap-1">
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            </div>
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200/80">
+                                <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                                Verified Client
+                            </span>
+                        </div>
+                        <p class="text-slate-700 text-base md:text-lg leading-relaxed mb-8 italic font-normal">
+                            "Finding reliable specialists for client WordPress updates and local citations was a constant bottleneck. Cloud Dextra assigned us a trained operations team that handles technical updates cleanly. Their communication is proactive, structured, and reliable."
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-4 pt-6 border-t border-slate-200/60">
+                        <div>
+                            <h4 class="font-bold text-slate-900 text-base leading-tight">Sarah Jenkins</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 3 (Shane Paiz) -->
+                <div class="w-[320px] sm:w-[450px] md:w-[500px] bg-slate-50/80 border border-slate-200/80 rounded-3xl p-8 shadow-sm hover:shadow-xl hover:border-cyan-300 transition-all duration-300 flex flex-col justify-between relative overflow-hidden group shrink-0 select-none">
+                    <div class="absolute top-0 right-0 w-28 h-28 bg-cyan-500/5 rounded-bl-full pointer-events-none group-hover:scale-110 transition-transform duration-300"></div>
+                    <div>
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="flex text-amber-400 gap-1">
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            </div>
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200/80">
+                                <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                                Verified Client
+                            </span>
+                        </div>
+                        <p class="text-slate-700 text-base md:text-lg leading-relaxed mb-8 italic font-normal">
+                            "Managing 12+ active property listings meant I was constantly dropping the ball on CRM follow-ups in BoldTrail. Cloud Dextra stepped in and organized our entire pipeline within a week. Lead response times dropped from 4 hours to under 15 minutes."
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-4 pt-6 border-t border-slate-200/60">
+                        <img src="{{ asset('Images/shane-paiz.png') }}" class="w-11 h-11 rounded-full object-cover ring-2 ring-slate-200 pointer-events-none" alt="Shane Paiz">
+                        <div>
+                            <h4 class="font-bold text-slate-900 text-base leading-tight">Shane Paiz</h4>
+                            <p class="text-xs text-slate-500 font-medium mt-0.5">eXp Realty (USA)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 4 -->
+                <div class="w-[320px] sm:w-[450px] md:w-[500px] bg-slate-50/80 border border-slate-200/80 rounded-3xl p-8 shadow-sm hover:shadow-xl hover:border-cyan-300 transition-all duration-300 flex flex-col justify-between relative overflow-hidden group shrink-0 select-none">
+                    <div class="absolute top-0 right-0 w-28 h-28 bg-cyan-500/5 rounded-bl-full pointer-events-none group-hover:scale-110 transition-transform duration-300"></div>
+                    <div>
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="flex text-amber-400 gap-1">
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            </div>
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200/80">
+                                <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                                Verified Client
+                            </span>
+                        </div>
+                        <p class="text-slate-700 text-base md:text-lg leading-relaxed mb-8 italic font-normal">
+                            "What stood out to us was how easily they integrated with SkySlope and Google Workspace. Instead of spending money on local hiring overhead, we got a dedicated virtual operations team that works within our exact time zone."
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-4 pt-6 border-t border-slate-200/60">
+                        <div>
+                            <h4 class="font-bold text-slate-900 text-base leading-tight">Elena Rostova</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ================= SET 2 (CLONE 1) ================= -->
+                <!-- CARD 1 (David Miller) -->
+                <div class="w-[320px] sm:w-[450px] md:w-[500px] bg-slate-50/80 border border-slate-200/80 rounded-3xl p-8 shadow-sm hover:shadow-xl hover:border-cyan-300 transition-all duration-300 flex flex-col justify-between relative overflow-hidden group shrink-0 select-none">
+                    <div class="absolute top-0 right-0 w-28 h-28 bg-cyan-500/5 rounded-bl-full pointer-events-none group-hover:scale-110 transition-transform duration-300"></div>
+                    <div>
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="flex text-amber-400 gap-1">
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            </div>
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200/80">
+                                <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                                Verified Client
+                            </span>
+                        </div>
+                        <p class="text-slate-700 text-base md:text-lg leading-relaxed mb-8 italic font-normal">
+                            "Bookkeeping backlog was my biggest headache every month. Cloud Dextra took over our QuickBooks categorization and weekly invoice reconciliation. Taxes are stress-free now, and I save at least 20 hours of manual work every single month."
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-4 pt-6 border-t border-slate-200/60">
+                        <div>
+                            <h4 class="font-bold text-slate-900 text-base leading-tight">David Miller</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 2 -->
+                <div class="w-[320px] sm:w-[450px] md:w-[500px] bg-slate-50/80 border border-slate-200/80 rounded-3xl p-8 shadow-sm hover:shadow-xl hover:border-cyan-300 transition-all duration-300 flex flex-col justify-between relative overflow-hidden group shrink-0 select-none">
+                    <div class="absolute top-0 right-0 w-28 h-28 bg-cyan-500/5 rounded-bl-full pointer-events-none group-hover:scale-110 transition-transform duration-300"></div>
+                    <div>
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="flex text-amber-400 gap-1">
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            </div>
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200/80">
+                                <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                                Verified Client
+                            </span>
+                        </div>
+                        <p class="text-slate-700 text-base md:text-lg leading-relaxed mb-8 italic font-normal">
+                            "Finding reliable specialists for client WordPress updates and local citations was a constant bottleneck. Cloud Dextra assigned us a trained operations team that handles technical updates cleanly. Their communication is proactive, structured, and reliable."
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-4 pt-6 border-t border-slate-200/60">
+                        <div>
+                            <h4 class="font-bold text-slate-900 text-base leading-tight">Sarah Jenkins</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 3 (Shane Paiz) -->
+                <div class="w-[320px] sm:w-[450px] md:w-[500px] bg-slate-50/80 border border-slate-200/80 rounded-3xl p-8 shadow-sm hover:shadow-xl hover:border-cyan-300 transition-all duration-300 flex flex-col justify-between relative overflow-hidden group shrink-0 select-none">
+                    <div class="absolute top-0 right-0 w-28 h-28 bg-cyan-500/5 rounded-bl-full pointer-events-none group-hover:scale-110 transition-transform duration-300"></div>
+                    <div>
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="flex text-amber-400 gap-1">
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            </div>
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200/80">
+                                <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                                Verified Client
+                            </span>
+                        </div>
+                        <p class="text-slate-700 text-base md:text-lg leading-relaxed mb-8 italic font-normal">
+                            "Managing 12+ active property listings meant I was constantly dropping the ball on CRM follow-ups in BoldTrail. Cloud Dextra stepped in and organized our entire pipeline within a week. Lead response times dropped from 4 hours to under 15 minutes."
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-4 pt-6 border-t border-slate-200/60">
+                        <img src="{{ asset('Images/shane-paiz.png') }}" class="w-11 h-11 rounded-full object-cover ring-2 ring-slate-200 pointer-events-none" alt="Shane Paiz">
+                        <div>
+                            <h4 class="font-bold text-slate-900 text-base leading-tight">Shane Paiz</h4>
+                            <p class="text-xs text-slate-500 font-medium mt-0.5">eXp Realty (USA)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 4 -->
+                <div class="w-[320px] sm:w-[450px] md:w-[500px] bg-slate-50/80 border border-slate-200/80 rounded-3xl p-8 shadow-sm hover:shadow-xl hover:border-cyan-300 transition-all duration-300 flex flex-col justify-between relative overflow-hidden group shrink-0 select-none">
+                    <div class="absolute top-0 right-0 w-28 h-28 bg-cyan-500/5 rounded-bl-full pointer-events-none group-hover:scale-110 transition-transform duration-300"></div>
+                    <div>
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="flex text-amber-400 gap-1">
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            </div>
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200/80">
+                                <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                                Verified Client
+                            </span>
+                        </div>
+                        <p class="text-slate-700 text-base md:text-lg leading-relaxed mb-8 italic font-normal">
+                            "What stood out to us was how easily they integrated with SkySlope and Google Workspace. Instead of spending money on local hiring overhead, we got a dedicated virtual operations team that works within our exact time zone."
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-4 pt-6 border-t border-slate-200/60">
+                        <div>
+                            <h4 class="font-bold text-slate-900 text-base leading-tight">Elena Rostova</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ================= SET 3 (CLONE 2) ================= -->
+                <!-- CARD 1 (David Miller) -->
+                <div class="w-[320px] sm:w-[450px] md:w-[500px] bg-slate-50/80 border border-slate-200/80 rounded-3xl p-8 shadow-sm hover:shadow-xl hover:border-cyan-300 transition-all duration-300 flex flex-col justify-between relative overflow-hidden group shrink-0 select-none">
+                    <div class="absolute top-0 right-0 w-28 h-28 bg-cyan-500/5 rounded-bl-full pointer-events-none group-hover:scale-110 transition-transform duration-300"></div>
+                    <div>
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="flex text-amber-400 gap-1">
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            </div>
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200/80">
+                                <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                                Verified Client
+                            </span>
+                        </div>
+                        <p class="text-slate-700 text-base md:text-lg leading-relaxed mb-8 italic font-normal">
+                            "Bookkeeping backlog was my biggest headache every month. Cloud Dextra took over our QuickBooks categorization and weekly invoice reconciliation. Taxes are stress-free now, and I save at least 20 hours of manual work every single month."
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-4 pt-6 border-t border-slate-200/60">
+                        <div>
+                            <h4 class="font-bold text-slate-900 text-base leading-tight">David Miller</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 2 -->
+                <div class="w-[320px] sm:w-[450px] md:w-[500px] bg-slate-50/80 border border-slate-200/80 rounded-3xl p-8 shadow-sm hover:shadow-xl hover:border-cyan-300 transition-all duration-300 flex flex-col justify-between relative overflow-hidden group shrink-0 select-none">
+                    <div class="absolute top-0 right-0 w-28 h-28 bg-cyan-500/5 rounded-bl-full pointer-events-none group-hover:scale-110 transition-transform duration-300"></div>
+                    <div>
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="flex text-amber-400 gap-1">
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            </div>
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200/80">
+                                <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                                Verified Client
+                            </span>
+                        </div>
+                        <p class="text-slate-700 text-base md:text-lg leading-relaxed mb-8 italic font-normal">
+                            "Finding reliable specialists for client WordPress updates and local citations was a constant bottleneck. Cloud Dextra assigned us a trained operations team that handles technical updates cleanly. Their communication is proactive, structured, and reliable."
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-4 pt-6 border-t border-slate-200/60">
+                        <div>
+                            <h4 class="font-bold text-slate-900 text-base leading-tight">Sarah Jenkins</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 3 (Shane Paiz) -->
+                <div class="w-[320px] sm:w-[450px] md:w-[500px] bg-slate-50/80 border border-slate-200/80 rounded-3xl p-8 shadow-sm hover:shadow-xl hover:border-cyan-300 transition-all duration-300 flex flex-col justify-between relative overflow-hidden group shrink-0 select-none">
+                    <div class="absolute top-0 right-0 w-28 h-28 bg-cyan-500/5 rounded-bl-full pointer-events-none group-hover:scale-110 transition-transform duration-300"></div>
+                    <div>
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="flex text-amber-400 gap-1">
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            </div>
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200/80">
+                                <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                                Verified Client
+                            </span>
+                        </div>
+                        <p class="text-slate-700 text-base md:text-lg leading-relaxed mb-8 italic font-normal">
+                            "Managing 12+ active property listings meant I was constantly dropping the ball on CRM follow-ups in BoldTrail. Cloud Dextra stepped in and organized our entire pipeline within a week. Lead response times dropped from 4 hours to under 15 minutes."
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-4 pt-6 border-t border-slate-200/60">
+                        <img src="{{ asset('Images/shane-paiz.png') }}" class="w-11 h-11 rounded-full object-cover ring-2 ring-slate-200 pointer-events-none" alt="Shane Paiz">
+                        <div>
+                            <h4 class="font-bold text-slate-900 text-base leading-tight">Shane Paiz</h4>
+                            <p class="text-xs text-slate-500 font-medium mt-0.5">eXp Realty (USA)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 4 -->
+                <div class="w-[320px] sm:w-[450px] md:w-[500px] bg-slate-50/80 border border-slate-200/80 rounded-3xl p-8 shadow-sm hover:shadow-xl hover:border-cyan-300 transition-all duration-300 flex flex-col justify-between relative overflow-hidden group shrink-0 select-none">
+                    <div class="absolute top-0 right-0 w-28 h-28 bg-cyan-500/5 rounded-bl-full pointer-events-none group-hover:scale-110 transition-transform duration-300"></div>
+                    <div>
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="flex text-amber-400 gap-1">
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            </div>
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200/80">
+                                <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                                Verified Client
+                            </span>
+                        </div>
+                        <p class="text-slate-700 text-base md:text-lg leading-relaxed mb-8 italic font-normal">
+                            "What stood out to us was how easily they integrated with SkySlope and Google Workspace. Instead of spending money on local hiring overhead, we got a dedicated virtual operations team that works within our exact time zone."
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-4 pt-6 border-t border-slate-200/60">
+                        <div>
+                            <h4 class="font-bold text-slate-900 text-base leading-tight">Elena Rostova</h4>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- 4. HOW IT WORKS -->
 <div class="bg-white py-24 border-t border-slate-100">
     <div class="max-w-6xl mx-auto px-6">
         <h2 class="text-3xl font-extrabold text-slate-900 mb-16 text-center">A Simple Process to Reclaim Your Time</h2>
@@ -195,19 +607,18 @@
         </div>
     </div>
 </div>
+<div x-data="{ active: null }" class="flex flex-col gap-4">
+    <!-- 4. FREQUENTLY ASKED QUESTIONS -->
+    <div class="bg-slate-50 py-24 border-t border-slate-100">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="text-xs font-bold text-cyan-600 uppercase tracking-widest bg-cyan-50 px-3.5 py-1.5 rounded-full border border-cyan-100/80">Got Questions?</span>
+                <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mt-4 mb-3 tracking-tight">Frequently Asked Questions</h2>
+                <p class="text-base md:text-lg text-slate-600 max-w-2xl mx-auto">Everything you need to know about how we work, security, and getting started.</p>
+            </div>
 
-<!-- 4.5. FREQUENTLY ASKED QUESTIONS -->
-<div class="bg-slate-50 py-24 border-t border-slate-100">
-    <div class="max-w-4xl mx-auto px-6">
-        <div class="text-center mb-16">
-            <h2 class="text-3xl font-extrabold text-slate-900 mb-4">Frequently Asked Questions</h2>
-            <p class="text-lg text-slate-600">Everything you need to know about how we work, security, and getting started.</p>
-        </div>
-
-        <!-- Alpine.js Accordion Logic -->
-        <div x-data="{ active: null }" class="space-y-4">
-            
-            <!-- FAQ Item 1 -->
+            <div x-data="{ activeFaq: null }" class="space-y-4">
+                 <!-- FAQ Item 1 -->
             <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden transition-all duration-300 hover:border-cyan-300 hover:shadow-md">
                 <button @click="active = (active === 1 ? null : 1)" class="w-full flex items-center justify-between p-6 text-left focus:outline-none">
                     <span class="text-lg font-bold text-slate-900">Where is your team located and what time zones do you cover?</span>
@@ -273,15 +684,161 @@
             </div>
 
         </div>
-        
-        <!-- FAQ Bottom CTA -->
-        <div class="mt-12 text-center">
-            <p class="text-slate-600 mb-4">Still have questions?</p>
-            <a href="{{ route('contact') }}" class="text-blue-600 font-bold hover:text-blue-800 transition-colors inline-flex items-center gap-2">
-                Ask our team <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-            </a>
+            
+            <div class="mt-12 text-center">
+                <p class="text-slate-600 mb-3 font-medium">Still have questions?</p>
+                <a href="{{ route('contact') }}" class="text-blue-600 font-bold hover:text-blue-800 transition-colors inline-flex items-center gap-2 group text-base">
+                    Ask our team <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                </a>
+            </div>
         </div>
     </div>
+
+    <!-- FEATURE B: MULTI-STEP AUDIT WIZARD MODAL -->
+    <div x-show="isModalOpen" 
+         x-cloak 
+         class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto"
+         x-transition:enter="transition ease-out duration-300"
+         x-transition:enter-start="opacity-0"
+         x-transition:enter-end="opacity-100"
+         x-transition:leave="transition ease-in duration-200"
+         x-transition:leave-start="opacity-100"
+         x-transition:leave-end="opacity-0">
+        
+        <div class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm" @click="isModalOpen = false"></div>
+
+        <div class="relative bg-slate-900 border border-slate-800 rounded-3xl w-full max-w-2xl p-6 sm:p-10 shadow-2xl z-10 text-left overflow-hidden">
+            <button @click="isModalOpen = false" class="absolute top-6 right-6 text-slate-400 hover:text-white transition-colors p-2 rounded-full hover:bg-slate-800">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+
+            <div class="mb-8">
+                <div class="flex justify-between items-center text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">
+                    <span>Operations Audit</span>
+                    <span x-text="'Step ' + currentStep + ' of 4'"></span>
+                </div>
+                <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+                    <div class="bg-gradient-to-r from-blue-500 to-cyan-400 h-full transition-all duration-300" :style="'width: ' + (currentStep * 25) + '%'"></div>
+                </div>
+            </div>
+
+            <!-- STEP 1 -->
+            <div x-show="currentStep === 1">
+                <h3 class="text-2xl font-bold text-white mb-2">What is your primary business field?</h3>
+                <p class="text-sm text-slate-400 mb-6">Select your sector so we can align our specialist expertise.</p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <button @click="selectStepOption('industry', 'Real Estate Agent / Broker')" class="p-5 rounded-2xl border text-left transition-all hover:-translate-y-0.5" :class="formData.industry === 'Real Estate Agent / Broker' ? 'bg-cyan-950/40 border-cyan-500 text-white' : 'bg-slate-950 border-slate-800 text-slate-300 hover:border-slate-700'">
+                        <span class="block font-bold text-base mb-1">Real Estate</span>
+                        <span class="text-xs text-slate-400">Agents, brokers, transaction coordination & CRM</span>
+                    </button>
+                    <button @click="selectStepOption('industry', 'Small Business Owner')" class="p-5 rounded-2xl border text-left transition-all hover:-translate-y-0.5" :class="formData.industry === 'Small Business Owner' ? 'bg-cyan-950/40 border-cyan-500 text-white' : 'bg-slate-950 border-slate-800 text-slate-300 hover:border-slate-700'">
+                        <span class="block font-bold text-base mb-1">Service Business</span>
+                        <span class="text-xs text-slate-400">Local services, bookkeeping & admin back-office</span>
+                    </button>
+                    <button @click="selectStepOption('industry', 'Digital Agency / Founder')" class="p-5 rounded-2xl border text-left transition-all hover:-translate-y-0.5" :class="formData.industry === 'Digital Agency / Founder' ? 'bg-cyan-950/40 border-cyan-500 text-white' : 'bg-slate-950 border-slate-800 text-slate-300 hover:border-slate-700'">
+                        <span class="block font-bold text-base mb-1">Agency / Marketing</span>
+                        <span class="text-xs text-slate-400">SEO execution, web support & content creation</span>
+                    </button>
+                    <button @click="selectStepOption('industry', 'Other')" class="p-5 rounded-2xl border text-left transition-all hover:-translate-y-0.5" :class="formData.industry === 'Other' ? 'bg-cyan-950/40 border-cyan-500 text-white' : 'bg-slate-950 border-slate-800 text-slate-300 hover:border-slate-700'">
+                        <span class="block font-bold text-base mb-1">Other Professional Services</span>
+                        <span class="text-xs text-slate-400">Custom virtual administrative support</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- STEP 2 -->
+            <div x-show="currentStep === 2">
+                <h3 class="text-2xl font-bold text-white mb-2">What is your biggest operational bottleneck?</h3>
+                <p class="text-sm text-slate-400 mb-6">Where are you losing most of your productive hours?</p>
+
+                <div class="space-y-3">
+                    <button @click="selectStepOption('bottleneck', 'CRM & Lead Follow-ups')" class="w-full p-4 rounded-2xl border text-left transition-all flex justify-between items-center" :class="formData.bottleneck === 'CRM & Lead Follow-ups' ? 'bg-cyan-950/40 border-cyan-500 text-white' : 'bg-slate-950 border-slate-800 text-slate-300 hover:border-slate-700'">
+                        <span class="font-bold text-sm">CRM Unorganized & Slow Lead Follow-up</span>
+                        <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </button>
+                    <button @click="selectStepOption('bottleneck', 'Bookkeeping & QuickBooks')" class="w-full p-4 rounded-2xl border text-left transition-all flex justify-between items-center" :class="formData.bottleneck === 'Bookkeeping & QuickBooks' ? 'bg-cyan-950/40 border-cyan-500 text-white' : 'bg-slate-950 border-slate-800 text-slate-300 hover:border-slate-700'">
+                        <span class="font-bold text-sm">Bookkeeping & QuickBooks Data Reconciliation</span>
+                        <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </button>
+                    <button @click="selectStepOption('bottleneck', 'Web Maintenance & Local SEO')" class="w-full p-4 rounded-2xl border text-left transition-all flex justify-between items-center" :class="formData.bottleneck === 'Web Maintenance & Local SEO' ? 'bg-cyan-950/40 border-cyan-500 text-white' : 'bg-slate-950 border-slate-800 text-slate-300 hover:border-slate-700'">
+                        <span class="font-bold text-sm">Website Updates & Local SEO Management</span>
+                        <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </button>
+                    <button @click="selectStepOption('bottleneck', 'General Admin & Inbox')" class="w-full p-4 rounded-2xl border text-left transition-all flex justify-between items-center" :class="formData.bottleneck === 'General Admin & Inbox' ? 'bg-cyan-950/40 border-cyan-500 text-white' : 'bg-slate-950 border-slate-800 text-slate-300 hover:border-slate-700'">
+                        <span class="font-bold text-sm">Overwhelmed Email Inbox & Daily Scheduling</span>
+                        <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- STEP 3 -->
+            <div x-show="currentStep === 3">
+                <h3 class="text-2xl font-bold text-white mb-2">How many people are in your team?</h3>
+                <p class="text-sm text-slate-400 mb-6">Helps us structure dedicated vs shared management support.</p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <button @click="selectStepOption('teamSize', 'Solo / Independent')" class="p-6 rounded-2xl border text-center transition-all hover:-translate-y-0.5" :class="formData.teamSize === 'Solo / Independent' ? 'bg-cyan-950/40 border-cyan-500 text-white' : 'bg-slate-950 border-slate-800 text-slate-300 hover:border-slate-700'">
+                        <span class="block font-extrabold text-xl mb-1">Solo</span>
+                        <span class="text-xs text-slate-400">Independent Pro</span>
+                    </button>
+                    <button @click="selectStepOption('teamSize', '2 - 5 Team Members')" class="p-6 rounded-2xl border text-center transition-all hover:-translate-y-0.5" :class="formData.teamSize === '2 - 5 Team Members' ? 'bg-cyan-950/40 border-cyan-500 text-white' : 'bg-slate-950 border-slate-800 text-slate-300 hover:border-slate-700'">
+                        <span class="block font-extrabold text-xl mb-1">2 - 5</span>
+                        <span class="text-xs text-slate-400">Growing Team</span>
+                    </button>
+                    <button @click="selectStepOption('teamSize', '6+ Team Members')" class="p-6 rounded-2xl border text-center transition-all hover:-translate-y-0.5" :class="formData.teamSize === '6+ Team Members' ? 'bg-cyan-950/40 border-cyan-500 text-white' : 'bg-slate-950 border-slate-800 text-slate-700'">
+                        <span class="block font-extrabold text-xl mb-1">6+</span>
+                        <span class="text-xs text-slate-400">Established Agency</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- STEP 4 -->
+            <div x-show="currentStep === 4">
+                <h3 class="text-2xl font-bold text-white mb-2">Where should we send your customized audit plan?</h3>
+                <p class="text-sm text-slate-400 mb-6">We will prepare a 48-hour workflow action plan based on your selections.</p>
+
+                <form action="{{ route('contact.send') }}" method="POST" class="space-y-4">
+                    @csrf
+                    <input type="hidden" name="industry" :value="formData.industry">
+                    <input type="hidden" name="bottleneck" :value="formData.bottleneck">
+                    <input type="hidden" name="team_size" :value="formData.teamSize">
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Full Name *</label>
+                        <input type="text" name="name" x-model="formData.name" required placeholder="Marcus Vance" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-cyan-400 transition-colors">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Work Email *</label>
+                        <input type="email" name="email" x-model="formData.email" required placeholder="marcus@premierrealty.com" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-cyan-400 transition-colors">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Phone / WhatsApp (Optional)</label>
+                        <input type="text" name="phone" x-model="formData.phone" placeholder="+1 (555) 000-0000" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-cyan-400 transition-colors">
+                    </div>
+
+                    <button type="submit" class="w-full py-4 rounded-full font-bold text-slate-950 bg-gradient-to-r from-cyan-400 to-teal-300 hover:from-cyan-300 hover:to-teal-200 transition-all duration-200 shadow-lg shadow-cyan-500/20 text-base mt-2">
+                        Get Free 48-Hour Operations Audit Plan
+                    </button>
+                </form>
+
+                <div class="mt-4 flex justify-between items-center text-xs text-slate-500">
+                    <span class="flex items-center gap-1"><svg class="w-3.5 h-3.5 text-emerald-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg> Strict NDA Protected</span>
+                    <span>No Credit Card Required</span>
+                </div>
+            </div>
+
+            <!-- Back Step Navigation -->
+            <div class="mt-8 pt-4 border-t border-slate-800/80 flex justify-between items-center" x-show="currentStep > 1 && currentStep < 4">
+                <button @click="currentStep--" class="text-xs font-bold text-slate-400 hover:text-white transition-colors flex items-center gap-1">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg> Previous Step
+                </button>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <!-- 5. CASE STUDY -->

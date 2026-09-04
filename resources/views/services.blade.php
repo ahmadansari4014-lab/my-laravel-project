@@ -5,7 +5,7 @@
 <div x-data="{ activeModal: null }" class="relative pb-20">
     
     <!-- 1. Cinematic Hero Section -->
-    <div class="relative w-full py-32 md:py-48 flex items-center justify-center rounded-[3rem] overflow-hidden mb-24 shadow-2xl mx-6 group">
+    <div class="relative w-full py-20 sm:py-32 md:py-48 flex items-center justify-center rounded-3xl sm:rounded-[3rem] overflow-hidden mb-24 shadow-2xl mx-0 sm:mx-6 group">
         <div class="absolute inset-0">
             <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2000&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-[20s] group-hover:scale-110 grayscale" alt="Technology Background">
             <div class="absolute inset-0 bg-gradient-to-br from-slate-900/95 via-blue-900/80 to-slate-900/95 mix-blend-multiply"></div>
@@ -15,10 +15,10 @@
             <span class="text-blue-400 font-bold tracking-widest uppercase text-sm mb-6 inline-block border border-blue-400/30 bg-blue-400/10 px-4 py-2 rounded-full backdrop-blur-sm">
                 Our Capabilities
             </span>
-            <h1 class="text-5xl md:text-7xl font-extrabold text-white mb-6 tracking-tight drop-shadow-lg">
+            <h1 class="text-4xl sm:text-5xl md:text-7xl font-extrabold text-white mb-6 tracking-tight drop-shadow-lg">
                 Elite <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">Operational</span> Services
             </h1>
-            <p class="text-xl text-slate-300 max-w-3xl mx-auto font-light leading-relaxed">
+            <p class="text-base sm:text-xl text-slate-300 max-w-3xl mx-auto font-light leading-relaxed">
                 End-to-end technical, administrative, and marketing support. We execute the complex details so you can focus exclusively on scaling your enterprise.
             </p>
         </div>
@@ -74,7 +74,7 @@
                 <div x-show="activeModal === '{{ $service->icon_key }}'" class="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6" x-cloak style="display: none;">
                     <div x-show="activeModal === '{{ $service->icon_key }}'" x-transition.opacity class="fixed inset-0 bg-slate-900/90 backdrop-blur-md" @click="activeModal = null"></div>
 
-                    <div x-show="activeModal === '{{ $service->icon_key }}'" x-transition.scale class="relative bg-white rounded-3xl shadow-2xl overflow-hidden w-full max-w-5xl z-10 flex flex-col md:flex-row h-[85vh] md:h-[600px]">
+                    <div x-show="activeModal === '{{ $service->icon_key }}'" x-transition.scale class="relative bg-white rounded-3xl shadow-2xl overflow-hidden w-full max-w-5xl z-10 flex flex-col md:flex-row max-h-[90vh] md:h-[600px]">
                         
                         <div class="w-full md:w-1/2 h-64 md:h-auto relative">
                             @if($service->icon_key == 'va')

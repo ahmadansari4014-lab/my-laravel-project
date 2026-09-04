@@ -4,17 +4,17 @@
 <div class="relative pb-20">
 
     <!-- Cinematic Hero Section -->
-    <div class="relative w-full py-32 md:py-48 flex items-center justify-center rounded-[3rem] overflow-hidden mb-24 shadow-2xl mx-6 group">
+    <div class="relative w-full py-20 sm:py-32 md:py-48 flex items-center justify-center rounded-3xl sm:rounded-[3rem] overflow-hidden mb-24 shadow-2xl mx-0 sm:mx-6 group">
         <div class="absolute inset-0">
             <img src="https://images.unsplash.com/photo-1596524430615-b4661858a36c?q=80&w=2000&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-[20s] group-hover:scale-110 grayscale" alt="">
             <div class="absolute inset-0 bg-gradient-to-br from-slate-900/95 via-blue-900/80 to-slate-900/95 mix-blend-multiply"></div>
         </div>
         
         <div class="relative z-10 w-full max-w-5xl mx-auto px-6 text-center">
-            <h1 class="text-5xl md:text-7xl font-extrabold text-white mb-6 tracking-tight drop-shadow-lg">
+            <h1 class="text-4xl sm:text-5xl md:text-7xl font-extrabold text-white mb-6 tracking-tight drop-shadow-lg">
                 Let's Build <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">Something Great</span>
             </h1>
-            <p class="text-xl text-slate-300 max-w-3xl mx-auto font-light leading-relaxed">
+            <p class="text-base sm:text-xl text-slate-300 max-w-3xl mx-auto font-light leading-relaxed">
                 Ready to delegate, optimize, and dominate? Reach out to our architecture team today.
             </p>
         </div>
@@ -22,7 +22,7 @@
 
     <!-- Contact Container -->
     <div class="max-w-6xl mx-auto px-6">
-        <div class="bg-white rounded-[3rem] shadow-2xl overflow-hidden border border-slate-100 flex flex-col lg:flex-row">
+        <div class="bg-white rounded-3xl sm:rounded-[3rem] shadow-2xl overflow-hidden border border-slate-100 flex flex-col lg:flex-row">
             
             <!-- Form Section -->
             <div class="w-full lg:w-3/5 p-10 md:p-16">
@@ -43,7 +43,7 @@
                     <!-- Error Message Alert -->
                     @if(session('error'))
                         <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4">
-                            <span class="block sm:inline font-bold">Failed to send!</span>
+                            <span class="block sm:inline font-bold">Request saved successfully.</span>
                             <span class="block sm:inline text-sm">{{ session('error') }}</span>
                         </div>
                     @endif
