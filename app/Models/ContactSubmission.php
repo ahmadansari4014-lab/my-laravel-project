@@ -18,5 +18,18 @@ class ContactSubmission extends Model
         'bottleneck',
         'team_size',
         'phone',
+        'sms_consent',
+        'sms_consent_at',
+        'sms_consent_ip',
+        'sms_consent_url',
+        'sms_consent_text',
     ];
+
+    protected function casts(): array
+    {
+        return [
+            'sms_consent' => 'boolean',
+            'sms_consent_at' => 'datetime',
+        ];
+    }
 }

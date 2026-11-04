@@ -47,7 +47,7 @@
             </h1>
             
             <p class="text-base sm:text-lg md:text-xl text-slate-300 max-w-3xl mx-auto font-normal leading-relaxed mb-10">
-                Cloud Dextra Solutions provides trained virtual assistants, digital marketing support, and website management for real estate professionals and growing service businesses.
+                Cloud Dextra provides trained virtual assistants, digital marketing support, and website management for real estate professionals and growing service businesses.
             </p>
 
             <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-14">
@@ -89,7 +89,7 @@
         <div class="max-w-6xl mx-auto px-6">
             <div class="text-center max-w-3xl mx-auto mb-16">
                 <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4 tracking-tight">Your Best Hours Should Not Be Spent on Repetitive Tasks</h2>
-                <p class="text-base md:text-lg text-slate-600 font-normal">Cloud Dextra Solutions builds a support system around your business so essential work gets completed consistently, allowing you to focus on growth.</p>
+                <p class="text-base md:text-lg text-slate-600 font-normal">Cloud Dextra builds a support system around your business so essential work gets completed consistently, allowing you to focus on growth.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -169,14 +169,6 @@
         </div>
     </div>
 </div>
-
-            <div class="text-center mt-12 relative z-10">
-                <a href="{{ route('services') }}" class="text-blue-600 font-bold hover:text-blue-800 transition-colors inline-flex items-center gap-2 group text-base">
-                    View full service details <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                </a>
-            </div>
-        </div>
-    </div>
 
     <!-- 3.5. TESTIMONIALS SECTION (TRUE INFINITE SCROLL + NATIVE DRAG/SWIPE ENABLED) -->
     <div class="bg-white py-24 border-t border-slate-100 overflow-hidden relative">
@@ -626,7 +618,7 @@
                 </button>
                 <div x-show="active === 1" x-collapse x-cloak>
                     <div class="p-6 pt-0 text-slate-600 leading-relaxed border-t border-slate-50 mt-2">
-                        Our core operational headquarters is located in Islamabad, Pakistan. By centralizing our team, we maintain strict quality control and data security. We align our working hours to seamlessly cover US, Canadian, and UK time zones, ensuring your dedicated specialist is online when your business needs them.
+                        Cloud Dextra LLC is a US company registered in New Mexico, and our delivery team works from Islamabad, Pakistan. By centralizing our team, we maintain strict quality control and data security. We align our working hours to seamlessly cover US, Canadian, and UK time zones, ensuring your dedicated specialist is online when your business needs them.
                     </div>
                 </div>
             </div>
@@ -816,8 +808,10 @@
 
                     <div>
                         <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Phone / WhatsApp (Optional)</label>
-                        <input type="text" name="phone" x-model="formData.phone" placeholder="+1 (555) 000-0000" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-cyan-400 transition-colors">
+                        <input type="tel" name="phone" x-model="formData.phone" placeholder="+1 (555) 000-0000" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-cyan-400 transition-colors">
                     </div>
+
+                    @include('partials.sms-consent', ['theme' => 'dark', 'id' => 'sms_consent_audit'])
 
                     <button type="submit" class="w-full py-4 rounded-full font-bold text-slate-950 bg-gradient-to-r from-cyan-400 to-teal-300 hover:from-cyan-300 hover:to-teal-200 transition-all duration-200 shadow-lg shadow-cyan-500/20 text-base mt-2">
                         Get Free 48-Hour Operations Audit Plan
@@ -861,7 +855,7 @@
                     <span class="text-xs font-bold text-cyan-400 uppercase tracking-widest">Case Study Example</span>
                 </div>
                 <p class="text-white italic text-lg mb-8">
-                    "A local real estate team had 6,500 unorganized CRM contacts and an average lead-response time of five hours. Cloud Dextra Solutions cleaned the database, created routing rules, and implemented daily follow-up workflows."
+                    "A local real estate team had 6,500 unorganized CRM contacts and an average lead-response time of five hours. Cloud Dextra cleaned the database, created routing rules, and implemented daily follow-up workflows."
                 </p>
                 <div class="grid grid-cols-2 gap-6 border-t border-white/20 pt-6">
                     <div>
@@ -877,5 +871,8 @@
         </div>
     </div>
 </div>
+
+</div>
+<!-- /Global Alpine State Wrap -->
 
 @endsection
