@@ -62,7 +62,7 @@
                 </h4>
                 <h2 class="text-4xl md:text-5xl font-extrabold text-slate-900 mb-6 tracking-tight">Bridging Strategy and Execution</h2>
                 <p class="text-lg text-slate-600 leading-relaxed mb-6">
-                    Cloud Dextra Solution was founded on a simple, irrefutable premise: highly capable professionals are spending entirely too much time on tasks that do not generate revenue. 
+                    Cloud Dextra was founded on a simple, irrefutable premise: highly capable professionals are spending entirely too much time on tasks that do not generate revenue. 
                 </p>
                 <p class="text-lg text-slate-600 leading-relaxed mb-8">
                     Whether it is real estate agents bogged down by BoldTrail CRM updates, consultants buried in email logistics, or startups struggling to maintain their technical digital presence—we step in. By providing a comprehensive suite of IT and Virtual Assistance services under one roof, we become the unseen gears turning your daily operations.

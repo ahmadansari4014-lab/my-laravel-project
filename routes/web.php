@@ -26,3 +26,4 @@ Route::post('/contact-send', [App\Http\Controllers\ContactController::class, 'se
 
 Route::view('/privacy-policy', 'privacy')->name('privacy');
 Route::view('/terms-of-service', 'terms')->name('terms');
+Route::view('/sms-terms', 'sms-terms')->name('sms-terms');

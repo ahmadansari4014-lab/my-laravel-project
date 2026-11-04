@@ -61,6 +61,14 @@
                         </div>
                     </div>
                     <div>
+                        <label for="contact_phone" class="block text-sm font-bold text-slate-700 mb-2">Phone (Optional)</label>
+                        <input type="tel" id="contact_phone" name="phone" value="{{ old('phone') }}" placeholder="+1 (555) 000-0000" class="w-full px-5 py-4 rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition">
+                        @error('phone') <span class="text-red-500 text-xs font-bold mt-1 block">{{ $message }}</span> @enderror
+                        <div class="mt-3">
+                            @include('partials.sms-consent', ['id' => 'sms_consent_contact'])
+                        </div>
+                    </div>
+                    <div>
                         <label class="block text-sm font-bold text-slate-700 mb-2">Service Interest</label>
                         <select name="service" required class="w-full px-5 py-4 rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition bg-white">
                             <option value="Virtual Assistance" {{ old('service') == 'Virtual Assistance' ? 'selected' : '' }}>Virtual Assistance</option>
@@ -98,6 +106,14 @@
                             info@clouddextra.com
                         </a>
 
+                        <!-- US Phone -->
+                        <a href="tel:{{ config('company.phone.tel') }}" class="flex items-center gap-4 text-blue-600 hover:text-blue-800 transition-colors font-bold text-lg mb-6 group">
+                            <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-md group-hover:bg-blue-600 group-hover:text-white transition">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                            </div>
+                            {{ config('company.phone.display') }}
+                        </a>
+
                         <!-- Clickable Website -->
                         <a href="https://clouddextra.com" target="_blank" class="flex items-center gap-4 text-blue-600 hover:text-blue-800 transition-colors font-bold text-lg group">
                             <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-md group-hover:bg-blue-600 group-hover:text-white transition">
@@ -105,6 +121,15 @@
                             </div>
                             clouddextra.com
                         </a>
+                    </div>
+
+                    <div class="border-t border-slate-200 pt-10">
+                        <h4 class="font-bold text-slate-900 mb-4">Business Address</h4>
+                        <address class="not-italic text-slate-600">
+                            {{ config('company.legal_name') }}<br>
+                            {{ config('company.address.street') }}, {{ config('company.address.suite') }}<br>
+                            {{ config('company.address.city') }}, {{ config('company.address.state') }} {{ config('company.address.zip') }}
+                        </address>
                     </div>
 
                     <div class="border-t border-slate-200 pt-10">

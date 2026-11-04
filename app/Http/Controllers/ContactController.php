@@ -20,13 +20,24 @@ class ContactController extends Controller
             'bottleneck' => 'nullable|string|max:255',
             'team_size' => 'nullable|string|max:255',
             'phone' => 'nullable|string|max:50',
+            'sms_consent' => 'sometimes|accepted',
         ]);
+
+        // Consent only counts when the box was ticked AND a number was given.
+        // The stored wording comes from config, not the request, so the record
+        // shows exactly what the visitor saw.
+        $smsConsent = $request->boolean('sms_consent') && ! empty($validated['phone']);
 
         try {
             $service = $validated['service'] ?? 'Operations Audit';
             $message = $validated['message'] ?? 'Homepage operations audit request';
 
             ContactSubmission::create([
+                'sms_consent' => $smsConsent,
+                'sms_consent_at' => $smsConsent ? now() : null,
+                'sms_consent_ip' => $smsConsent ? $request->ip() : null,
+                'sms_consent_url' => $smsConsent ? substr(url()->previous(), 0, 2048) : null,
+                'sms_consent_text' => $smsConsent ? config('company.sms_consent_text') : null,
                 'name' => $validated['name'],
                 'email' => $validated['email'],
                 'service' => $service,
@@ -47,6 +58,7 @@ class ContactController extends Controller
                 Main Bottleneck: " . ($validated['bottleneck'] ?? 'Not provided') . "\n
                 Team Size: " . ($validated['team_size'] ?? 'Not provided') . "\n
                 Phone: " . ($validated['phone'] ?? 'Not provided') . "\n
+                SMS Consent: " . ($smsConsent ? 'YES (opted in ' . now()->toDateTimeString() . ' UTC)' : 'NO - do not text this lead') . "\n
             ";
 
             Mail::raw($emailContent, function ($message) use ($validated, $service) {

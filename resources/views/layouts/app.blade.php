@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cloud Dextra Solution</title>
+    <title>@yield('title', 'Real Estate Virtual Assistants & Back-Office Support') | {{ config('company.brand') }}</title>
+    <meta name="description" content="@yield('meta_description', 'Cloud Dextra LLC provides trained virtual assistants, CRM support, website management and digital marketing for real estate professionals and growing US service businesses.')">
 
     <link rel="icon" type="image/jpeg" href="/favicon.jpg?v=20">
     <link rel="shortcut icon" type="image/jpeg" href="/favicon.jpg?v=20">
@@ -34,7 +35,7 @@
                         Cloud<span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">Dextra</span>
                     </span>
                     <span class="text-[0.65rem] md:text-xs font-bold text-slate-400 uppercase tracking-[0.2em] leading-none mt-1 group-hover:text-blue-300 transition-colors">
-                        Solution
+                        LLC
                     </span>
                 </div>
             </a>
@@ -118,8 +119,18 @@
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
                         </div>
                         <div>
-                            <span class="block text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-tight">PHONE NUMBER</span>
-                            <a href="tel:(92) 312 8958125" class="text-xs font-medium text-slate-200 hover:text-cyan-400 transition-colors underline underline-offset-4 decoration-slate-600 hover:decoration-cyan-400">(92) 312 8958125</a>
+                            <span class="block text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-tight">US PHONE</span>
+                            <a href="tel:{{ config('company.phone.tel') }}" class="text-xs font-medium text-slate-200 hover:text-cyan-400 transition-colors underline underline-offset-4 decoration-slate-600 hover:decoration-cyan-400">{{ config('company.phone.display') }}</a>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-3">
+                        <div class="p-2.5 rounded-xl bg-slate-800/80 border border-slate-700/60 text-cyan-400">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+                        </div>
+                        <div>
+                            <span class="block text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-tight">WHATSAPP</span>
+                            <a href="{{ config('company.whatsapp.link') }}" target="_blank" rel="noopener" class="text-xs font-medium text-slate-200 hover:text-cyan-400 transition-colors underline underline-offset-4 decoration-slate-600 hover:decoration-cyan-400">{{ config('company.whatsapp.display') }}</a>
                         </div>
                     </div>
                 </div>
@@ -127,25 +138,30 @@
 
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start pb-10 border-b border-slate-700/60 mb-10">
                 <div class="lg:col-span-4">
-                    <h4 class="text-3xl md:text-4xl font-bold tracking-tight text-white leading-tight font-serif italic">Cloud Dextra</h4>
-                    <p class="text-sm text-slate-400 font-medium mt-1">Solutions</p>
+                    <h4 class="text-3xl md:text-4xl font-bold tracking-tight text-white leading-tight font-serif italic">{{ config('company.brand') }}</h4>
+                    <p class="text-sm text-slate-400 font-medium mt-1">Virtual assistants &amp; back-office support for US businesses</p>
                 </div>
 
-                <div class="lg:col-span-5 text-xs text-slate-300 leading-relaxed space-y-1">
-                    <p class="font-bold text-white text-sm">Cloud Dextra</p>
-                    <p class="text-slate-400">(92) 312 8958125</p>
-                    <p class="text-[11px] text-slate-400 pt-3 leading-normal">
-                        All information is deemed reliable but not guaranteed and should be independently reviewed and verified.
+                <address class="lg:col-span-5 not-italic text-xs text-slate-300 leading-relaxed space-y-1">
+                    <p class="font-bold text-white text-sm">{{ config('company.legal_name') }}</p>
+                    <p class="text-slate-400">{{ config('company.address.street') }}, {{ config('company.address.suite') }}</p>
+                    <p class="text-slate-400">{{ config('company.address.city') }}, {{ config('company.address.state') }} {{ config('company.address.zip') }}</p>
+                    <p class="text-slate-400">
+                        <a href="tel:{{ config('company.phone.tel') }}" class="hover:text-cyan-400">{{ config('company.phone.display') }}</a>
+                        &middot;
+                        <a href="mailto:{{ config('company.email') }}" class="hover:text-cyan-400">{{ config('company.email') }}</a>
                     </p>
-                </div>
-
-                
+                </address>
             </div>
 
             <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
-                <div class="flex items-center gap-8 text-xs font-bold tracking-widest text-slate-400 uppercase">
-                    <a href="{{ route('privacy') }}" class="hover:text-cyan-400 transition-colors">PRIVACY POLICY</a>
-                    <a href="{{ route('terms') }}" class="hover:text-cyan-400 transition-colors">TERMS OF SERVICES</a>
+                <div class="flex flex-col items-center sm:items-start gap-3">
+                    <div class="flex flex-wrap justify-center items-center gap-x-8 gap-y-2 text-xs font-bold tracking-widest text-slate-400 uppercase">
+                        <a href="{{ route('privacy') }}" class="hover:text-cyan-400 transition-colors">PRIVACY POLICY</a>
+                        <a href="{{ route('terms') }}" class="hover:text-cyan-400 transition-colors">TERMS OF SERVICE</a>
+                        <a href="{{ route('sms-terms') }}" class="hover:text-cyan-400 transition-colors">SMS TERMS</a>
+                    </div>
+                    <p class="text-[11px] text-slate-500">&copy; {{ date('Y') }} {{ config('company.legal_name') }}. All rights reserved.</p>
                 </div>
 
                 <div class="flex items-center gap-3">
@@ -155,10 +171,7 @@
                     <a href="https://www.instagram.com/clouddextraofficial/" target="_blank" class="w-9 h-9 rounded-full bg-white text-slate-900 hover:bg-cyan-400 hover:text-slate-950 transition-all duration-200 flex items-center justify-center shadow-md">
                         <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
                     </a>
-                    <a href="https://www.linkedin.com/in/ahmad-ansari-277b16409/" target="_blank" class="w-9 h-9 rounded-full bg-white text-slate-900 hover:bg-cyan-400 hover:text-slate-950 transition-all duration-200 flex items-center justify-center shadow-md">
-                        <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 3 15.68 6.34 6.34 0 0 0 9.35 22a6.34 6.34 0 0 0 6.34-6.32V9.6a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1.28-.03z"/></svg>
-                    </a>
-                    <a href="https://www.linkedin.com/in/ahmad-ansari-277b16409/" target="_blank" class="w-9 h-9 rounded-full bg-white text-slate-900 hover:bg-cyan-400 hover:text-slate-950 transition-all duration-200 flex items-center justify-center shadow-md">
+                    <a href="https://www.linkedin.com/in/ahmad-ansari-277b16409/" aria-label="LinkedIn" target="_blank" class="w-9 h-9 rounded-full bg-white text-slate-900 hover:bg-cyan-400 hover:text-slate-950 transition-all duration-200 flex items-center justify-center shadow-md">
                         <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.25V10.9H6.46M7.86 6.74a1.63 1.63 0 1 0 0 3.26 1.63 1.63 0 0 0 0-3.26z"/></svg>
                     </a>
                 </div>
@@ -166,7 +179,7 @@
 
         </div>
 
-        <a href="tel:+15305988297" class="fixed bottom-6 right-6 w-12 h-12 bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold rounded-full shadow-lg shadow-cyan-500/20 flex items-center justify-center transition-all hover:scale-110 z-50">
+        <a href="tel:{{ config('company.phone.tel') }}" aria-label="Call {{ config('company.legal_name') }}" class="fixed bottom-6 right-6 w-12 h-12 bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold rounded-full shadow-lg shadow-cyan-500/20 flex items-center justify-center transition-all hover:scale-110 z-50">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
         </a>
     </footer>
