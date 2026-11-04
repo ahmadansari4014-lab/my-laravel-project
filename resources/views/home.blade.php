@@ -170,14 +170,6 @@
     </div>
 </div>
 
-            <div class="text-center mt-12 relative z-10">
-                <a href="{{ route('services') }}" class="text-blue-600 font-bold hover:text-blue-800 transition-colors inline-flex items-center gap-2 group text-base">
-                    View full service details <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                </a>
-            </div>
-        </div>
-    </div>
-
     <!-- 3.5. TESTIMONIALS SECTION (TRUE INFINITE SCROLL + NATIVE DRAG/SWIPE ENABLED) -->
     <div class="bg-white py-24 border-t border-slate-100 overflow-hidden relative">
         
@@ -879,5 +871,8 @@
         </div>
     </div>
 </div>
+
+</div>
+<!-- /Global Alpine State Wrap -->
 
 @endsection
