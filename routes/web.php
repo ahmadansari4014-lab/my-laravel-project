@@ -20,6 +20,9 @@ Route::get('/', [PageController::class, 'home'])->name('home');
 Route::get('/about', [PageController::class, 'about'])->name('about');
 Route::get('/services', [PageController::class, 'services'])->name('services');
 Route::view('/real-estate-virtual-assistants', 'real-estate')->name('real-estate');
+Route::get('/real-estate-virtual-assistants/{slug}', [App\Http\Controllers\RealEstateServiceController::class, 'show'])
+    ->where('slug', '[a-z0-9-]+')
+    ->name('real-estate.service');
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 
 

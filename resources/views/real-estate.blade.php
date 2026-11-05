@@ -1,36 +1,12 @@
 @extends('layouts.app')
 
 @section('title', 'Real Estate Virtual Assistants')
-@section('meta_description', 'Trained virtual assistants for US real estate agents and teams: admin, lead follow-up, transaction coordination, listing support and marketing. Month-to-month support from Cloud Dextra LLC.')
+@section('meta_description', 'Virtual assistants for US real estate agents: social media, backend operations, CRM, cold calling, MLS listings, transaction coordination, video editing and email marketing. Month-to-month support from Cloud Dextra LLC.')
 
 @php
-    $roles = [
-        [
-            'title' => 'Admin & Calendar Support',
-            'intro' => 'Keep your inbox, calendar and CRM in order so nothing slips.',
-            'tasks' => ['Inbox and calendar management', 'Showing and appointment scheduling', 'CRM data entry and clean-up', 'Document preparation and filing'],
-        ],
-        [
-            'title' => 'Lead Follow-Up & ISA',
-            'intro' => 'Fast, consistent follow-up on new and old leads, handed to you when they are ready to talk.',
-            'tasks' => ['Same-day follow-up on new web leads', 'Re-engaging past and cold leads', 'Booking appointments on your calendar', 'Updating lead status and notes in your CRM'],
-        ],
-        [
-            'title' => 'Transaction Coordination',
-            'intro' => 'Track every deadline from accepted offer to closing.',
-            'tasks' => ['Contract-to-close timeline tracking', 'Coordinating with lenders, title and the other agent', 'Collecting signatures and documents', 'Closing checklists and client updates'],
-        ],
-        [
-            'title' => 'Listing Support',
-            'intro' => 'Get listings live and kept up to date without the busywork.',
-            'tasks' => ['Listing input and updates', 'Scheduling photographers and showings', 'Showing feedback collection', 'Seller update reports'],
-        ],
-        [
-            'title' => 'Marketing & Social Media',
-            'intro' => 'Stay visible with steady, on-brand content.',
-            'tasks' => ['Social media posts and scheduling', 'Just Listed / Just Sold graphics', 'Email newsletters to your database', 'Short video editing for Reels'],
-        ],
-    ];
+    $services = config('real-estate-services');
+    $core = array_filter($services, fn ($s) => $s['core']);
+    $more = array_filter($services, fn ($s) => ! $s['core']);
 
     $steps = [
         ['title' => 'Free strategy call', 'text' => 'A short call to understand your business, your tools and where your time goes.'],
@@ -63,7 +39,7 @@
                 Real Estate <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">Virtual Assistants</span>
             </h1>
             <p class="text-base sm:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed mb-10">
-                Hand off admin, lead follow-up, transaction coordination and listing work to a trained assistant, so you can spend your time with clients.
+                Hand off social media, admin, CRM, calls, listings and paperwork to a dedicated assistant, so you can spend your time with clients.
             </p>
             <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <a href="{{ route('contact') }}" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold transition shadow-lg">
@@ -76,35 +52,44 @@
         </div>
     </section>
 
-    <!-- Roles -->
+    <!-- Core services -->
     <section class="max-w-7xl mx-auto px-6 mb-24">
-        <div class="text-center max-w-3xl mx-auto mb-14">
-            <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4">What Your Assistant Can Handle</h2>
-            <p class="text-slate-600 text-lg">Pick one role or combine several. Your assistant works inside your existing tools.</p>
+        <div class="text-center max-w-3xl mx-auto mb-10">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4">Core Real Estate Services</h2>
+            <p class="text-slate-600 text-lg">Pick one service or combine several. Click any service to see exactly what is included.</p>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            @foreach ($roles as $role)
-                <div class="bg-white rounded-3xl border border-slate-100 shadow-lg shadow-slate-200/50 p-8 flex flex-col">
-                    <h3 class="text-xl font-bold text-slate-900 mb-2">{{ $role['title'] }}</h3>
-                    <p class="text-slate-600 mb-5">{{ $role['intro'] }}</p>
-                    <ul class="space-y-2 text-sm text-slate-700 mb-6">
-                        @foreach ($role['tasks'] as $task)
-                            <li class="flex items-start gap-2">
-                                <svg class="w-5 h-5 text-blue-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                                <span>{{ $task }}</span>
-                            </li>
-                        @endforeach
-                    </ul>
-                    <a href="{{ route('contact') }}" class="mt-auto text-blue-600 font-bold hover:text-blue-800 inline-flex items-center gap-2">
-                        Discuss this role
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                    </a>
-                </div>
+
+        <nav aria-label="Services on this page" class="flex flex-wrap justify-center gap-2 mb-12">
+            @foreach ($core as $slug => $service)
+                <a href="{{ route('real-estate.service', $slug) }}" class="px-4 py-2 rounded-full bg-slate-100 text-slate-700 text-sm font-semibold hover:bg-blue-600 hover:text-white transition">{{ $service['title'] }}</a>
             @endforeach
-            <div class="bg-slate-900 rounded-3xl p-8 flex flex-col justify-center text-white">
-                <h3 class="text-xl font-bold mb-2">Not sure where to start?</h3>
-                <p class="text-slate-300 mb-6">Tell us where your week goes. We will suggest the first tasks to hand off.</p>
-                <a href="{{ route('contact') }}" class="self-start px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 font-bold transition">Get a Free Task Plan</a>
+        </nav>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            @foreach ($core as $slug => $service)
+                @include('partials.re-service-card', ['slug' => $slug, 'service' => $service])
+            @endforeach
+        </div>
+    </section>
+
+    <!-- More services -->
+    <section class="bg-slate-50 py-20 mb-24">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4">More Ways We Can Help</h2>
+                <p class="text-slate-600 text-lg">Websites, search visibility and anything else your business needs. If it can be done remotely, your assistant can help.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                @foreach ($more as $slug => $service)
+                    @include('partials.re-service-card', ['slug' => $slug, 'service' => $service])
+                @endforeach
+            </div>
+            <div class="mt-8 bg-slate-900 rounded-3xl p-8 md:p-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6 text-white">
+                <div>
+                    <h3 class="text-xl font-bold mb-2">Need something not listed?</h3>
+                    <p class="text-slate-300">Tell us where your week goes. We will suggest the first tasks to hand off.</p>
+                </div>
+                <a href="{{ route('contact') }}" class="flex-shrink-0 px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 font-bold transition text-center">Get a Free Task Plan</a>
             </div>
         </div>
     </section>
