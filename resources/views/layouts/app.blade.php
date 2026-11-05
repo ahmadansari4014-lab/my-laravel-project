@@ -16,7 +16,24 @@
         [x-cloak] { display: none !important; }
         html { overflow-x: hidden; }
         img { max-width: 100%; }
+
+        /* Scroll reveal: add class="reveal" to any element. Content stays
+           visible if JavaScript is off or the visitor prefers less motion. */
+        .js .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); transition-delay: var(--reveal-delay, 0ms); }
+        .js .reveal.is-visible { opacity: 1; transform: none; }
+        @media (prefers-reduced-motion: reduce) { .js .reveal { opacity: 1; transform: none; transition: none; } }
     </style>
+    <script>
+        document.documentElement.classList.add('js');
+        document.addEventListener('DOMContentLoaded', function () {
+            var els = document.querySelectorAll('.reveal');
+            if (!('IntersectionObserver' in window)) { els.forEach(function (el) { el.classList.add('is-visible'); }); return; }
+            var io = new IntersectionObserver(function (entries) {
+                entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); } });
+            }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+            els.forEach(function (el) { io.observe(el); });
+        });
+    </script>
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans flex flex-col min-h-screen overflow-x-hidden">
 
@@ -46,6 +63,7 @@
                     <a href="{{ route('home') }}" class="hover:text-blue-400 transition pb-1 border-b-2 border-transparent hover:border-blue-400">Home</a>
                     <a href="{{ route('about') }}" class="hover:text-blue-400 transition pb-1 border-b-2 border-transparent hover:border-blue-400">About Us</a>
                     <a href="{{ route('services') }}" class="hover:text-blue-400 transition pb-1 border-b-2 border-transparent hover:border-blue-400">Services</a>
+                    <a href="{{ route('real-estate') }}" class="hover:text-blue-400 transition pb-1 border-b-2 border-transparent hover:border-blue-400">Real Estate</a>
                     <a href="{{ route('contact') }}" class="hover:text-blue-400 transition pb-1 border-b-2 border-transparent hover:border-blue-400">Contact Us</a>
                     
                     <div class="h-5 w-px bg-slate-600 mx-1"></div>
@@ -71,6 +89,7 @@
                 <a href="{{ route('home') }}" class="block text-white hover:text-blue-400 transition" @click="mobileMenuOpen = false">Home</a>
                 <a href="{{ route('about') }}" class="block text-white hover:text-blue-400 transition" @click="mobileMenuOpen = false">About Us</a>
                 <a href="{{ route('services') }}" class="block text-white hover:text-blue-400 transition" @click="mobileMenuOpen = false">Services</a>
+                <a href="{{ route('real-estate') }}" class="block text-white hover:text-blue-400 transition" @click="mobileMenuOpen = false">Real Estate</a>
                 <a href="{{ route('contact') }}" class="block text-white hover:text-blue-400 transition" @click="mobileMenuOpen = false">Contact Us</a>
                 
                 <div class="flex justify-end gap-6 pt-4 border-t border-slate-700/50">
