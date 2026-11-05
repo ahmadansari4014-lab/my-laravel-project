@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Real Estate Virtual Assistants & Back-Office Support') | {{ config('company.brand') }}</title>
     <meta name="description" content="@yield('meta_description', 'Cloud Dextra LLC provides trained virtual assistants, CRM support, website management and digital marketing for real estate professionals and growing US service businesses.')">
+    <link rel="canonical" href="{{ url()->current() }}">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="{{ config('company.brand') }}">
+    <meta property="og:title" content="@yield('title', 'Real Estate Virtual Assistants & Back-Office Support') | {{ config('company.brand') }}">
+    <meta property="og:description" content="@yield('meta_description', 'Virtual assistants for US real estate agents and service businesses.')">
+    <meta property="og:url" content="{{ url()->current() }}">
 
     <link rel="icon" type="image/jpeg" href="/favicon.jpg?v=20">
     <link rel="shortcut icon" type="image/jpeg" href="/favicon.jpg?v=20">
@@ -63,7 +69,6 @@
                     <a href="{{ route('home') }}" class="hover:text-blue-400 transition pb-1 border-b-2 border-transparent hover:border-blue-400">Home</a>
                     <a href="{{ route('about') }}" class="hover:text-blue-400 transition pb-1 border-b-2 border-transparent hover:border-blue-400">About Us</a>
                     <a href="{{ route('services') }}" class="hover:text-blue-400 transition pb-1 border-b-2 border-transparent hover:border-blue-400">Services</a>
-                    <a href="{{ route('real-estate') }}" class="hover:text-blue-400 transition pb-1 border-b-2 border-transparent hover:border-blue-400">Real Estate</a>
                     <a href="{{ route('contact') }}" class="hover:text-blue-400 transition pb-1 border-b-2 border-transparent hover:border-blue-400">Contact Us</a>
                     
                     <div class="h-5 w-px bg-slate-600 mx-1"></div>
@@ -89,7 +94,6 @@
                 <a href="{{ route('home') }}" class="block text-white hover:text-blue-400 transition" @click="mobileMenuOpen = false">Home</a>
                 <a href="{{ route('about') }}" class="block text-white hover:text-blue-400 transition" @click="mobileMenuOpen = false">About Us</a>
                 <a href="{{ route('services') }}" class="block text-white hover:text-blue-400 transition" @click="mobileMenuOpen = false">Services</a>
-                <a href="{{ route('real-estate') }}" class="block text-white hover:text-blue-400 transition" @click="mobileMenuOpen = false">Real Estate</a>
                 <a href="{{ route('contact') }}" class="block text-white hover:text-blue-400 transition" @click="mobileMenuOpen = false">Contact Us</a>
                 
                 <div class="flex justify-end gap-6 pt-4 border-t border-slate-700/50">

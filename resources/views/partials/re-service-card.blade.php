@@ -1,4 +1,4 @@
-<a href="{{ route('real-estate.service', $slug) }}"
+<a href="{{ route('services.show', $slug) }}"
    style="--reveal-delay: {{ $delay ?? 0 }}ms"
    class="reveal group relative rounded-3xl border border-slate-800 bg-slate-900/70 backdrop-blur overflow-hidden flex flex-col hover:-translate-y-1 hover:border-blue-500/60 hover:shadow-2xl hover:shadow-blue-900/40 transition duration-300">
     @include('partials.re-mockups', ['type' => $service['mock']])
