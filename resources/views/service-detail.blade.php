@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
-@section('title', $service['title'] . ' for Real Estate Agents')
+@php
+    // Keyword-first name, e.g. "Real Estate CRM Management", for titles and the H1
+    $seoName = str_contains($service['title'], 'Real Estate') ? $service['title'] : 'Real Estate ' . $service['title'];
+@endphp
+
+@section('title', $seoName . ' Services for Agents')
 @section('meta_description', $service['short'] . ' ' . config('company.legal_name') . ' provides virtual assistants for US real estate agents.')
 
 @section('content')
@@ -13,7 +18,7 @@
 
     <!-- Breadcrumb -->
     <nav aria-label="Breadcrumb" class="relative max-w-7xl mx-auto px-6 pt-10 text-sm text-slate-500">
-        <a href="{{ route('real-estate') }}" class="hover:text-cyan-300">Real Estate Services</a>
+        <a href="{{ route('services') }}" class="hover:text-cyan-300">Services</a>
         <span class="mx-2">/</span>
         <span class="text-slate-200 font-semibold">{{ $service['title'] }}</span>
     </nav>
@@ -21,8 +26,8 @@
     <!-- Hero -->
     <section class="relative max-w-7xl mx-auto px-6 pt-10 pb-24 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <div class="reveal">
-            <span class="text-cyan-400 font-bold tracking-widest uppercase text-xs">Real Estate Virtual Assistants</span>
-            <h1 class="text-4xl md:text-6xl font-extrabold text-white mt-3 mb-5 tracking-tight">{{ $service['title'] }}</h1>
+            <span class="text-cyan-400 font-bold tracking-widest uppercase text-xs">Real Estate Virtual Assistant Services</span>
+            <h1 class="text-4xl md:text-6xl font-extrabold text-white mt-3 mb-5 tracking-tight">{{ $seoName }}</h1>
             <p class="text-lg text-slate-400 leading-relaxed mb-8">{{ $service['description'] }}</p>
             <div class="flex flex-col sm:flex-row gap-4">
                 <a href="{{ route('contact') }}" class="px-8 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 text-white font-bold transition text-center shadow-lg shadow-blue-600/30">Book a Free Strategy Call</a>
@@ -97,7 +102,7 @@
         <div class="flex flex-wrap justify-center gap-2">
             @foreach (config('real-estate-services') as $otherSlug => $other)
                 @continue($otherSlug === $slug)
-                <a href="{{ route('real-estate.service', $otherSlug) }}" class="px-4 py-2 rounded-full border border-slate-700 bg-slate-900/70 text-slate-300 text-sm font-semibold hover:border-cyan-400 hover:text-white transition">{{ $other['title'] }}</a>
+                <a href="{{ route('services.show', $otherSlug) }}" class="px-4 py-2 rounded-full border border-slate-700 bg-slate-900/70 text-slate-300 text-sm font-semibold hover:border-cyan-400 hover:text-white transition">{{ $other['title'] }}</a>
             @endforeach
         </div>
     </section>
@@ -116,7 +121,7 @@
 {!! json_encode([
     '@context' => 'https://schema.org',
     '@type' => 'Service',
-    'name' => $service['title'],
+    'name' => $seoName,
     'description' => $service['description'],
     'serviceType' => $service['title'],
     'audience' => ['@type' => 'Audience', 'audienceType' => 'Real estate agents'],

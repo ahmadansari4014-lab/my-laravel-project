@@ -10,6 +10,12 @@ class RealEstateServiceController extends Controller
 
         abort_unless(is_array($service), 404);
 
-        return view('real-estate-service', compact('slug', 'service'));
+        return view('service-detail', compact('slug', 'service'));
+    }
+
+    /** Old /real-estate-virtual-assistants/{slug} links -> /services/{slug} (301). */
+    public function legacyRedirect(string $slug)
+    {
+        return redirect()->route('services.show', $slug, 301);
     }
 }

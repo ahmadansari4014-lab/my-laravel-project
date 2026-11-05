@@ -1,180 +1,163 @@
 @extends('layouts.app')
 
+@section('title', 'Real Estate Virtual Assistant Services for US Agents')
+@section('meta_description', 'Real estate virtual assistant services for US agents and teams: social media management, CRM management, cold calling, MLS listing input, transaction coordination, video editing and email marketing. Month-to-month support from Cloud Dextra LLC.')
+
+@php
+    $services = config('real-estate-services');
+    $core = array_filter($services, fn ($s) => $s['core']);
+    $more = array_filter($services, fn ($s) => ! $s['core']);
+
+    $steps = [
+        ['title' => 'Free strategy call', 'text' => 'A short call to understand your business, your tools and where your time goes.'],
+        ['title' => 'Task plan', 'text' => 'We map the tasks to hand off, the hours you need and how we will report progress.'],
+        ['title' => 'Assistant assigned', 'text' => 'We match you with an assistant for the role and set up access to your tools securely.'],
+        ['title' => 'Ongoing check-ins', 'text' => 'Regular updates and reviews so the work keeps improving as your business grows.'],
+    ];
+
+    $faqs = [
+        ['q' => 'What can a real estate virtual assistant do for me?', 'a' => 'Most agents start with admin, lead follow-up, transaction coordination, listing support or marketing. We help you pick the tasks that free up the most time first.'],
+        ['q' => 'Will the assistant work inside my CRM and tools?', 'a' => 'Yes. Your assistant works inside the systems you already use. Tell us your tools on the strategy call and we will confirm fit before you start.'],
+        ['q' => 'Can the assistant call or text my leads?', 'a' => 'Yes, following US rules. We only text people who have opted in, honor STOP requests, and check numbers against the Do Not Call list before cold calling.'],
+        ['q' => 'How do you keep my client data and logins safe?', 'a' => 'Access is limited to what the assistant needs for your tasks, and you can remove it at any time. We are happy to sign an NDA.'],
+        ['q' => 'What hours will my assistant work?', 'a' => 'We schedule your assistant to cover your US business hours, so they are available when you and your clients are.'],
+        ['q' => 'Who is Cloud Dextra?', 'a' => 'Cloud Dextra LLC is a US company registered in New Mexico, with a delivery team in Pakistan. You get one point of contact and a dedicated assistant.'],
+    ];
+@endphp
+
 @section('content')
-<!-- Setup Alpine Data for Service Modals -->
-<div x-data="{ activeModal: null }" class="relative pb-20">
-    
-    <!-- 1. Cinematic Hero Section -->
-    <div class="relative w-full py-20 sm:py-32 md:py-48 flex items-center justify-center rounded-3xl sm:rounded-[3rem] overflow-hidden mb-24 shadow-2xl mx-0 sm:mx-6 group">
-        <div class="absolute inset-0">
-            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2000&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-[20s] group-hover:scale-110 grayscale" alt="Technology Background">
-            <div class="absolute inset-0 bg-gradient-to-br from-slate-900/95 via-blue-900/80 to-slate-900/95 mix-blend-multiply"></div>
-        </div>
-        
-        <div class="relative z-10 w-full max-w-5xl mx-auto px-6 text-center">
-            <span class="text-blue-400 font-bold tracking-widest uppercase text-sm mb-6 inline-block border border-blue-400/30 bg-blue-400/10 px-4 py-2 rounded-full backdrop-blur-sm">
-                Our Capabilities
-            </span>
-            <h1 class="text-4xl sm:text-5xl md:text-7xl font-extrabold text-white mb-6 tracking-tight drop-shadow-lg">
-                Elite <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">Operational</span> Services
-            </h1>
-            <p class="text-base sm:text-xl text-slate-300 max-w-3xl mx-auto font-light leading-relaxed">
-                End-to-end technical, administrative, and marketing support. We execute the complex details so you can focus exclusively on scaling your enterprise.
-            </p>
-        </div>
+<div x-data="{ openFaq: null }" class="relative bg-slate-950 text-slate-300 overflow-hidden">
+
+    {{-- Background decoration --}}
+    <div aria-hidden="true" class="pointer-events-none absolute inset-0">
+        <div class="absolute inset-0 opacity-[0.07] [background-image:linear-gradient(to_right,#94a3b8_1px,transparent_1px),linear-gradient(to_bottom,#94a3b8_1px,transparent_1px)] [background-size:56px_56px] [mask-image:radial-gradient(ellipse_at_top,black_30%,transparent_75%)]"></div>
+        <div class="absolute -top-40 left-1/2 -translate-x-1/2 w-[900px] h-[600px] rounded-full bg-blue-600/25 blur-[140px]"></div>
+        <div class="absolute top-[45%] -right-40 w-[500px] h-[500px] rounded-full bg-cyan-500/10 blur-[120px]"></div>
+        <div class="absolute bottom-40 -left-40 w-[500px] h-[500px] rounded-full bg-blue-700/15 blur-[120px]"></div>
     </div>
 
-    <div class="max-w-7xl mx-auto px-6">
-        
-        <!-- 2. Services Grid (Now featuring Photos in the background) -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-32">
-            @foreach($services as $service)
-                <div class="group relative rounded-3xl hover:shadow-[0_0_30px_rgba(37,99,235,0.4)] transition-all duration-500 cursor-pointer flex flex-col h-full overflow-hidden border border-slate-700/50" @click="activeModal = '{{ $service->icon_key }}'">
-                    
-                    <!-- Dynamic Background Image Layer -->
-                    <div class="absolute inset-0 z-0">
-                        @if($service->icon_key == 'va')
-                            <img src="https://images.unsplash.com/photo-1554415707-6e8cfc93fe23?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                        @elseif($service->icon_key == 'web')
-                            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                        @elseif($service->icon_key == 'seo' || $service->icon_key == 'marketing')
-                            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                        @elseif($service->icon_key == 'finance')
-                            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                        @else
-                            <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                        @endif
-                        
-                        <!-- Dark Overlay to make text pop -->
-                        <div class="absolute inset-0 bg-slate-900/80 group-hover:bg-slate-900/70 transition-colors duration-500 mix-blend-multiply"></div>
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/80 to-transparent opacity-90"></div>
-                    </div>
+    <!-- Hero -->
+    <section class="relative max-w-5xl mx-auto px-6 pt-24 pb-20 md:pt-32 md:pb-28 text-center">
+        <span class="reveal text-cyan-300 font-bold tracking-widest uppercase text-xs sm:text-sm mb-6 inline-block border border-cyan-400/30 bg-cyan-400/10 px-4 py-2 rounded-full">
+            Our Services
+        </span>
+        <h1 class="reveal text-4xl sm:text-5xl md:text-7xl font-extrabold text-white mb-6 tracking-tight" style="--reveal-delay:100ms">
+            Real Estate <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">Virtual Assistant</span> Services
+        </h1>
+        <p class="reveal text-base sm:text-xl text-slate-400 max-w-3xl mx-auto leading-relaxed mb-10" style="--reveal-delay:200ms">
+            Hand off social media, admin, CRM, calls, listings and paperwork to a dedicated assistant, so you can spend your time with clients.
+        </p>
+        <div class="reveal flex flex-col sm:flex-row items-center justify-center gap-4" style="--reveal-delay:300ms">
+            <a href="{{ route('contact') }}" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 text-white font-bold transition shadow-lg shadow-blue-600/30">
+                Book a Free Strategy Call
+            </a>
+            <a href="tel:{{ config('company.phone.tel') }}" class="w-full sm:w-auto px-8 py-4 rounded-xl border border-slate-700 bg-slate-900/60 text-white font-bold hover:border-cyan-400 hover:text-cyan-300 transition">
+                Call {{ config('company.phone.display') }}
+            </a>
+        </div>
+    </section>
 
-                    <!-- Content Container (Sits above the image) -->
-                    <div class="relative z-10 flex flex-col h-full p-10">
-                        <!-- Icon -->
-                        <div class="w-14 h-14 bg-white/10 backdrop-blur-md border border-white/20 text-blue-400 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-blue-600 group-hover:text-white group-hover:border-blue-500 transition-all duration-300 shadow-lg">
-                            <svg class="w-7 h-7 transform group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                        </div>
+    <!-- Core services -->
+    <section class="relative max-w-7xl mx-auto px-6 pb-24">
+        <div class="text-center max-w-3xl mx-auto mb-10 reveal">
+            <span class="text-cyan-400 font-bold uppercase tracking-widest text-xs">What we handle</span>
+            <h2 class="text-3xl md:text-5xl font-extrabold text-white mt-3 mb-4">Core Real Estate VA Services</h2>
+            <p class="text-slate-400 text-lg">Pick one service or combine several. Click any service to see exactly what is included.</p>
+        </div>
 
-                        <!-- Content Text -->
-                        <h3 class="text-2xl font-bold text-white mb-4 group-hover:text-blue-300 transition-colors">{{ $service->name }}</h3>
-                        <p class="text-slate-300 leading-relaxed text-sm flex-grow group-hover:text-white transition-colors">{{ $service->desc }}</p>
-                        
-                        <!-- Action Link -->
-                        <div class="mt-8 pt-6 border-t border-white/20">
-                            <span class="text-blue-400 font-semibold text-sm flex items-center gap-2 group-hover:text-blue-300 transition-colors">
-                                Explore Capability <svg class="w-4 h-4 transform group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                            </span>
-                        </div>
-                    </div>
+        <nav aria-label="Services on this page" class="reveal flex flex-wrap justify-center gap-2 mb-14">
+            @foreach ($core as $slug => $service)
+                <a href="{{ route('services.show', $slug) }}" class="px-4 py-2 rounded-full border border-slate-700 bg-slate-900/70 text-slate-300 text-sm font-semibold hover:border-cyan-400 hover:text-white transition">{{ $service['title'] }}</a>
+            @endforeach
+        </nav>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            @foreach ($core as $slug => $service)
+                @include('partials.re-service-card', ['slug' => $slug, 'service' => $service, 'delay' => ($loop->index % 2) * 120])
+            @endforeach
+        </div>
+    </section>
+
+    <!-- More services -->
+    <section class="relative border-y border-slate-800/80 bg-slate-900/40 py-24">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-12 reveal">
+                <span class="text-cyan-400 font-bold uppercase tracking-widest text-xs">And much more</span>
+                <h2 class="text-3xl md:text-5xl font-extrabold text-white mt-3 mb-4">More Ways We Can Help</h2>
+                <p class="text-slate-400 text-lg">Websites, search visibility and anything else your business needs. If it can be done remotely, your assistant can help.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                @foreach ($more as $slug => $service)
+                    @include('partials.re-service-card', ['slug' => $slug, 'service' => $service, 'delay' => ($loop->index % 2) * 120])
+                @endforeach
+            </div>
+            <div class="reveal mt-10 rounded-3xl border border-slate-700/70 bg-gradient-to-r from-slate-900 to-blue-950/60 p-8 md:p-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+                <div>
+                    <h3 class="text-xl font-bold text-white mb-2">Need something not listed?</h3>
+                    <p class="text-slate-400">Tell us where your week goes. We will suggest the first tasks to hand off.</p>
                 </div>
+                <a href="{{ route('contact') }}" class="flex-shrink-0 px-6 py-3 rounded-xl bg-white text-slate-900 hover:bg-cyan-100 font-bold transition text-center">Get a Free Task Plan</a>
+            </div>
+        </div>
+    </section>
 
-                <!-- 3. The Modals -->
-                <div x-show="activeModal === '{{ $service->icon_key }}'" class="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6" x-cloak style="display: none;">
-                    <div x-show="activeModal === '{{ $service->icon_key }}'" x-transition.opacity class="fixed inset-0 bg-slate-900/90 backdrop-blur-md" @click="activeModal = null"></div>
+    <!-- How it works -->
+    <section class="relative max-w-7xl mx-auto px-6 py-24">
+        <div class="text-center max-w-3xl mx-auto mb-14 reveal">
+            <span class="text-cyan-400 font-bold uppercase tracking-widest text-xs">Simple start</span>
+            <h2 class="text-3xl md:text-5xl font-extrabold text-white mt-3">How It Works</h2>
+        </div>
+        <ol class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            @foreach ($steps as $i => $step)
+                <li class="reveal relative rounded-3xl p-8 border border-slate-800 bg-slate-900/60 hover:border-blue-500/50 transition" style="--reveal-delay:{{ $i * 120 }}ms">
+                    <span class="w-11 h-11 rounded-xl bg-gradient-to-br from-blue-600 to-cyan-500 text-white font-bold flex items-center justify-center mb-5 shadow-lg shadow-blue-600/30">{{ $i + 1 }}</span>
+                    <h3 class="font-bold text-white mb-2">{{ $step['title'] }}</h3>
+                    <p class="text-sm text-slate-400">{{ $step['text'] }}</p>
+                </li>
+            @endforeach
+        </ol>
+    </section>
 
-                    <div x-show="activeModal === '{{ $service->icon_key }}'" x-transition.scale class="relative bg-white rounded-3xl shadow-2xl overflow-hidden w-full max-w-5xl z-10 flex flex-col md:flex-row max-h-[90vh] md:h-[600px]">
-                        
-                        <div class="w-full md:w-1/2 h-64 md:h-auto relative">
-                            @if($service->icon_key == 'va')
-                                <img src="https://images.unsplash.com/photo-1554415707-6e8cfc93fe23?q=80&w=800&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover">
-                            @elseif($service->icon_key == 'web')
-                                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=800&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover">
-                            @elseif($service->icon_key == 'seo' || $service->icon_key == 'marketing')
-                                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover">
-                            @else
-                                <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=800&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover">
-                            @endif
-                        </div>
-
-                        <div class="w-full md:w-1/2 p-8 md:p-14 overflow-y-auto relative">
-                            <button @click="activeModal = null" class="absolute top-6 right-6 text-slate-400 hover:text-slate-900 bg-slate-100 p-2 rounded-full z-20 transition-colors">
-                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                            </button>
-                            
-                            <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4 mt-4 md:mt-0">{{ $service->name }}</h2>
-                            <p class="text-slate-600 mb-8 leading-relaxed text-lg">{{ $service->desc }}</p>
-                            
-                            <h4 class="font-bold text-slate-900 mb-4 uppercase tracking-wider text-sm border-b border-slate-200 pb-2">Technical Deliverables:</h4>
-                            <ul class="space-y-3 mb-10 text-slate-600 font-medium text-sm">
-                                @if($service->icon_key == 'va')
-                                    <li class="flex items-center gap-3"><span class="w-6 h-6 bg-blue-100 text-blue-600 flex justify-center items-center rounded-full">✓</span> BoldTrail & SkySlope Data Management</li>
-                                    <li class="flex items-center gap-3"><span class="w-6 h-6 bg-blue-100 text-blue-600 flex justify-center items-center rounded-full">✓</span> Priority Executive Inbox Routing</li>
-                                    <li class="flex items-center gap-3"><span class="w-6 h-6 bg-blue-100 text-blue-600 flex justify-center items-center rounded-full">✓</span> Real Estate Compliance Coordination</li>
-                                @elseif($service->icon_key == 'web')
-                                    <li class="flex items-center gap-3"><span class="w-6 h-6 bg-blue-100 text-blue-600 flex justify-center items-center rounded-full">✓</span> Full-Stack Laravel Architecture</li>
-                                    <li class="flex items-center gap-3"><span class="w-6 h-6 bg-blue-100 text-blue-600 flex justify-center items-center rounded-full">✓</span> Python-Driven Data Models & Sales Forecasting</li>
-                                    <li class="flex items-center gap-3"><span class="w-6 h-6 bg-blue-100 text-blue-600 flex justify-center items-center rounded-full">✓</span> Scalable Cloud Deployment & Security</li>
-                                @elseif($service->icon_key == 'seo' || $service->icon_key == 'marketing')
-                                    <li class="flex items-center gap-3"><span class="w-6 h-6 bg-blue-100 text-blue-600 flex justify-center items-center rounded-full">✓</span> High-Conversion Meta Business Suite Ads</li>
-                                    <li class="flex items-center gap-3"><span class="w-6 h-6 bg-blue-100 text-blue-600 flex justify-center items-center rounded-full">✓</span> Cinematic Visual Asset Processing</li>
-                                    <li class="flex items-center gap-3"><span class="w-6 h-6 bg-blue-100 text-blue-600 flex justify-center items-center rounded-full">✓</span> Aggressive Technical SEO Optimization</li>
-                                @elseif($service->icon_key == 'finance')
-                                    <li class="flex items-center gap-3"><span class="w-6 h-6 bg-blue-100 text-blue-600 flex justify-center items-center rounded-full">✓</span> QuickBooks Enterprise Management</li>
-                                    <li class="flex items-center gap-3"><span class="w-6 h-6 bg-blue-100 text-blue-600 flex justify-center items-center rounded-full">✓</span> Real-Time Profit & Loss (P&L) Statements</li>
-                                    <li class="flex items-center gap-3"><span class="w-6 h-6 bg-blue-100 text-blue-600 flex justify-center items-center rounded-full">✓</span> Accounts Payable/Receivable Automation</li>
-                                @else
-                                    <li class="flex items-center gap-3"><span class="w-6 h-6 bg-blue-100 text-blue-600 flex justify-center items-center rounded-full">✓</span> Dedicated Elite Account Manager</li>
-                                    <li class="flex items-center gap-3"><span class="w-6 h-6 bg-blue-100 text-blue-600 flex justify-center items-center rounded-full">✓</span> Custom Weekly Performance Analytics</li>
-                                    <li class="flex items-center gap-3"><span class="w-6 h-6 bg-blue-100 text-blue-600 flex justify-center items-center rounded-full">✓</span> 24/7 Priority Support Desk</li>
-                                @endif
-                            </ul>
-                            
-                            <a href="{{ route('contact') }}" class="block w-full text-center bg-slate-900 text-white font-bold py-4 rounded-xl hover:bg-blue-600 transition-colors shadow-lg hover:shadow-blue-500/30 transform hover:-translate-y-1 duration-300">Integrate This Service</a>
-                        </div>
-                    </div>
+    <!-- FAQ -->
+    <section class="relative max-w-4xl mx-auto px-6 pb-24">
+        <h2 class="reveal text-3xl md:text-5xl font-extrabold text-white mb-12 text-center">Real Estate VA Questions</h2>
+        <div class="space-y-4">
+            @foreach ($faqs as $i => $faq)
+                <div class="reveal rounded-2xl border border-slate-800 bg-slate-900/60" style="--reveal-delay:{{ $i * 60 }}ms">
+                    <button type="button" class="w-full flex items-center justify-between gap-4 text-left p-6 font-bold text-white"
+                            @click="openFaq = openFaq === {{ $i }} ? null : {{ $i }}" :aria-expanded="openFaq === {{ $i }}">
+                        <span>{{ $faq['q'] }}</span>
+                        <svg class="w-5 h-5 flex-shrink-0 text-cyan-400 transition-transform" :class="openFaq === {{ $i }} && 'rotate-180'" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div x-show="openFaq === {{ $i }}" x-cloak class="px-6 pb-6 text-slate-400">{{ $faq['a'] }}</div>
                 </div>
             @endforeach
         </div>
+    </section>
 
-        <!-- 4. Execution Methodology Section -->
-        <div class="mb-32">
-            <div class="text-center mb-16">
-                <h4 class="text-blue-600 font-bold uppercase tracking-wider mb-2">Our Process</h4>
-                <h2 class="text-4xl font-extrabold text-slate-900 tracking-tight">Execution Methodology</h2>
-            </div>
-            
-            <div class="relative">
-                <div class="hidden md:block absolute top-1/2 left-0 w-full h-1 bg-gradient-to-r from-blue-100 via-blue-500 to-blue-100 transform -translate-y-1/2 z-0"></div>
-                
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative z-10">
-                    <div class="bg-white p-8 rounded-3xl shadow-xl border border-slate-100 text-center">
-                        <div class="w-16 h-16 bg-slate-900 text-white font-black text-2xl rounded-full flex items-center justify-center mx-auto mb-6 border-4 border-white shadow-lg">1</div>
-                        <h3 class="font-bold text-slate-800 mb-2">Discovery Audit</h3>
-                        <p class="text-slate-500 text-sm">Mapping your existing bottlenecks and technical gaps.</p>
-                    </div>
-                    <div class="bg-white p-8 rounded-3xl shadow-xl border border-slate-100 text-center">
-                        <div class="w-16 h-16 bg-blue-600 text-white font-black text-2xl rounded-full flex items-center justify-center mx-auto mb-6 border-4 border-white shadow-lg">2</div>
-                        <h3 class="font-bold text-slate-800 mb-2">Architecture</h3>
-                        <p class="text-slate-500 text-sm">Designing scalable workflows and tech deployments.</p>
-                    </div>
-                    <div class="bg-white p-8 rounded-3xl shadow-xl border border-slate-100 text-center">
-                        <div class="w-16 h-16 bg-slate-900 text-white font-black text-2xl rounded-full flex items-center justify-center mx-auto mb-6 border-4 border-white shadow-lg">3</div>
-                        <h3 class="font-bold text-slate-800 mb-2">Integration</h3>
-                        <p class="text-slate-500 text-sm">Deploying our specialists seamlessly into your ecosystem.</p>
-                    </div>
-                    <div class="bg-white p-8 rounded-3xl shadow-xl border border-slate-100 text-center">
-                        <div class="w-16 h-16 bg-blue-600 text-white font-black text-2xl rounded-full flex items-center justify-center mx-auto mb-6 border-4 border-white shadow-lg">4</div>
-                        <h3 class="font-bold text-slate-800 mb-2">Scale & Optimize</h3>
-                        <p class="text-slate-500 text-sm">Continuous monitoring and proactive growth execution.</p>
-                    </div>
-                </div>
+    <!-- Final CTA -->
+    <section class="relative max-w-5xl mx-auto px-6 pb-24">
+        <div class="reveal relative overflow-hidden rounded-3xl bg-gradient-to-r from-blue-600 to-cyan-500 p-10 md:p-14 text-center text-white shadow-2xl shadow-blue-900/50">
+            <div aria-hidden="true" class="absolute -top-20 -right-20 w-72 h-72 rounded-full bg-white/10 blur-2xl"></div>
+            <h2 class="relative text-3xl md:text-4xl font-extrabold mb-4">Get Your Time Back This Month</h2>
+            <p class="relative text-blue-50 text-lg mb-8">Book a free strategy call and leave with a clear list of tasks to delegate.</p>
+            <div class="relative flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="{{ route('contact') }}" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-white text-blue-700 font-bold hover:bg-blue-50 transition">Book a Free Strategy Call</a>
+                <a href="tel:{{ config('company.phone.tel') }}" class="w-full sm:w-auto px-8 py-4 rounded-xl border border-white/60 font-bold hover:bg-white/10 transition">Call {{ config('company.phone.display') }}</a>
             </div>
         </div>
-
-        <!-- 5. Final Bottom CTA -->
-        <div class="bg-gradient-to-br from-slate-900 to-blue-900 rounded-[3rem] p-12 md:p-20 text-center shadow-2xl relative overflow-hidden mb-10">
-            <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
-            <div class="relative z-10">
-                <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-6">Build Your Custom Solutions Package</h2>
-                <p class="text-blue-100 mb-10 max-w-2xl mx-auto text-lg">Contact our architecture team today to discuss how we can integrate these services into your daily operations.</p>
-                <a href="{{ route('contact') }}" class="inline-block px-10 py-4 text-lg font-bold rounded-full text-slate-900 bg-white hover:bg-blue-50 hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] transition-all transform hover:-translate-y-1">
-                    Request an Audit
-                </a>
-            </div>
-        </div>
-
-    </div>
+    </section>
 </div>
+
+<script type="application/ld+json">
+{!! json_encode([
+    '@context' => 'https://schema.org',
+    '@type' => 'FAQPage',
+    'mainEntity' => array_map(fn ($f) => [
+        '@type' => 'Question',
+        'name' => $f['q'],
+        'acceptedAnswer' => ['@type' => 'Answer', 'text' => $f['a']],
+    ], $faqs),
+], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}
+</script>
 @endsection
