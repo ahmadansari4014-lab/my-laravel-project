@@ -16,7 +16,24 @@
         [x-cloak] { display: none !important; }
         html { overflow-x: hidden; }
         img { max-width: 100%; }
+
+        /* Scroll reveal: add class="reveal" to any element. Content stays
+           visible if JavaScript is off or the visitor prefers less motion. */
+        .js .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); transition-delay: var(--reveal-delay, 0ms); }
+        .js .reveal.is-visible { opacity: 1; transform: none; }
+        @media (prefers-reduced-motion: reduce) { .js .reveal { opacity: 1; transform: none; transition: none; } }
     </style>
+    <script>
+        document.documentElement.classList.add('js');
+        document.addEventListener('DOMContentLoaded', function () {
+            var els = document.querySelectorAll('.reveal');
+            if (!('IntersectionObserver' in window)) { els.forEach(function (el) { el.classList.add('is-visible'); }); return; }
+            var io = new IntersectionObserver(function (entries) {
+                entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); } });
+            }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+            els.forEach(function (el) { io.observe(el); });
+        });
+    </script>
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans flex flex-col min-h-screen overflow-x-hidden">
 

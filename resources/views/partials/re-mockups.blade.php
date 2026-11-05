@@ -3,11 +3,12 @@
     Pure HTML/CSS (no images to load). All names and data are fictional
     examples, and each mock-up is labelled "Example".
 --}}
-<div aria-hidden="true" class="relative {{ ($size ?? 'md') === 'lg' ? 'h-72 md:h-80' : 'h-56' }} overflow-hidden bg-gradient-to-br from-blue-50 via-slate-50 to-cyan-50 px-6 pt-6 select-none">
-    <span class="absolute top-3 right-3 z-10 text-[10px] font-bold uppercase tracking-widest text-slate-400 bg-white/80 px-2 py-0.5 rounded-full">Example</span>
+<div aria-hidden="true" class="relative {{ ($size ?? 'md') === 'lg' ? 'h-60 md:h-64' : 'h-56' }} overflow-hidden bg-gradient-to-br from-slate-800 via-slate-900 to-blue-950 px-6 pt-6 select-none">
+    <div class="absolute -bottom-16 left-1/2 -translate-x-1/2 w-3/4 h-32 rounded-full bg-blue-500/30 blur-3xl"></div>
+    <span class="absolute top-3 right-3 z-10 text-[10px] font-bold uppercase tracking-widest text-slate-300 bg-slate-950/70 border border-slate-700 px-2 py-0.5 rounded-full">Example</span>
 
     {{-- Browser-style window --}}
-    <div class="h-full rounded-t-xl bg-white shadow-xl shadow-slate-300/50 border border-slate-200 border-b-0 overflow-hidden transition-transform duration-500 group-hover:-translate-y-1">
+    <div class="relative h-full rounded-t-xl bg-white shadow-2xl shadow-black/50 border border-slate-600 border-b-0 overflow-hidden transition-transform duration-500 group-hover:-translate-y-1">
         <div class="flex items-center gap-1.5 px-3 py-2 border-b border-slate-100 bg-slate-50">
             <span class="w-2 h-2 rounded-full bg-red-300"></span>
             <span class="w-2 h-2 rounded-full bg-amber-300"></span>

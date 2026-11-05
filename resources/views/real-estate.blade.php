@@ -26,113 +26,122 @@
 @endphp
 
 @section('content')
-<div x-data="{ openFaq: null }" class="relative pb-20">
+<div x-data="{ openFaq: null }" class="relative bg-slate-950 text-slate-300 overflow-hidden">
+
+    {{-- Background decoration --}}
+    <div aria-hidden="true" class="pointer-events-none absolute inset-0">
+        <div class="absolute inset-0 opacity-[0.07] [background-image:linear-gradient(to_right,#94a3b8_1px,transparent_1px),linear-gradient(to_bottom,#94a3b8_1px,transparent_1px)] [background-size:56px_56px] [mask-image:radial-gradient(ellipse_at_top,black_30%,transparent_75%)]"></div>
+        <div class="absolute -top-40 left-1/2 -translate-x-1/2 w-[900px] h-[600px] rounded-full bg-blue-600/25 blur-[140px]"></div>
+        <div class="absolute top-[45%] -right-40 w-[500px] h-[500px] rounded-full bg-cyan-500/10 blur-[120px]"></div>
+        <div class="absolute bottom-40 -left-40 w-[500px] h-[500px] rounded-full bg-blue-700/15 blur-[120px]"></div>
+    </div>
 
     <!-- Hero -->
-    <section class="relative py-20 sm:py-28 md:py-36 flex items-center justify-center rounded-3xl sm:rounded-[3rem] overflow-hidden mb-20 shadow-2xl mx-0 sm:mx-6 bg-slate-900">
-        <div class="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-900 to-blue-950"></div>
-        <div class="relative z-10 w-full max-w-5xl mx-auto px-6 text-center">
-            <span class="text-blue-400 font-bold tracking-widest uppercase text-xs sm:text-sm mb-6 inline-block border border-blue-400/30 bg-blue-400/10 px-4 py-2 rounded-full">
-                For Real Estate Agents &amp; Teams
-            </span>
-            <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white mb-6 tracking-tight">
-                Real Estate <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">Virtual Assistants</span>
-            </h1>
-            <p class="text-base sm:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed mb-10">
-                Hand off social media, admin, CRM, calls, listings and paperwork to a dedicated assistant, so you can spend your time with clients.
-            </p>
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <a href="{{ route('contact') }}" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold transition shadow-lg">
-                    Book a Free Strategy Call
-                </a>
-                <a href="tel:{{ config('company.phone.tel') }}" class="w-full sm:w-auto px-8 py-4 rounded-xl border border-slate-600 text-white font-bold hover:border-cyan-400 hover:text-cyan-300 transition">
-                    Call {{ config('company.phone.display') }}
-                </a>
-            </div>
+    <section class="relative max-w-5xl mx-auto px-6 pt-24 pb-20 md:pt-32 md:pb-28 text-center">
+        <span class="reveal text-cyan-300 font-bold tracking-widest uppercase text-xs sm:text-sm mb-6 inline-block border border-cyan-400/30 bg-cyan-400/10 px-4 py-2 rounded-full">
+            For Real Estate Agents &amp; Teams
+        </span>
+        <h1 class="reveal text-4xl sm:text-5xl md:text-7xl font-extrabold text-white mb-6 tracking-tight" style="--reveal-delay:100ms">
+            Real Estate <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">Virtual Assistants</span>
+        </h1>
+        <p class="reveal text-base sm:text-xl text-slate-400 max-w-3xl mx-auto leading-relaxed mb-10" style="--reveal-delay:200ms">
+            Hand off social media, admin, CRM, calls, listings and paperwork to a dedicated assistant, so you can spend your time with clients.
+        </p>
+        <div class="reveal flex flex-col sm:flex-row items-center justify-center gap-4" style="--reveal-delay:300ms">
+            <a href="{{ route('contact') }}" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 text-white font-bold transition shadow-lg shadow-blue-600/30">
+                Book a Free Strategy Call
+            </a>
+            <a href="tel:{{ config('company.phone.tel') }}" class="w-full sm:w-auto px-8 py-4 rounded-xl border border-slate-700 bg-slate-900/60 text-white font-bold hover:border-cyan-400 hover:text-cyan-300 transition">
+                Call {{ config('company.phone.display') }}
+            </a>
         </div>
     </section>
 
     <!-- Core services -->
-    <section class="max-w-7xl mx-auto px-6 mb-24">
-        <div class="text-center max-w-3xl mx-auto mb-10">
-            <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4">Core Real Estate Services</h2>
-            <p class="text-slate-600 text-lg">Pick one service or combine several. Click any service to see exactly what is included.</p>
+    <section class="relative max-w-7xl mx-auto px-6 pb-24">
+        <div class="text-center max-w-3xl mx-auto mb-10 reveal">
+            <span class="text-cyan-400 font-bold uppercase tracking-widest text-xs">What we handle</span>
+            <h2 class="text-3xl md:text-5xl font-extrabold text-white mt-3 mb-4">Core Real Estate Services</h2>
+            <p class="text-slate-400 text-lg">Pick one service or combine several. Click any service to see exactly what is included.</p>
         </div>
 
-        <nav aria-label="Services on this page" class="flex flex-wrap justify-center gap-2 mb-12">
+        <nav aria-label="Services on this page" class="reveal flex flex-wrap justify-center gap-2 mb-14">
             @foreach ($core as $slug => $service)
-                <a href="{{ route('real-estate.service', $slug) }}" class="px-4 py-2 rounded-full bg-slate-100 text-slate-700 text-sm font-semibold hover:bg-blue-600 hover:text-white transition">{{ $service['title'] }}</a>
+                <a href="{{ route('real-estate.service', $slug) }}" class="px-4 py-2 rounded-full border border-slate-700 bg-slate-900/70 text-slate-300 text-sm font-semibold hover:border-cyan-400 hover:text-white transition">{{ $service['title'] }}</a>
             @endforeach
         </nav>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             @foreach ($core as $slug => $service)
-                @include('partials.re-service-card', ['slug' => $slug, 'service' => $service])
+                @include('partials.re-service-card', ['slug' => $slug, 'service' => $service, 'delay' => ($loop->index % 2) * 120])
             @endforeach
         </div>
     </section>
 
     <!-- More services -->
-    <section class="bg-slate-50 py-20 mb-24">
+    <section class="relative border-y border-slate-800/80 bg-slate-900/40 py-24">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center max-w-3xl mx-auto mb-12">
-                <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4">More Ways We Can Help</h2>
-                <p class="text-slate-600 text-lg">Websites, search visibility and anything else your business needs. If it can be done remotely, your assistant can help.</p>
+            <div class="text-center max-w-3xl mx-auto mb-12 reveal">
+                <span class="text-cyan-400 font-bold uppercase tracking-widest text-xs">And much more</span>
+                <h2 class="text-3xl md:text-5xl font-extrabold text-white mt-3 mb-4">More Ways We Can Help</h2>
+                <p class="text-slate-400 text-lg">Websites, search visibility and anything else your business needs. If it can be done remotely, your assistant can help.</p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 @foreach ($more as $slug => $service)
-                    @include('partials.re-service-card', ['slug' => $slug, 'service' => $service])
+                    @include('partials.re-service-card', ['slug' => $slug, 'service' => $service, 'delay' => ($loop->index % 2) * 120])
                 @endforeach
             </div>
-            <div class="mt-8 bg-slate-900 rounded-3xl p-8 md:p-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6 text-white">
+            <div class="reveal mt-10 rounded-3xl border border-slate-700/70 bg-gradient-to-r from-slate-900 to-blue-950/60 p-8 md:p-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
                 <div>
-                    <h3 class="text-xl font-bold mb-2">Need something not listed?</h3>
-                    <p class="text-slate-300">Tell us where your week goes. We will suggest the first tasks to hand off.</p>
+                    <h3 class="text-xl font-bold text-white mb-2">Need something not listed?</h3>
+                    <p class="text-slate-400">Tell us where your week goes. We will suggest the first tasks to hand off.</p>
                 </div>
-                <a href="{{ route('contact') }}" class="flex-shrink-0 px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 font-bold transition text-center">Get a Free Task Plan</a>
+                <a href="{{ route('contact') }}" class="flex-shrink-0 px-6 py-3 rounded-xl bg-white text-slate-900 hover:bg-cyan-100 font-bold transition text-center">Get a Free Task Plan</a>
             </div>
         </div>
     </section>
 
     <!-- How it works -->
-    <section class="max-w-7xl mx-auto px-6 mb-24">
-        <div class="text-center max-w-3xl mx-auto mb-14">
-            <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4">How It Works</h2>
+    <section class="relative max-w-7xl mx-auto px-6 py-24">
+        <div class="text-center max-w-3xl mx-auto mb-14 reveal">
+            <span class="text-cyan-400 font-bold uppercase tracking-widest text-xs">Simple start</span>
+            <h2 class="text-3xl md:text-5xl font-extrabold text-white mt-3">How It Works</h2>
         </div>
         <ol class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             @foreach ($steps as $i => $step)
-                <li class="bg-slate-50 rounded-3xl p-8 border border-slate-100">
-                    <span class="w-10 h-10 rounded-full bg-blue-600 text-white font-bold flex items-center justify-center mb-4">{{ $i + 1 }}</span>
-                    <h3 class="font-bold text-slate-900 mb-2">{{ $step['title'] }}</h3>
-                    <p class="text-sm text-slate-600">{{ $step['text'] }}</p>
+                <li class="reveal relative rounded-3xl p-8 border border-slate-800 bg-slate-900/60 hover:border-blue-500/50 transition" style="--reveal-delay:{{ $i * 120 }}ms">
+                    <span class="w-11 h-11 rounded-xl bg-gradient-to-br from-blue-600 to-cyan-500 text-white font-bold flex items-center justify-center mb-5 shadow-lg shadow-blue-600/30">{{ $i + 1 }}</span>
+                    <h3 class="font-bold text-white mb-2">{{ $step['title'] }}</h3>
+                    <p class="text-sm text-slate-400">{{ $step['text'] }}</p>
                 </li>
             @endforeach
         </ol>
     </section>
 
     <!-- FAQ -->
-    <section class="max-w-4xl mx-auto px-6 mb-24">
-        <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-10 text-center">Real Estate VA Questions</h2>
+    <section class="relative max-w-4xl mx-auto px-6 pb-24">
+        <h2 class="reveal text-3xl md:text-5xl font-extrabold text-white mb-12 text-center">Real Estate VA Questions</h2>
         <div class="space-y-4">
             @foreach ($faqs as $i => $faq)
-                <div class="bg-white rounded-2xl border border-slate-200">
-                    <button type="button" class="w-full flex items-center justify-between gap-4 text-left p-6 font-bold text-slate-900"
+                <div class="reveal rounded-2xl border border-slate-800 bg-slate-900/60" style="--reveal-delay:{{ $i * 60 }}ms">
+                    <button type="button" class="w-full flex items-center justify-between gap-4 text-left p-6 font-bold text-white"
                             @click="openFaq = openFaq === {{ $i }} ? null : {{ $i }}" :aria-expanded="openFaq === {{ $i }}">
                         <span>{{ $faq['q'] }}</span>
-                        <svg class="w-5 h-5 flex-shrink-0 transition-transform" :class="openFaq === {{ $i }} && 'rotate-180'" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        <svg class="w-5 h-5 flex-shrink-0 text-cyan-400 transition-transform" :class="openFaq === {{ $i }} && 'rotate-180'" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </button>
-                    <div x-show="openFaq === {{ $i }}" x-cloak class="px-6 pb-6 text-slate-600">{{ $faq['a'] }}</div>
+                    <div x-show="openFaq === {{ $i }}" x-cloak class="px-6 pb-6 text-slate-400">{{ $faq['a'] }}</div>
                 </div>
             @endforeach
         </div>
     </section>
 
     <!-- Final CTA -->
-    <section class="max-w-5xl mx-auto px-6">
-        <div class="rounded-3xl bg-gradient-to-r from-blue-600 to-cyan-500 p-10 md:p-14 text-center text-white shadow-2xl">
-            <h2 class="text-3xl md:text-4xl font-extrabold mb-4">Get Your Time Back This Month</h2>
-            <p class="text-blue-50 text-lg mb-8">Book a free strategy call and leave with a clear list of tasks to delegate.</p>
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+    <section class="relative max-w-5xl mx-auto px-6 pb-24">
+        <div class="reveal relative overflow-hidden rounded-3xl bg-gradient-to-r from-blue-600 to-cyan-500 p-10 md:p-14 text-center text-white shadow-2xl shadow-blue-900/50">
+            <div aria-hidden="true" class="absolute -top-20 -right-20 w-72 h-72 rounded-full bg-white/10 blur-2xl"></div>
+            <h2 class="relative text-3xl md:text-4xl font-extrabold mb-4">Get Your Time Back This Month</h2>
+            <p class="relative text-blue-50 text-lg mb-8">Book a free strategy call and leave with a clear list of tasks to delegate.</p>
+            <div class="relative flex flex-col sm:flex-row items-center justify-center gap-4">
                 <a href="{{ route('contact') }}" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-white text-blue-700 font-bold hover:bg-blue-50 transition">Book a Free Strategy Call</a>
                 <a href="tel:{{ config('company.phone.tel') }}" class="w-full sm:w-auto px-8 py-4 rounded-xl border border-white/60 font-bold hover:bg-white/10 transition">Call {{ config('company.phone.display') }}</a>
             </div>
